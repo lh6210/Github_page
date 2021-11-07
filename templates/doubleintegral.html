@@ -1,0 +1,80 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>  <!-- head meta data -->
+    <meta charset="utf-8">
+    <title>Math Vista</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+		<link rel="stylesheet" href="../stylesheets/style.css">
+		<!-- icon --> 
+		<script src="https://kit.fontawesome.com/cbc558647c.js" crossorigin="anonymous"></script>
+		<link rel="icon" href="assets/icons/feather-alt-solid.svg">
+		<!-- MathJax -->
+		<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+		<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+		<!-- MathJax ends -->
+  </head>  <!-- head ends -->
+
+  <body>
+		<div class="container-fluid ">
+			<div class="row">
+				<header class="col-12">
+					<h1 class="text-center">Math and Plot</h1>
+				</header>
+			</div>
+
+			<div class="row">
+				<div class="col-12">
+					<h2>Calculus 2 -- Double Integral</h2>
+					<details>
+						<summary class="problem-title">problem 1: evaluate \( \int_{1}^{\infty} \!\!\! \int_{x^2}^{\infty} \! \frac{1}{x^4+y^2} \, \mathrm{d}y  \, \mathrm{d}x \) 
+						</summary>
+						
+						<div class="col-12 d-flex flex-wrap">
+							<p class="math">
+							\begin{equation*} \label{eq1}
+							\begin{split}
+							Area & =  \int_{1}^{\infty} \!\!\! \int_{x^2}^{\infty} \! \frac{1}{x^4+y^2} \, \mathrm{d}y  \, \mathrm{d}x  \\
+							& = \int_{1}^{\infty}(\frac{1}{x^4} \cdot \int_{x^2}^{\infty} \frac{1}{1+(\frac{y}{x^2})^2} \, \mathrm{d}y) \, \mathrm{d}x  \\
+							&= \int_{1}^{\infty}(\frac{1}{x^2} \cdot \int_{x^2}^{\infty} \frac{1}{1 + (\frac{y}{x^2})^2} \, \mathrm{d}(\frac{y}{x^2}) \, \mathrm{d}x  \\
+							&= \int_{1}^{\infty}\frac{1}{x^2} \cdot arctan(\frac{y}{x^2})\Big \rvert _{x^2}^{\infty} \, \mathrm{d}x  \\
+							&= \int_{1}^{\infty} \frac{1}{x^2} \cdot (arctan(\infty) - arctan(1)) \, \mathrm{d}x    \\
+							&=  \frac{\pi}{4} \cdot \int_{1}^{\infty} \frac{1}{x^2} \, \mathrm{d}x  \\
+							&= \dots
+							\end{split}
+							\end{equation*}
+							</p>
+
+							<img class="img-fluid float-left mt-1" src="images/pic3.jpg" alt="graph of the double integral expression above">
+						</div>
+					</details>
+				</div> <!-- column ends -->
+
+
+				<div class="col-12">
+					<a href="#top">Back to Top</a>
+				</div>
+			</div> <!-- row ends -->
+				<div class="row">
+					<footer class="col-12 d-flex justify-content-around">
+						<p>Copyright &copy; 2020 Math and Plot</p>
+						<p>Email: xxx@xxx.com</p>
+					</footer>
+				</div>
+
+			</div> <!-- row ends -->
+
+
+			<section>
+				<!-- <p>You might be wondering what the function in-between the integral symbols looks like, right? Well, I get that. Below is the graph of it.</p> -->
+				<!-- <img src="images/integral2.png" alt="graph of the double integral expression above"> -->
+			</section>
+		</div> <!-- container ends -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
