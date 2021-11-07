@@ -74,7 +74,9 @@ $$
   1 & 0 & 0   \\\\  
   -l_{21} & 1 & 0  \\\\ 
   \underline{-l_{31} + l_{21} \* l_{32}} & -l_{32} & 1  
-  \end{bmatrix} &&\quad &&\text{abcd} \\\\
+  \end{bmatrix} &&\quad &&\text{The entry at \\(L^{-1}\_{31}\\) is an arithmetic combination of three elements} \\\\
+ \\\\ 
+ \\\\
 L &= E_{21}^{-1} \* E\_{31}^{-1} \*E_{32}^{-1} \\\\
   &= \begin{bmatrix}
   1 & 0 & 0   \\\\  
@@ -107,7 +109,7 @@ L &= E_{21}^{-1} \* E\_{31}^{-1} \*E_{32}^{-1} \\\\
   1 & 0 & 0   \\\\  
   l_{21} & 1 & 0  \\\\ 
   l_{31} & l_{32} & 1  
-  \end{bmatrix}   &&\quad &&\text{abcd}
+  \end{bmatrix}   &&\quad &&\text{Each multiplier l_{ij} goes directly into its i, j position unchanged}
 \end{alignat}
 
 
