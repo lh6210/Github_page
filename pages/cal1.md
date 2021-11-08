@@ -3,6 +3,12 @@ date: 2021-10-30
 category: Linear Algebra
     
 
+## head 1 {#head-1}
+
+### head 2 {#head-2}
+
+
+##### head 3
 \\(y = x^2\\)
 When \\(a \ne 0\\), there are two solutions to $ax^2 + bx+c=0$ and they are $x = {-b \pm \sqrt{b^2 - 4ac} \over 2a}.$
 Here's the \$.
@@ -15,6 +21,8 @@ LUdecomposition with Sympy
 a & b & c
 \end{bmatrix}  
 
+[link to Head 1](#head)
+
 $$
 \begin{align}
 y &= x \* x  \\\\ 
@@ -24,6 +32,7 @@ $$
 
 \\(\because\\)
 \\(\rhd\\)
+
 
 
 \\[
@@ -222,6 +231,7 @@ function fancyAlert(arg) {
 }   
 ```
 
+### head { #head}
 
 
 
