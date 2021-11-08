@@ -1,6 +1,6 @@
-title: My Second Blog
-date: 2020-02-23
-category: calculus 
+title: LU Decomposition
+date: 2021-10-30
+category: Linear Algebra
     
 
 \\(y = x^2\\)
@@ -32,14 +32,79 @@ e = mc^2   2
 \end{equation}
 \\]
 
+Why \\( L\_{31} = \begin{equation}
+\begin{bmatrix}
+1 & 0 & 0 \\\\
+0 & 1 & 0 \\\\
+l_{31} & 0 & 1
+\end{bmatrix}
+\text{and} \, 
+E\_{31} = \begin{bmatrix}
+1 & 0 & 0 \\\\
+0 & 1 & 0 \\\\
+-l_{31} & 0 & 1
+\end{bmatrix}
+\end{equation} \\)
+are inverse to each other?
+
+\\(\because\\) 
+\begin{flalign}  
+L\_{31} \* E\_{31} &= 
+\begin{bmatrix}
+1 & 0 & 0 \\\\
+0 & 1 & 0 \\\\
+l_{31} & 0 & 1
+\end{bmatrix} 
+\*
+\begin{bmatrix}
+1 & 0 & 0 \\\\
+0 & 1 & 0 \\\\
+-l_{31} & 0 & 1
+\end{bmatrix}
+= I  & \\\\
+\\\\
+\text{Or} \\\\
+\\\\
+L\_{31} \* E\_{31} \* A &= 
+\begin{bmatrix}
+1 & 0 & 0 \\\\
+0 & 1 & 0 \\\\
+l_{31} & 0 & 1
+\end{bmatrix}
+\*
+\begin{bmatrix}
+1 & 0 & 0 \\\\
+0 & 1 & 0 \\\\
+-l_{31} & 0 & 1
+\end{bmatrix}
+\*
+\begin{bmatrix}
+& \text{row 1}& \\\\
+& \text{row 2}& \\\\
+& \text{row 3}& 
+\end{bmatrix}\_{\text{Matrix A}} & \\\\
+&=
+\begin{bmatrix}
+1 & 0 & 0 \\\\
+0 & 1 & 0 \\\\
+l\_{31} & 0 & 1
+\end{bmatrix}
+\*
+\begin{bmatrix}
+& row 1& \\\\
+& row 2& \\\\
+& row 3 - l\_{31} \* row 1& 
+\end{bmatrix}  \\\\
+&=
+\begin{bmatrix}
+& row 1& \\\\
+& row 2& \\\\
+& row 3& 
+\end{bmatrix}_{\text{Matrix A}} = A \\\\
+\end{flalign}
 
 
 
-$$
-\begin{equation}
-    e^{\pi i} + 1 = 0  3
-\end{equation}
-$$
 
 
 \begin{alignat}{2}
@@ -68,7 +133,7 @@ $$
   1 & 0 & 0  \\\\
   -l_{21} & 1 & 0  \\\\
   -l_{31} & 0 & 1 
-  \end{bmatrix}  & \\\\
+  \end{bmatrix} &&\quad &&\text{Matrix multiplication mixed up all three numbers below.} \\\\
 &=
   \begin{bmatrix}
   1 & 0 & 0   \\\\  
@@ -109,7 +174,7 @@ L &= E_{21}^{-1} \* E\_{31}^{-1} \*E_{32}^{-1} \\\\
   1 & 0 & 0   \\\\  
   l_{21} & 1 & 0  \\\\ 
   l_{31} & l_{32} & 1  
-  \end{bmatrix}   &&\quad &&\text{Each multiplier l_{ij} goes directly into its i, j position unchanged}
+  \end{bmatrix}   &&\quad &&\text{Each multiplier \\(l_{ij}\\) goes directly into its i, j position unchanged, which is what we like.}
 \end{alignat}
 
 
