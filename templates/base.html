@@ -6,6 +6,7 @@
     <title>My Flask Blog</title>
 
     <!-- put configuration ahead of loading statements -->
+    <!--
     <script>
     MathJax = {
       tex: {
@@ -14,10 +15,31 @@
       }
     };
     </script>
-    <!-- support old browsers polyfill -->
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    -->
+    <script>
+    window.MathJax = {
+      options: {
+        ignoreHtmlClass: 'tex2jax_ignore',
+        processHtmlClass: 'tex2jax_process'
+      },
+      tex: {
+        autoload: {
+          color: [],
+          colorv2: ['color']
+        },
+        packages: {'[+]': ['noerrors']}
+      },
+      loader: {
+        load: ['input/asciimath', '[tex]/noerrors']
+      }
+    };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script"></script>
     <!-- MathJax 3 -->
+    <!-- support old browsers polyfill 
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    -->
 </head>
 <body>
     <h1>My Common Header</h1>

@@ -24,79 +24,77 @@ a & b & c
 
 [link to Head 1](#head)
 
-\(\because\)
-\\(\rhd\\)
 
-$$
-\text{Why} L_{31} = \begin{bmatrix}
+\begin{flalign}
+& \text{Why } L_{31}  = \left( \begin{smallmatrix}
 1 & 0 & 0 \\
 0 & 1 & 0 \\
 l_{31} & 0 & 1
-\end{bmatrix}
+\end{smallmatrix} \right) \,
 \text{and} \, 
-E_{31} = \begin{bmatrix}
+E_{31} = \left( \begin{smallmatrix}
 1 & 0 & 0 \\
 0 & 1 & 0 \\
 -l_{31} & 0 & 1
-\end{bmatrix}
-\text{are inverse to each other?}
-$$
+\end{smallmatrix} \right) \,
+\text{are inverse to each other?}  &
+\end{flalign}
 
 $$
-\\(\because\\) 
+\(\because\) 
 \begin{flalign}  
-L\_{31} \* E\_{31} &= 
+L_{31} * E_{31} &= 
 \begin{bmatrix}
-1 & 0 & 0 \\\\
-0 & 1 & 0 \\\\
+1 & 0 & 0 \\
+0 & 1 & 0 \\
 l_{31} & 0 & 1
 \end{bmatrix} 
-\*
+*
 \begin{bmatrix}
-1 & 0 & 0 \\\\
-0 & 1 & 0 \\\\
+1 & 0 & 0 \\
+0 & 1 & 0 \\
 -l_{31} & 0 & 1
 \end{bmatrix}
-= I  & \\\\
-\\\\
-\text{Or} \\\\
-\\\\
-L\_{31} \* E\_{31} \* A &= 
+= I  & \\
+\\
+\text{Or} \\
+\\
+L_{31} * E_{31} * A &= 
 \begin{bmatrix}
-1 & 0 & 0 \\\\
-0 & 1 & 0 \\\\
+1 & 0 & 0 \\
+0 & 1 & 0 \\
 l_{31} & 0 & 1
 \end{bmatrix}
-\*
+*
 \begin{bmatrix}
-1 & 0 & 0 \\\\
-0 & 1 & 0 \\\\
+1 & 0 & 0 \\
+0 & 1 & 0 \\
 -l_{31} & 0 & 1
 \end{bmatrix}
-\*
+*
 \begin{bmatrix}
-& \text{row 1}& \\\\
-& \text{row 2}& \\\\
+& \text{row 1}& \\
+& \text{row 2}& \\
 & \text{row 3}& 
-\end{bmatrix}\_{\text{Matrix A}} & \\\\
+\end{bmatrix}_{\text{Matrix A}} & \\
 &=
 \begin{bmatrix}
-1 & 0 & 0 \\\\
-0 & 1 & 0 \\\\
-l\_{31} & 0 & 1
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+l_{31} & 0 & 1
 \end{bmatrix}
-\*
+*
 \begin{bmatrix}
-& row 1& \\\\
-& row 2& \\\\
-& row 3 - l\_{31} \* row 1& 
-\end{bmatrix}  \\\\
+& \text{row 1} & \\
+& \text{row 2}& \\
+& \text{row 3 } - l_{31} * \text{row 1}& 
+\end{bmatrix}  \\
 &=
 \begin{bmatrix}
-& row 1& \\\\
-& row 2& \\\\
-& row 3& 
-\end{bmatrix}_{\text{Matrix A}} = A \\\\
+& \text{row 1}& \\
+& \text{row 2}& \\
+& \text{row 3}& 
+\end{bmatrix}_{\text{Matrix A}} = A \\
 \end{flalign}
 $$
 
@@ -104,80 +102,75 @@ $$
 
 
 \begin{alignat}{2}
- L^{-1} &= E_{32}\*E_{31} \*E_{21}  \\\\
+ L^{-1} &= E_{32}*E_{31} *E_{21}  \\
   &= \begin{bmatrix}
-  1 & 0 & 0   \\\\  
-  0 & 1 & 0  \\\\ 
+  1 & 0 & 0   \\  
+  0 & 1 & 0  \\
   0 & -l_{32} & 1  
-  \end{bmatrix} \* 
+  \end{bmatrix} * 
 \begin{bmatrix}
-  1 & 0 & 0  \\\\
-  0 & 1 & 0  \\\\
+  1 & 0 & 0  \\
+  0 & 1 & 0  \\
   -l_{31} & 0 & 1 
-  \end{bmatrix}  \*
-  \begin{bmatrix} 1 & 0 & 0 \\\\
-  -l_{21} & 1 & 0 \\\\
+  \end{bmatrix}  *
+  \begin{bmatrix} 1 & 0 & 0 \\
+  -l_{21} & 1 & 0 \\
   0 & 0 & 1
-  \end{bmatrix}  & \\\\ 
+  \end{bmatrix}  & \\ 
 &= 
   \begin{bmatrix}
-  1 & 0 & 0   \\\\  
-  0 & 1 & 0  \\\\ 
+  1 & 0 & 0   \\  
+  0 & 1 & 0  \\ 
   0 & -l_{32} & 1  
-  \end{bmatrix} \* 
+  \end{bmatrix} * 
 \begin{bmatrix}
-  1 & 0 & 0  \\\\
-  -l_{21} & 1 & 0  \\\\
+  1 & 0 & 0  \\
+  -l_{21} & 1 & 0  \\
   -l_{31} & 0 & 1 
-  \end{bmatrix} &&\quad &&\text{Matrix multiplication mixed up all three numbers below.} \\\\
+  \end{bmatrix} &&\quad &&\text{Matrix multiplication mixed up all three numbers below.} \\
 &=
   \begin{bmatrix}
-  1 & 0 & 0   \\\\  
-  -l_{21} & 1 & 0  \\\\ 
-  \underline{-l_{31} + l_{21} \* l_{32}} & -l_{32} & 1  
-  \end{bmatrix} &&\quad &&\text{The entry at \\(L^{-1}\_{31}\\) is an arithmetic combination of three elements} \\\\
- \\\\ 
- \\\\
-L &= E_{21}^{-1} \* E\_{31}^{-1} \*E_{32}^{-1} \\\\
+  1 & 0 & 0   \\  
+  -l_{21} & 1 & 0  \\ 
+  \underline{-l_{31} + l_{21} * l_{32}} & -l_{32} & 1  
+  \end{bmatrix} &&\quad &&\text{The entry at \(L^{-1}_{31}\) is an arithmetic combination of three elements} \\
+ \\ 
+ \\
+L &= E_{21}^{-1} * E_{31}^{-1} *E_{32}^{-1} \\
   &= \begin{bmatrix}
-  1 & 0 & 0   \\\\  
-  l_{21} & 1 & 0  \\\\ 
+  1 & 0 & 0   \\  
+  l_{21} & 1 & 0  \\ 
   0 & 0 & 1  
-  \end{bmatrix}  \* 
+  \end{bmatrix}  * 
 \begin{bmatrix}
-  1 & 0 & 0  \\\\
-  0 & 1 & 0  \\\\
+  1 & 0 & 0  \\
+  0 & 1 & 0  \\
   l_{31} & 0 & 1 
-  \end{bmatrix}  \*
+  \end{bmatrix}  *
   \begin{bmatrix}
-  1 & 0 & 0 \\\\
-  0 & 1 & 0 \\\\
+  1 & 0 & 0 \\
+  0 & 1 & 0 \\
   0 & l_{32} & 1
-  \end{bmatrix}  \\\\ 
+  \end{bmatrix}  \\ 
 &= 
   \begin{bmatrix}
-  1 & 0 & 0   \\\\  
-  l_{21} & 1 & 0  \\\\ 
+  1 & 0 & 0   \\  
+  l_{21} & 1 & 0  \\ 
   0 & 0 & 1  
-  \end{bmatrix} \* 
+  \end{bmatrix} * 
 \begin{bmatrix}
-  1 & 0 & 0  \\\\
-  0 & 1 & 0  \\\\
+  1 & 0 & 0  \\
+  0 & 1 & 0  \\
   l_{31} & l_{32} & 1 
-  \end{bmatrix}   \\\\
+  \end{bmatrix}   \\
 &=
   \begin{bmatrix}
-  1 & 0 & 0   \\\\  
-  l_{21} & 1 & 0  \\\\ 
+  1 & 0 & 0   \\  
+  l_{21} & 1 & 0  \\ 
   l_{31} & l_{32} & 1  
-  \end{bmatrix}   &&\quad &&\text{Each multiplier \\(l_{ij}\\) goes directly into its i, j position unchanged, which is what we like.}
+  \end{bmatrix}   &&\quad &&\text{Each multiplier \(l_{ij}\) goes directly into its i, j position unchanged, which is what we like.}
 \end{alignat}
 
-
-
-$$
-\rhd
-$$
 
 # LU Factorization  
 Let's have a look at how \\(L * U\\) works, specifically \\(E_{21} * E_{31} * E_{32} * U\\).    
