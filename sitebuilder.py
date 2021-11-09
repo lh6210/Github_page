@@ -1,5 +1,6 @@
 
-import sys
+import sys 
+from datetime import datetime
 
 from flask import Flask, render_template, url_for, render_template_string
 from flask_flatpages import FlatPages
@@ -12,8 +13,8 @@ FLATPAGES_EXTENSION = '.md'
 DEBUG = True
 
 def my_renderer(text):
-    #prerendered_body = render_template_string(text)
-    return markdown.markdown(text, extensions=['attr_list', 'pymdownx.arithmatex'])
+    # prerendered_body = render_template_string(text)
+    return markdown.markdown(text, extensions=['mdx_math', 'attr_list', 'pymdownx.arithmatex'])
 
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -36,6 +37,7 @@ def cc():
 def page(path):
     print('Page function running')
     page = pages.get_or_404(path)
+    print(f'{page}')
     return render_template('page.html', page=page)
 
 @freezer.register_generator

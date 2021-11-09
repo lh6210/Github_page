@@ -6,6 +6,20 @@
 <head>
     <meta charset="UTF-8">
     <title>My Flask Blog</title>
+
+    <!-- put configuration ahead of loading statements -->
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      }
+    };
+    </script>
+    <!-- support old browsers polyfill -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <!-- MathJax 3 -->
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
     <h1>My Common Header</h1>
@@ -13,6 +27,39 @@
     
 
 <p>Welcome to my blog!</p>
+
+<h3>Contents</h3>
+<table border="2px">
+    <thead>
+        <tr>
+            <td>Title</td>
+            <td>Link</td>
+        </tr>
+    </thead>
+
+    
+        <tr>
+            <td></td>
+            <td><a href="blog_backend.html">Read</a></td>
+        </tr>
+
+    
+        <tr>
+            <td>LU Decomposition</td>
+            <td><a href="cal1.html">Read</a></td>
+        </tr>
+
+    
+        <tr>
+            <td>My First Blog</td>
+            <td><a href="first.html">Read</a></td>
+        </tr>
+
+    
+</table>
+
+
+
 
 
 

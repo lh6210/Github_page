@@ -9,53 +9,40 @@ category: Linear Algebra
 
 
 ##### head 3
-\\(y = x^2\\)
-When \\(a \ne 0\\), there are two solutions to $ax^2 + bx+c=0$ and they are $x = {-b \pm \sqrt{b^2 - 4ac} \over 2a}.$
+
+\(y = x^2\)
+When \(a \ne 0\), there are two solutions to $ax^2 + bx+c=0$ and they are $x = {-b \pm \sqrt{b^2 - 4ac} \over 2a}.$
 Here's the \$.
 
 
 LUdecomposition with Sympy
 
 \begin{bmatrix}
-1 & 2 & 3 \\\\
+1 & 2 & 3 \\
 a & b & c
 \end{bmatrix}  
 
 [link to Head 1](#head)
 
-$$
-\begin{align}
-y &= x \* x  \\\\ 
-  &= x^2
-\end{align}
-$$
-
-\\(\because\\)
+\(\because\)
 \\(\rhd\\)
 
-
-
-\\[
-\begin{equation}
-e = mc^2   2
-\end{equation}
-\\]
-
-Why \\( L\_{31} = \begin{equation}
-\begin{bmatrix}
-1 & 0 & 0 \\\\
-0 & 1 & 0 \\\\
+$$
+\text{Why} L_{31} = \begin{bmatrix}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
 l_{31} & 0 & 1
 \end{bmatrix}
 \text{and} \, 
-E\_{31} = \begin{bmatrix}
-1 & 0 & 0 \\\\
-0 & 1 & 0 \\\\
+E_{31} = \begin{bmatrix}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
 -l_{31} & 0 & 1
 \end{bmatrix}
-\end{equation} \\)
-are inverse to each other?
+\text{are inverse to each other?}
+$$
 
+$$
 \\(\because\\) 
 \begin{flalign}  
 L\_{31} \* E\_{31} &= 
@@ -111,7 +98,7 @@ l\_{31} & 0 & 1
 & row 3& 
 \end{bmatrix}_{\text{Matrix A}} = A \\\\
 \end{flalign}
-
+$$
 
 
 
