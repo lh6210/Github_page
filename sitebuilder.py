@@ -13,7 +13,7 @@ FLATPAGES_EXTENSION = '.md'
 DEBUG = True
 # attr_list: heading anchor
 # pymdownx.arithmatex: latex
-md = markdown.Markdown(extensions=['tables', 'attr_list', 'pymdownx.arithmatex'])
+md = markdown.Markdown(extensions=['tables', 'attr_list', 'pymdownx.arithmatex', 'fenced_code', 'codehilite', 'pymdownx.superfences'])
 def my_renderer(text):
     # prerendered_body = render_template_string(text)
     return md.convert(text)

@@ -10,7 +10,7 @@ My understanding is that Pygments is the default rendering engine that FlatPags 
 
 However, for Math/Latex users the default rendering process might not work as desired. The problems are usually due to the conflicts between different meanings of `_` and `*` in Latex and Markdown. A common workaround is to tweak the Latex syntax inside Latex delimiters, which brings more or less hassles into the blog writings. For example, what I have experienced was that: inside a math block encircled by `$$`, instead of typing `_` for subscript, I have to type `\_`; instead of typing `*` for multiplication, I have to type `\*`; instead of typing `\\` for linebreak, I have to type `\\\\`.
 
-Fortunately, Flask-Flatpage gives users the flexibiltiy to specify the render engine as well as self-define the conversion function. Also, a render engine, $Python-Markdown$ along with [python-markdown-math](https://pypi.org/project/python-markdown-math/) and the suggested configuration, could convert Latex syntax in .md files smoothly into .html files.   
+Fortunately, Flask-Flatpage gives users the flexibiltiy to specify the render engine as well as self-define the conversion function. I ended up using $Python-Markdown$ along with [Arithmatex](https://facelessuser.github.io/pymdown-extensions/extensions/arithmatex/) as the rendering part. This combination allows me to write pure Latex inside math blocks and works well so far.
 
 More Markdown processors:  
 
@@ -27,10 +27,15 @@ More Markdown processors:
 
 
 The steps that I have taken:   
-1. install Python-Markdown and python-markdown-math   
-2. configure python-markdown-math according to its recommendation   
-    - include MathJax library in HTML files    
-    - convert configuration for MathJax 2.x to the one for MathJax 3.x; [MathJax converter](https://mathjax.github.io/MathJax-demos-web/convert-configuration/convert-configuration.html)    
-    - pass the extension [python-markdown-math] to Python-Markdown   
-3. cc
+1. install Python-Markdown and pymdown-extensions   
+2. include Arithmatex extension in Python Markdown's configuration  
+
+    ```
+    import markdown   
+    md = markdown.Markdown(extensions=['pymdownx.arithmatex'])
+    ```
+
+   
+   
+3. ccc
 
