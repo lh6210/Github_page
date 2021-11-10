@@ -11,10 +11,12 @@ import markdown
 #FLATPAGES_AUTO_RELOAD = DEBUG
 FLATPAGES_EXTENSION = '.md'
 DEBUG = True
-
+# attr_list: heading anchor
+# pymdownx.arithmatex: latex
+md = markdown.Markdown(extensions=['tables', 'attr_list', 'pymdownx.arithmatex'])
 def my_renderer(text):
     # prerendered_body = render_template_string(text)
-    return markdown.markdown(text, extensions=['tables', 'attr_list', 'pymdownx.arithmatex'])
+    return md.convert(text)
 
 app = Flask(__name__)
 app.config.from_object(__name__)

@@ -13,15 +13,17 @@ However, for Math/Latex users the default rendering process might not work as de
 Fortunately, Flask-Flatpage gives users the flexibiltiy to specify the render engine as well as self-define the conversion function. Also, a render engine, $Python-Markdown$ along with [python-markdown-math](https://pypi.org/project/python-markdown-math/) and the suggested configuration, could convert Latex syntax in .md files smoothly into .html files.   
 
 More Markdown processors:  
-| Name             | Language         | Output Formats | Description                                | 
-| -----------------| -----------------| -------------- | ---------------------------------------    |
-| Hoep             | Python           | (X)HTML        | A Python binding to Hoedown                |
-| Python-Discount  | Python           | (X)HTML        | A Python binding to Discount               |
-| python-hoedown   | Python           | (X)HTML        | A Python binding to Hoedown                |
-| Python-Markdown2 | Python           | (X)HTML        | A direct port of markdown.pl to Python     |
-| Misaka           | Python 2&3       | (X)HTML        | A Python binding for Sundown               |
-| Python-Markdown  | Python 2&3       | (X)HTML        | A Python implementation with extensions    |
-| Mistune          | Python 2&3 &pypy | (X)HTML        | A Python port of Marked                    |
+
+| Name             | Language     | Output Formats   | Description                               |
+| :------          | :-------     | ---------------- | ----------------------------------------- |
+| Hoep             | Python       | (X)HTML          | A Python binding to Hoedown               |
+| Python-Discount  | Python       | (X)HTML          | A Python binding to Discount              |
+| Python-hoedown   | Python       | (X)HTML          | A Python binding to Hoedown               |
+| Python-Markdown2 | Python       | (X)HTML          | A direct port of markdown.pl to Python    |
+| Misaka           | Python 2 & 3 | (X)HTML          | A Python binding for Sundown              |
+| Python-Markdown  | Python 2 & 3 | (X)HTML          | A Python implementation with extensions   |
+| Mistune          | Python 2 & 3 | (X)HTML          | A Python port of Marked                   |
+
 
 
 The steps that I have taken:   
