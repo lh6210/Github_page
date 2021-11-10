@@ -24,7 +24,7 @@ a & b & c
 
 [link to Head 1](#head)
 
-
+$$
 \begin{flalign}
 & \text{Why } L_{31}  = \left( \begin{smallmatrix}
 1 & 0 & 0 \\
@@ -39,6 +39,7 @@ E_{31} = \left( \begin{smallmatrix}
 \end{smallmatrix} \right) \,
 \text{are inverse to each other?}  &
 \end{flalign}
+$$
 
 $$
 \(\because\) 
@@ -99,8 +100,8 @@ l_{31} & 0 & 1
 $$
 
 
-
-
+``` tex
+$$
 \begin{alignat}{2}
  L^{-1} &= E_{32}*E_{31} *E_{21}  \\
   &= \begin{bmatrix}
@@ -170,7 +171,8 @@ L &= E_{21}^{-1} * E_{31}^{-1} *E_{32}^{-1} \\
   l_{31} & l_{32} & 1  
   \end{bmatrix}   &&\quad &&\text{Each multiplier \(l_{ij}\) goes directly into its i, j position unchanged, which is what we like.}
 \end{alignat}
-
+$$
+```
 
 # LU Factorization  
 Let's have a look at how \\(L * U\\) works, specifically \\(E_{21} * E_{31} * E_{32} * U\\).    
@@ -209,6 +211,27 @@ function fancyAlert(arg) {
     $.facebox({div:'#foo'})    
   }   
 }   
+```
+
+``` python
+from sympy import *
+from sympy.interactive.printing import init_printing
+init_printing(use_unicode=True)
+from sympy.matrices import Matrix 
+from sympy import symbols, shape, eye, sympify
+
+
+def LU2(A):
+    L, U, P = A.LUdecomposition()
+    r = U.rank()
+    m, n = shape(U)
+    D = eye(r)
+    for i in range(r):
+        pivot = U[i, i]
+        D[i, i] = pivot
+        for j in range(i, n):
+            U[i, j] = U[i, j] / sympify(pivot)
+    return L, D, U, P
 ```
 
 ### head { #head}

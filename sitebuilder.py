@@ -14,7 +14,8 @@ DEBUG = True
 # attr_list: heading anchor
 # pymdownx.arithmatex: latex
 # tables: table
-md = markdown.Markdown(extensions=['tables', 'attr_list', 'pymdownx.arithmatex', 'fenced_code', 'codehilite', 'pymdownx.superfences'])
+
+md = markdown.Markdown(extensions=['tables', 'attr_list', 'pymdownx.arithmatex', 'fenced_code', 'codehilite'])
 
 def my_renderer(text):
     return md.convert(text)

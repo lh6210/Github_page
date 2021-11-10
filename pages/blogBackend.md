@@ -22,7 +22,8 @@ The steps that I have taken:
     import markdown   
     md = markdown.Markdown(extensions=['pymdownx.arithmatex'])
     ```
-3. define HTML renderer for Flask-FlatPages and update app configuration
+ 
+4. define HTML renderer for Flask-FlatPages and update app configuration
     ``` python
     def my_renderer(text):
         return md.convert(text)
