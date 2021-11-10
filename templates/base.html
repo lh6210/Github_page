@@ -20,17 +20,16 @@
     window.MathJax = {
       options: {
         ignoreHtmlClass: 'tex2jax_ignore',
-        processHtmlClass: 'tex2jax_process'
+        processHtmlClass: 'tex2jax_process',
+        skipHtmlTags: [
+            'script', 'noscript', 'style', 'textarea', 'pre', 'code', 'annotation', 'annotation-xml']
       },
       tex: {
-        autoload: {
-          color: [],
-          colorv2: ['color']
-        },
-        packages: {'[+]': ['noerrors']}
+        packages: {'[+]': ['noerrors']},
+        processEnvironments: true
       },
       loader: {
-        load: ['input/asciimath', '[tex]/noerrors']
+        load: ['[tex]/noerrors']
       }
     };
     </script>

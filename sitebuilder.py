@@ -14,7 +14,7 @@ DEBUG = True
 
 def my_renderer(text):
     # prerendered_body = render_template_string(text)
-    return markdown.markdown(text, extensions=['tables', 'mdx_math', 'attr_list', 'pymdownx.arithmatex'])
+    return markdown.markdown(text, extensions=['tables', 'attr_list', 'pymdownx.arithmatex'])
 
 app = Flask(__name__)
 app.config.from_object(__name__)
