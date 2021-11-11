@@ -3,30 +3,12 @@ date: 2021-10-30
 category: Linear Algebra
     
 
-## head 1 {#head-1}
-
-### head 2 {#head-2}
-
-
-##### head 3
-
-\(y = x^2\)
-When \(a \ne 0\), there are two solutions to $ax^2 + bx+c=0$ and they are $x = {-b \pm \sqrt{b^2 - 4ac} \over 2a}.$
-Here's the \$.
-
-
-LUdecomposition with Sympy
-
-\begin{bmatrix}
-1 & 2 & 3 \\
-a & b & c
-\end{bmatrix}  
-
 [link to Head 1](#head)
 
-$$
+<!--- first question -->
+
 \begin{flalign}
-& \text{Why } L_{31}  = \left( \begin{smallmatrix}
+& \text{  &#128037 Why } L_{31}  = \left( \begin{smallmatrix}
 1 & 0 & 0 \\
 0 & 1 & 0 \\
 l_{31} & 0 & 1
@@ -39,7 +21,8 @@ E_{31} = \left( \begin{smallmatrix}
 \end{smallmatrix} \right) \,
 \text{are inverse to each other?}  &
 \end{flalign}
-$$
+
+<!--- first answer -->
 
 $$
 \(\because\) 
@@ -99,8 +82,8 @@ l_{31} & 0 & 1
 \end{flalign}
 $$
 
+Why does \(L = E_{21}^{-1} * E_{31}^{-1} *E_{32}^{-1}\) have advantage over \(L^{-1} &= E_{32}*E_{31} *E_{21}\)? 
 
-``` tex
 $$
 \begin{alignat}{2}
  L^{-1} &= E_{32}*E_{31} *E_{21}  \\
@@ -172,7 +155,6 @@ L &= E_{21}^{-1} * E_{31}^{-1} *E_{32}^{-1} \\
   \end{bmatrix}   &&\quad &&\text{Each multiplier \(l_{ij}\) goes directly into its i, j position unchanged, which is what we like.}
 \end{alignat}
 $$
-```
 
 # LU Factorization  
 Let's have a look at how \\(L * U\\) works, specifically \\(E_{21} * E_{31} * E_{32} * U\\).    
@@ -235,6 +217,25 @@ def LU2(A):
 ```
 
 ### head { #head}
+
+## head 1 {#head-1}
+
+### head 2 {#head-2}
+
+
+##### head 3
+
+\(y = x^2\)
+When \(a \ne 0\), there are two solutions to $ax^2 + bx+c=0$ and they are $x = {-b \pm \sqrt{b^2 - 4ac} \over 2a}.$
+Here's the \$.
+
+
+LUdecomposition with Sympy
+
+\begin{bmatrix}
+1 & 2 & 3 \\
+a & b & c
+\end{bmatrix}  
 
 
 
