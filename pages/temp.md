@@ -7,7 +7,7 @@ category: category 2
 
 ### this is the second line
 
-``` latex
+``` tex
 \begin{flalign}
 & \text{Why } L_{31}  = \left( \begin{smallmatrix}
 1 & 0 & 0 \\

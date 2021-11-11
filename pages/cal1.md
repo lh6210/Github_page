@@ -6,9 +6,8 @@ category: Linear Algebra
 [link to Head 1](#head)
 
 <!--- first question -->
-
-\begin{flalign}
-& \text{  &#128037 Why } L_{31}  = \left( \begin{smallmatrix}
+&#128037   \(\begin{flalign}
+& \text{ Why } L_{31}  = \left( \begin{smallmatrix}
 1 & 0 & 0 \\
 0 & 1 & 0 \\
 l_{31} & 0 & 1
@@ -20,12 +19,13 @@ E_{31} = \left( \begin{smallmatrix}
 -l_{31} & 0 & 1
 \end{smallmatrix} \right) \,
 \text{are inverse to each other?}  &
-\end{flalign}
+\end{flalign}\)
+
 
 <!--- first answer -->
 
 $$
-\(\because\) 
+\because 
 \begin{flalign}  
 L_{31} * E_{31} &= 
 \begin{bmatrix}
@@ -82,7 +82,12 @@ l_{31} & 0 & 1
 \end{flalign}
 $$
 
-Why does \(L = E_{21}^{-1} * E_{31}^{-1} *E_{32}^{-1}\) have advantage over \(L^{-1} &= E_{32}*E_{31} *E_{21}\)? 
+
+<!--- second question -->
+&#128037 
+
+Why does \(L=E_{21}^{-1}*E_{31}^{-1}*E_{32}^{-1}\)
+have advantage over \(L^{-1} = E_{32}*E_{31} *E_{21}\)? 
 
 $$
 \begin{alignat}{2}
