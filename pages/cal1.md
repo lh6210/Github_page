@@ -23,7 +23,6 @@ E_{31} = \left( \begin{smallmatrix}
 
 
 <!--- first answer -->
-
 $$
 \because 
 \begin{flalign}  
@@ -84,14 +83,13 @@ $$
 
 
 <!--- second question -->
-&#128037 
-
+&#128037   
 Why does \(L=E_{21}^{-1}*E_{31}^{-1}*E_{32}^{-1}\)
 have advantage over \(L^{-1} = E_{32}*E_{31} *E_{21}\)? 
 
 $$
-\begin{alignat}{2}
- L^{-1} &= E_{32}*E_{31} *E_{21}  \\
+\begin{flalign}
+  L^{-1} &= E_{32}*E_{31} *E_{21} & & first line\\
   &= \begin{bmatrix}
   1 & 0 & 0   \\  
   0 & 1 & 0  \\
@@ -158,7 +156,7 @@ L &= E_{21}^{-1} * E_{31}^{-1} *E_{32}^{-1} \\
   l_{21} & 1 & 0  \\ 
   l_{31} & l_{32} & 1  
   \end{bmatrix}   &&\quad &&\text{Each multiplier \(l_{ij}\) goes directly into its i, j position unchanged, which is what we like.}
-\end{alignat}
+\end{flalign}
 $$
 
 # LU Factorization  
@@ -234,6 +232,7 @@ def LU2(A):
 When \(a \ne 0\), there are two solutions to $ax^2 + bx+c=0$ and they are $x = {-b \pm \sqrt{b^2 - 4ac} \over 2a}.$
 Here's the \$.
 
+`#!math p(x|y) = \frac{p(y|x)p(x)}{p(y)}`
 
 LUdecomposition with Sympy
 

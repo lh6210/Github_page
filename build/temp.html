@@ -1,0 +1,104 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Flask Blog</title>
+
+    <link rel="stylesheet" href="static/styles.css">
+    <!-- put configuration ahead of loading statements -->
+    <!--
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['\(', '\)']],
+        displayMath: [['$$', '$$'], ['\[', '\]']],
+      }
+    };
+    </script>
+    -->
+    <script>
+    window.MathJax = {
+      options: {
+        ignoreHtmlClass: 'tex2jax_ignore',
+        processHtmlClass: 'tex2jax_process',
+        renderActions: {
+          find: [10, function (doc) {
+            for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              const sibling = node.previousElementSibling;
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+              if (sibling && sibling.matches('.MathJax_Preview')) {
+                sibling.parentNode.removeChild(sibling);
+              }
+            }
+          }, '']
+        }
+      }
+    };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script"></script>
+    <!-- MathJax 3 -->
+    <!-- support old browsers polyfill 
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    -->
+</head>
+<body>
+    <h1>My Common Header</h1>
+    
+    
+    <h1> title 2 </h1>
+    <!-- <small> Published on Sunday, 03 October, 2021</small> -->
+    <br><br>
+<h2>head 3</h2>
+<h3>this is the second line</h3>
+<div class="highlight"><pre><span></span><code><span class="k">\begin</span><span class="nb">{</span>flalign<span class="nb">}</span>
+<span class="nb">&amp;</span> <span class="k">\text</span><span class="nb">{</span>Why <span class="nb">}</span> L<span class="nb">_{</span>31<span class="nb">}</span>  = <span class="k">\left</span>( <span class="k">\begin</span><span class="nb">{</span>smallmatrix<span class="nb">}</span>
+1 <span class="nb">&amp;</span> 0 <span class="nb">&amp;</span> 0 <span class="k">\\</span>
+0 <span class="nb">&amp;</span> 1 <span class="nb">&amp;</span> 0 <span class="k">\\</span>
+l<span class="nb">_{</span>31<span class="nb">}</span> <span class="nb">&amp;</span> 0 <span class="nb">&amp;</span> 1
+<span class="k">\end</span><span class="nb">{</span>smallmatrix<span class="nb">}</span> <span class="k">\right</span>) <span class="k">\,</span>
+<span class="k">\text</span><span class="nb">{</span>and<span class="nb">}</span> <span class="k">\,</span> 
+E<span class="nb">_{</span>31<span class="nb">}</span> = <span class="k">\left</span>( <span class="k">\begin</span><span class="nb">{</span>smallmatrix<span class="nb">}</span>
+1 <span class="nb">&amp;</span> 0 <span class="nb">&amp;</span> 0 <span class="k">\\</span>
+0 <span class="nb">&amp;</span> 1 <span class="nb">&amp;</span> 0 <span class="k">\\</span>
+-l<span class="nb">_{</span>31<span class="nb">}</span> <span class="nb">&amp;</span> 0 <span class="nb">&amp;</span> 1
+<span class="k">\end</span><span class="nb">{</span>smallmatrix<span class="nb">}</span> <span class="k">\right</span>) <span class="k">\,</span>
+<span class="k">\text</span><span class="nb">{</span>are inverse to each other?<span class="nb">}</span>  <span class="nb">&amp;</span>
+<span class="k">\end</span><span class="nb">{</span>flalign<span class="nb">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">sympy.interactive.printing</span> <span class="kn">import</span> <span class="n">init_printing</span>
+<span class="n">init_printing</span><span class="p">(</span><span class="n">use_unicode</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">sympy.matrices</span> <span class="kn">import</span> <span class="n">Matrix</span> 
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">shape</span><span class="p">,</span> <span class="n">eye</span><span class="p">,</span> <span class="n">sympify</span>
+
+
+<span class="k">def</span> <span class="nf">LU2</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="n">L</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">P</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">LUdecomposition</span><span class="p">()</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">U</span><span class="o">.</span><span class="n">rank</span><span class="p">()</span>
+    <span class="n">m</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">shape</span><span class="p">(</span><span class="n">U</span><span class="p">)</span>
+    <span class="n">D</span> <span class="o">=</span> <span class="n">eye</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
+        <span class="n">pivot</span> <span class="o">=</span> <span class="n">U</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span>
+        <span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">pivot</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+            <span class="n">U</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">U</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">/</span> <span class="n">sympify</span><span class="p">(</span><span class="n">pivot</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">L</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">P</span>
+</code></pre></div>
+
+
+
+
+
+
+</body>
+</html>

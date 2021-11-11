@@ -31,12 +31,12 @@ comments = mkdcomments.CommentsExtension()
 extension_config = {
     "pymdownx.inlinehilite": {
         "custom_inline": [
-            {"name": "math1", "class": "highlight", "format": arithmatex.arithmatex_inline_format(which="generic")}
+            {"name": "math", "class": "arithmatex", "format": arithmatex.arithmatex_inline_format(which="generic")}
         ]
     },
     "pymdownx.superfences": {
             "custom_fences": [
-                {"name": "math2", "class": "highlight", "format": arithmatex.arithmatex_fenced_format(which="generic")}
+                {"name": "math", "class": "arithmatex", "format": arithmatex.arithmatex_fenced_format(which="generic")}
             ]
     }
 }
@@ -72,7 +72,7 @@ def cc():
 def page(path):
     print('Page function running')
     page = pages.get_or_404(path)
-    print(f'{page}')
+    print(f'page is {page}')
     return render_template('page.html', page=page)
 
 @freezer.register_generator
