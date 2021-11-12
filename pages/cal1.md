@@ -5,6 +5,8 @@ category: Linear Algebra
 
 [link to Head 1](#head)
 
+# LU Factorization  
+
 &#128037   
 
 \begin{flalign}
@@ -19,10 +21,10 @@ E_{31} = \left( \begin{smallmatrix}
 0 & 1 & 0 \\
 -l_{31} & 0 & 1
 \end{smallmatrix} \right) \,
-\text{are inverse to each other?}  &
+\text{are inverse to each other?}   &
 \end{flalign}
 
-
+------------------------------------------
 <!--- first answer -->
 $$
 \( \because \)
@@ -90,6 +92,8 @@ $$
 Why does \(L=E_{21}^{-1}*E_{31}^{-1}*E_{32}^{-1}\)
 have advantage over \(L^{-1} = E_{32}*E_{31} *E_{21}\)? 
 $$
+
+------------------------------------------
 
 $$
 \begin{flalign}
@@ -163,7 +167,17 @@ L &= E_{21}^{-1} * E_{31}^{-1} *E_{32}^{-1} \\
 \end{flalign}
 $$
 
-# LU Factorization  
+
+### Labs
+According to Sympy's document, [LUdecomposition](https://docs.sympy.org/latest/modules/matrices/matrices.html#matrix-functions-reference) could factor out a given matrix.
+
+
+``` 
+>>> A =  Matrix([[4, 3], [6, 3]])
+>>> A.LUdecomposition()
+
+```
+
 Let's have a look at how \\(L * U\\) works, specifically \\(E_{21} * E_{31} * E_{32} * U\\).    
 We are taking a 3 by 3 matrix for this demonstration.
 
@@ -173,24 +187,25 @@ Given $ A = \begin{bmatrix}
 6 & 8 \end{bmatrix}$
 
 
+``` python
+from sympy.interactive.printing import init_printing
+init_printing(use_unicode=True)
+from sympy.matrices import Matrix 
+from sympy import symbols, shape, eye, sympify
 
-    from sympy.interactive.printing import init_printing
-    init_printing(use_unicode=True)
-    from sympy.matrices import Matrix 
-    from sympy import symbols, shape, eye, sympify
 
-
-    def LU2(A):
-        L, U, P = A.LUdecomposition()
-        r = U.rank()
-        m, n = shape(U)
-        D = eye(r)
-        for i in range(r):
-            pivot = U[i, i]
-            D[i, i] = pivot
-            for j in range(i, n):
-                U[i, j] = U[i, j] / sympify(pivot)
-        return L, D, U, P
+def LU2(A):
+    L, U, P = A.LUdecomposition()
+    r = U.rank()
+    m, n = shape(U)
+    D = eye(r)
+    for i in range(r):
+        pivot = U[i, i]
+        D[i, i] = pivot
+        for j in range(i, n):
+            U[i, j] = U[i, j] / sympify(pivot)
+    return L, D, U, P
+```
         
 Inline `code` has `back-ticks around` it.
 
