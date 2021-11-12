@@ -28,25 +28,13 @@ DEBUG = True
 
 comments = mkdcomments.CommentsExtension()
 
-extension_config = {
-    "pymdownx.inlinehilite": {
-        "custom_inline": [
-            {"name": "math", "class": "arithmatex", "format": arithmatex.arithmatex_inline_format(which="generic")}
-        ]
-    },
-    "pymdownx.superfences": {
-            "custom_fences": [
-                {"name": "math", "class": "arithmatex", "format": arithmatex.arithmatex_fenced_format(which="generic")}
-            ]
-    }
-}
 
 # extended_pygments_lang = [
 #     {"name": "tex", "lang": "tex", "options": ""},
 #     {"name": "python", "lang": "python", "options": ""}
 # ]
 
-md = markdown.Markdown(extensions=['tables', 'attr_list', 'pymdownx.highlight', 'pymdownx.inlinehilite', 'pymdownx.arithmatex', comments, 'pymdownx.superfences'], extension_configs=extension_config)
+md = markdown.Markdown(extensions=['tables', 'attr_list', 'pymdownx.highlight', 'pymdownx.inlinehilite', 'pymdownx.arithmatex', comments, 'pymdownx.superfences'])
 
 def my_renderer(text):
     return md.convert(text)

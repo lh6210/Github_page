@@ -5,8 +5,9 @@ category: Linear Algebra
 
 [link to Head 1](#head)
 
-<!--- first question -->
-&#128037   \(\begin{flalign}
+&#128037   
+
+\begin{flalign}
 & \text{ Why } L_{31}  = \left( \begin{smallmatrix}
 1 & 0 & 0 \\
 0 & 1 & 0 \\
@@ -19,12 +20,12 @@ E_{31} = \left( \begin{smallmatrix}
 -l_{31} & 0 & 1
 \end{smallmatrix} \right) \,
 \text{are inverse to each other?}  &
-\end{flalign}\)
+\end{flalign}
 
 
 <!--- first answer -->
 $$
-\because 
+\( \because \)
 \begin{flalign}  
 L_{31} * E_{31} &= 
 \begin{bmatrix}
@@ -84,12 +85,15 @@ $$
 
 <!--- second question -->
 &#128037   
+
+$$
 Why does \(L=E_{21}^{-1}*E_{31}^{-1}*E_{32}^{-1}\)
 have advantage over \(L^{-1} = E_{32}*E_{31} *E_{21}\)? 
+$$
 
 $$
 \begin{flalign}
-  L^{-1} &= E_{32}*E_{31} *E_{21} & & first line\\
+  L^{-1} &= E_{32}*E_{31} *E_{21} &&  \\
   &= \begin{bmatrix}
   1 & 0 & 0   \\  
   0 & 1 & 0  \\
@@ -104,7 +108,7 @@ $$
   -l_{21} & 1 & 0 \\
   0 & 0 & 1
   \end{bmatrix}  & \\ 
-&= 
+\phantom{L_{31} * E_{31} * A } &= 
   \begin{bmatrix}
   1 & 0 & 0   \\  
   0 & 1 & 0  \\ 
@@ -114,13 +118,13 @@ $$
   1 & 0 & 0  \\
   -l_{21} & 1 & 0  \\
   -l_{31} & 0 & 1 
-  \end{bmatrix} &&\quad &&\text{Matrix multiplication mixed up all three numbers below.} \\
+  \end{bmatrix} &&\text{Matrix multiplication mixed up all three numbers below.} \\
 &=
   \begin{bmatrix}
   1 & 0 & 0   \\  
   -l_{21} & 1 & 0  \\ 
   \underline{-l_{31} + l_{21} * l_{32}} & -l_{32} & 1  
-  \end{bmatrix} &&\quad &&\text{The entry at \(L^{-1}_{31}\) is an arithmetic combination of three elements} \\
+  \end{bmatrix} &&\text{The entry at \(L^{-1}_{31}\) is an algebraic combination of three elements} \\
  \\ 
  \\
 L &= E_{21}^{-1} * E_{31}^{-1} *E_{32}^{-1} \\
@@ -155,7 +159,7 @@ L &= E_{21}^{-1} * E_{31}^{-1} *E_{32}^{-1} \\
   1 & 0 & 0   \\  
   l_{21} & 1 & 0  \\ 
   l_{31} & l_{32} & 1  
-  \end{bmatrix}   &&\quad &&\text{Each multiplier \(l_{ij}\) goes directly into its i, j position unchanged, which is what we like.}
+  \end{bmatrix}   &&\text{Each multiplier \(l_{ij}\) goes directly into its i, j position unchanged, which is what we like.} && \phantom{a^2}
 \end{flalign}
 $$
 
