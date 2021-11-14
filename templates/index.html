@@ -16,10 +16,9 @@
     </thead>
 
     {% for page in pages %}
-        <tr>
-            <td>{{page.title}}</td>
-            <td><a href="{{page.path}}.html">Read</a></td>
-        </tr>
+        <a href="{{page.path}}.html">{{page.title}}</a>
+        <br>
+        
 
     {% endfor %}
 </table>

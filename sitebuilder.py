@@ -17,12 +17,17 @@ DEBUG = True
 # tables: table
 
 
-# extension_configs=configs
+extension_configs= {
+    "pymdownx.highlight": {
+        "pygments_style" : "tango",
+        "noclasses": True
+        }
+}
 
 comments = mkdcomments.CommentsExtension()
 
 
-md = markdown.Markdown(extensions=['tables', 'attr_list', 'pymdownx.highlight', 'pymdownx.inlinehilite', 'pymdownx.arithmatex', comments, 'pymdownx.superfences'])
+md = markdown.Markdown(extensions=['tables', 'attr_list', 'pymdownx.highlight', 'pymdownx.inlinehilite', 'pymdownx.arithmatex', comments, 'pymdownx.superfences'], extension_configs=extension_configs)
 
 def my_renderer(text):
     return md.convert(text)
