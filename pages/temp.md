@@ -7,7 +7,6 @@ category: category 2
 
 ### this is the second line
 
-``` tex
 \begin{flalign}
 & \text{Why } L_{31}  = \left( \begin{smallmatrix}
 1 & 0 & 0 \\
@@ -22,7 +21,6 @@ E_{31} = \left( \begin{smallmatrix}
 \end{smallmatrix} \right) \,
 \text{are inverse to each other?}  &
 \end{flalign}
-```
 
 
 ``` python
@@ -47,6 +45,10 @@ def LU2(A):
 ```
 
 
+Why is \($L = \left( \begin{smallmatrix}
+1 & 0 \\
+0 & 1
+\end{smallmatrix} \right)$\) better than $\(y = x^2\)$ ?
 
 
 

@@ -2,10 +2,9 @@
 import sys 
 from datetime import datetime
 
-from flask import Flask, render_template, url_for, render_template_string
+from flask import Flask, render_template, url_for 
 from flask_flatpages import FlatPages
 from flask_frozen import Freezer
-from flask_flatpages_pandoc import FlatPagesPandoc
 import markdown
 import mkdcomments
 import pymdownx.arithmatex as arithmatex
@@ -17,22 +16,11 @@ DEBUG = True
 # pymdownx.arithmatex: latex
 # tables: table
 
-# configs = {
-#     "pymdownx.arithmatex": {
-#         "block_syntax" : ['dollar', 'square'],
-#         "inline_syntax": ['dollar', 'round', 'begin']
-#     }
-# }
 
 # extension_configs=configs
 
 comments = mkdcomments.CommentsExtension()
 
-
-# extended_pygments_lang = [
-#     {"name": "tex", "lang": "tex", "options": ""},
-#     {"name": "python", "lang": "python", "options": ""}
-# ]
 
 md = markdown.Markdown(extensions=['tables', 'attr_list', 'pymdownx.highlight', 'pymdownx.inlinehilite', 'pymdownx.arithmatex', comments, 'pymdownx.superfences'])
 
@@ -44,7 +32,7 @@ app.config.from_object(__name__)
 app.config['FLATPAGES_HTML_RENDERER'] = my_renderer
 
 pages = FlatPages(app)
-# FlatPagesPandoc("markdown", app, ["--mathjax"], pre_render=True)
+
 freezer = Freezer(app)
 
 @app.route('/')
