@@ -20,7 +20,8 @@ DEBUG = True
 extension_configs= {
     "pymdownx.highlight": {
         "pygments_style" : "tango",
-        "noclasses": True
+        "noclasses": True,
+        "linenums": True
         }
 }
 

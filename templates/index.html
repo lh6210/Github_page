@@ -4,23 +4,13 @@
 
 {% block content %}
 
-<p>Welcome to my blog!</p>
 
 <h3>Contents</h3>
-<table border="2px">
-    <thead>
-        <tr>
-            <td>Title</td>
-            <td>Link</td>
-        </tr>
-    </thead>
 
     {% for page in pages %}
-        <a href="{{page.path}}.html">{{page.title}}</a>
+        <a href="{{page.path}}.html">{{page.title}}</a> <br>
+        <small> {{page.date.strftime('%B %d, %Y')}}     </small> 
         <br>
-        
-
     {% endfor %}
-</table>
 
 {% endblock %}

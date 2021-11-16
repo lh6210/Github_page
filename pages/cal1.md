@@ -177,7 +177,7 @@ According to [Sympy](https://docs.sympy.org/latest/index.html)'s document, [LUde
 Example: 
 
 ``` python
->>> from sympy.interactive.printing import init_printing
+>>> from sympy.interactive.printing import init_printing  # line 1~4 set up the environment for computing
 >>> init_printing(use_unicode=True)
 >>> from sympy.matrices import Matrix 
 >>> from sympy import symbols, shape, eye, sympify, Rational
