@@ -1,6 +1,7 @@
 title: LU Decomposition
 date: 2021-10-30
-category: Linear Algebra
+category: la  # la stands for Linear Algebra
+keywords: LUdecomposition, Sympy
     
 
 
