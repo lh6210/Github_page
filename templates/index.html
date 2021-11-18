@@ -5,15 +5,24 @@
 {% block content %}
 
 
-<h3>Contents</h3>
-
-    <div class='la'>Linear Algebra</div>
+    <div class="container-fluid la">
+        <p>
+        <h4>Linear Algebra </h4> 
+        <small> -- inspired by Prof. Gilbert Strang's 'Introduction to Linear Algebra' </small> 
+        </p>
+    </div>
 
     {% for page in pages %}
         {% if page.category == 'la' %}
-            &nbsp; &#9834 <a href="{{page.path}}.html">{{page.title}}</a> <br> 
-            &nbsp; &nbsp; <small> &#128197Published on {{page.date.strftime('%B %d, %Y')}} </small>  
-            <small> &#9749Keywords: {{page.keywords}} </small> <br> 
+            <script>
+                var newItem = $("<div></div>", {
+                    "class": "la-item"})
+                $(" <a href={{page.path}}.html>  &#9834 {{ page.title}}</a> <br>").appendTo(newItem)
+                $("<small> &nbsp; &nbsp; &#128197Published on {{page.date.strftime('%B %d, %Y')}} </small>").appendTo(newItem)  
+                $("<small> &#9749Keywords: {{page.keywords}} </small> <br>").appendTo(newItem) 
+                $(".la").append(newItem)
+            </script>
+            
         {% endif %}
     {% endfor %}
 

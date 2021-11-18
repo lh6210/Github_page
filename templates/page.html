@@ -3,9 +3,13 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1> {{page.title}} </h1>
-    <!-- <small> Published on {{page.date.strftime('%A, %d %B, %Y')}}</small> -->
-    <br><br>
-{{ page.html| safe }}
+    <div class="container-fluid">
+        <p>
+            <h4> {{page.title}} </h4>
+            <small> &#128197Published on {{page.date.strftime('%B %d, %Y')}}   &#9749Keywords: {{page.keywords}}  </small> 
+        </p>
+        
+        {{ page.html| safe }}
 
+    </div>
 {% endblock %}
