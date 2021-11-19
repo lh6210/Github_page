@@ -1,26 +1,25 @@
 
 
+
 {% extends "base.html" %}
 
 {% block content %}
 
 
-    <div class="container-fluid la">
-        <p>
-        <h4>Linear Algebra </h4> 
-        <small> -- in reference to 'Introduction to Linear Algebra' written by Prof. Gilbert Strang</small> 
-        </p>
+    <div class="container-fluid body">
+        <br>
+        
     </div>
 
     {% for page in pages %}
-        {% if page.category == 'la' %}
+        {% if page.path.startswith('others') %}
             <script>
                 var newItem = $("<div></div>", {
-                    "class": "la-item"})
-                $(" <a href= {{page.path}}>  &#9834 {{ page.title}}</a> <br>").appendTo(newItem)
+                    "class": "body-item"})
+                $(" <a href= {{ page.path }} >  &#9834 {{ page.title}}</a> <br>").appendTo(newItem)
                 $("<small> &nbsp; &nbsp; &#128197Published on {{page.date.strftime('%B %d, %Y')}} </small>").appendTo(newItem)  
                 $("<small> &#9749Keywords: {{page.keywords}} </small> <br>").appendTo(newItem) 
-                $(".la").append(newItem)
+                $(".body").append(newItem)
             </script>
             
         {% endif %}

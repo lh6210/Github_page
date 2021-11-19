@@ -1,6 +1,9 @@
 
+import os
+from pathlib import Path
 import sys 
 from datetime import datetime
+from jinja2 import Environment, PackageLoader, select_autoescape
 
 from flask import Flask, render_template, url_for 
 from flask_flatpages import FlatPages
@@ -9,24 +12,23 @@ import markdown
 import mkdcomments
 import pymdownx.arithmatex as arithmatex
 
-#FLATPAGES_AUTO_RELOAD = DEBUG
 FLATPAGES_EXTENSION = '.md'
 DEBUG = True
+
 # attr_list: heading anchor
 # pymdownx.arithmatex: latex
 # tables: table
 
 
+comments = mkdcomments.CommentsExtension()
+
 extension_configs= {
     "pymdownx.highlight": {
         "pygments_style" : "tango",
         "noclasses": True,
-        "linenums": True
+        "linenums": False
         }
 }
-
-comments = mkdcomments.CommentsExtension()
-
 
 md = markdown.Markdown(extensions=['tables', 'attr_list', 'pymdownx.highlight', 'pymdownx.inlinehilite', 'pymdownx.arithmatex', comments, 'pymdownx.superfences'], extension_configs=extension_configs)
 
@@ -35,8 +37,9 @@ def my_renderer(text):
 
 app = Flask(__name__)
 app.config.from_object(__name__)
-app.config['FLATPAGES_HTML_RENDERER'] = my_renderer
 
+
+app.config['FLATPAGES_HTML_RENDERER'] = my_renderer
 pages = FlatPages(app)
 
 freezer = Freezer(app)
@@ -45,14 +48,18 @@ freezer = Freezer(app)
 def index():
     return render_template('index.html', pages=pages)
 
+@app.route('/others')
+def index2():
+    return render_template('index2.html', pages=pages)
+
+'''
 @app.route('/cal2')
 def cc():
     return render_template('doubleintegral.html')
+'''
 
-
-@app.route('/<path:path>.html')
+@app.route('/<path:path>')
 def page(path):
-    print('Page function running')
     page = pages.get_or_404(path)
     print(f'page is {page}')
     return render_template('page.html', page=page)
