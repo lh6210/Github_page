@@ -40,6 +40,7 @@ app.config.from_object(__name__)
 
 
 app.config['FLATPAGES_HTML_RENDERER'] = my_renderer
+app.config['FREEZER_DESTINATION'] = '../build/'
 pages = FlatPages(app)
 
 freezer = Freezer(app)
@@ -58,7 +59,7 @@ def cc():
     return render_template('doubleintegral.html')
 '''
 
-@app.route('/<path:path>')
+@app.route('/<path:path>/')
 def page(path):
     page = pages.get_or_404(path)
     print(f'page is {page}')
