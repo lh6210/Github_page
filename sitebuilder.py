@@ -48,7 +48,7 @@ freezer = Freezer(app)
 def index():
     return render_template('index.html', pages=pages)
 
-@app.route('/others')
+@app.route('/others/')
 def index2():
     return render_template('index2.html', pages=pages)
 

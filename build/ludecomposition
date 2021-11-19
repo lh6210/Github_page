@@ -46,7 +46,7 @@
     <div class="collapse navbar-collapse"  id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto mb-2 mx-5 mb-lg-0 ">
         <li class="nav-item">
-            <a class="nav-link" href= "/others" >Others</a>
+            <a class="nav-link" href= "/others/" >Others</a>
         </li>
         <li class="nav-item">
           <a class="nav-link " href="#">About</a>
@@ -403,13 +403,13 @@ Here's the result of LUdecomposition:
 <p>Here's the result of LU2's output:
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #ce5c00; font-weight: bold">&gt;&gt;&gt;</span> <span style="color: #000000">LU2</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">S</span><span style="color: #000000; font-weight: bold">)</span>
 </code></pre></div>
-<img alt="lu3" src="../static/lu3.png" /></p>
+<img alt="lu3" src="../static/lu3_2.png" /></p>
 <p>In this particular case (check symmetric matrices' <span class="arithmatex"><span class="MathJax_Preview">\(L*D*L^T \)</span><script type="math/tex">\(L*D*L^T \)</script></span> decomposition), we could see clearly that D (the rightmost matrix) is the transpose of L (the leftmost matrix).</p>
 <p>2) &#128037; LUdecompose rectangular shaped matrices A </p>
 <p>Sympy's LUdecomposition is a really sharp tool that it deals with both square and rectangular matrices. While we may not find decomposing rectangular matrics productive, let's just play for fun. </p>
 <p>For this practice, I picked one 2 by 3 matrix A and one 3 by 2 matrix B. I am going to use both Sympy's LUdecomposition and our lightly modified LU2 method to see the matrix decomposition again.</p>
-<p><img alt="rectangular matrices" src="../static/lu4.png" /></p>
-<p><img alt="rect matrics2" src="../static/lu5.png" /></p>
+<p><img alt="rectangular matrices" src="../static/lu4_2.png" /></p>
+<p><img alt="rect matrics2" src="../static/lu5_2.png" /></p>
 <p>One takeaway I got from this experiment is that A and D seem to share the same shape and rank, while L is always square and full rank.</p>
 <p>This is the end of this article, and thanks for reading.</p>
 

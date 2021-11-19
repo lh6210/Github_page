@@ -16,7 +16,7 @@
             <script>
                 var newItem = $("<div></div>", {
                     "class": "body-item"})
-                $(" <a href= {{ page.path }} >  &#9834 {{ page.title}}</a> <br>").appendTo(newItem)
+                $(" <a href= {{ url_for('page', path=page.path) }} >  &#9834 {{ page.title}}</a> <br>").appendTo(newItem)
                 $("<small> &nbsp; &nbsp; &#128197Published on {{page.date.strftime('%B %d, %Y')}} </small>").appendTo(newItem)  
                 $("<small> &#9749Keywords: {{page.keywords}} </small> <br>").appendTo(newItem) 
                 $(".body").append(newItem)

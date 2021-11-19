@@ -223,7 +223,7 @@ Here's the result of LU2's output:
 ``` python
 >>> LU2(S)
 ```
-![lu3](../static/lu3.png)
+![lu3](../static/lu3_2.png)
 
 In this particular case (check symmetric matrices' $\(L*D*L^T \)$ decomposition), we could see clearly that D (the rightmost matrix) is the transpose of L (the leftmost matrix).
 
@@ -234,9 +234,9 @@ Sympy's LUdecomposition is a really sharp tool that it deals with both square an
 
 For this practice, I picked one 2 by 3 matrix A and one 3 by 2 matrix B. I am going to use both Sympy's LUdecomposition and our lightly modified LU2 method to see the matrix decomposition again.
 
-![rectangular matrices](../static/lu4.png)
+![rectangular matrices](../static/lu4_2.png)
 
-![rect matrics2](../static/lu5.png)
+![rect matrics2](../static/lu5_2.png)
 
 One takeaway I got from this experiment is that A and D seem to share the same shape and rank, while L is always square and full rank.
 
