@@ -40,7 +40,7 @@ app.config.from_object(__name__)
 
 
 app.config['FLATPAGES_HTML_RENDERER'] = my_renderer
-app.config['FREEZER_DESTINATION'] = '../build/'
+app.config['FREEZER_DESTINATION'] = './docs/'
 pages = FlatPages(app)
 
 freezer = Freezer(app)
