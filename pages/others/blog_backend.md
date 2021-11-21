@@ -9,12 +9,12 @@ What's fun about the building experience is a list of things:
 1) relearn Python and learn microframework Flask;   
 2) learn to write blogs in Markdown language;    
 3) mix Jinja2, Python, CSS (Bootstrap), and Javascript in HTML templates;    
-4) search for desirable libraries for specific functions (eg. code highlight, Markdown to HTML conversion, Latex to HTML conversion, etc);   
+4) search for desirable extensions for specific functions (eg. code highlight, Markdown to HTML conversion, Latex to HTML conversion, etc);   
 5) get to know MathJax for Latex rendering in web pages;     
 6) lots of space to improve in the future (webpage design, integrate database for searching, comment section, etc)
 
 
-Along the way of building this blog, I have met with several chanlleging but interesting technical issues. I will try to describe them below.
+Along the way of building this blog, I have met with several challenging but interesting technical issues. I will try to describe them below.
 
 ###### Issue 1: Latex-to-HTML rendering
 One of the main technical issues that I have encountered was how to render Latex syntax in markdown files under my Flask backend.
@@ -91,6 +91,6 @@ In another word, I don't need to edit my index page anymore whenever I add a new
 My home page consists of one or more categories (such as Linear Algebra, Calculus, etc). Each category takes up one Bootstrap-styled container. Inside each container, the name of the category and a brief description are placed at the top wrapped by <p> tags. Contents following them are entries of articles of this category.
 
 The for loop inside the Jinja2 tags will search through all of my posts, whenever it finds out some post belonging to _la_ (self-defined code for Linear Algebra) category, it will put it under _la_ category by running Javascript/JQuery commands.  
-In fact, I was pretty amazed at mixing several languages (CSS, HTML, Jinja2, Unicode) in HTML files to achieve the functionality. 
+In fact, I was pretty amazed at mixing several languages (CSS, Jinja2, and Javascript) in HTML files to achieve the functionality. 
 
 Above all, the automatic sorting and DOM manipulation ease writer's effort to manage the layout. Thanks for your reading.
