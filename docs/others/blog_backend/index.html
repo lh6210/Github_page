@@ -68,10 +68,10 @@ What's fun about the building experience is a list of things:<br />
 1) relearn Python and learn microframework Flask; <br />
 2) learn to write blogs in Markdown language;  <br />
 3) mix Jinja2, Python, CSS (Bootstrap), and Javascript in HTML templates;  <br />
-4) search for desirable libraries for specific functions (eg. code highlight, Markdown to HTML conversion, Latex to HTML conversion, etc); <br />
+4) search for desirable extensions for specific functions (eg. code highlight, Markdown to HTML conversion, Latex to HTML conversion, etc); <br />
 5) get to know MathJax for Latex rendering in web pages;   <br />
 6) lots of space to improve in the future (webpage design, integrate database for searching, comment section, etc)</p>
-<p>Along the way of building this blog, I have met with several chanlleging but interesting technical issues. I will try to describe them below.</p>
+<p>Along the way of building this blog, I have met with several challenging but interesting technical issues. I will try to describe them below.</p>
 <h6>Issue 1: Latex-to-HTML rendering</h6>
 <p>One of the main technical issues that I have encountered was how to render Latex syntax in markdown files under my Flask backend.
 By default, Flask-FlatPages renders flatpage body using Markdown with Pygments format (<a href="https://flask-flatpages.readthedocs.io/en/latest/#module-flask_flatpages">according to FlatPages Doc</a>).
@@ -134,7 +134,7 @@ However, for Math/Latex users the default rendering process might not work as de
 </code></pre></div>
 <p>My home page consists of one or more categories (such as Linear Algebra, Calculus, etc). Each category takes up one Bootstrap-styled container. Inside each container, the name of the category and a brief description are placed at the top wrapped by <p> tags. Contents following them are entries of articles of this category.</p>
 <p>The for loop inside the Jinja2 tags will search through all of my posts, whenever it finds out some post belonging to <em>la</em> (self-defined code for Linear Algebra) category, it will put it under <em>la</em> category by running Javascript/JQuery commands.<br />
-In fact, I was pretty amazed at mixing several languages (CSS, HTML, Jinja2, Unicode) in HTML files to achieve the functionality. </p>
+In fact, I was pretty amazed at mixing several languages (CSS, Jinja2, and Javascript) in HTML files to achieve the functionality. </p>
 <p>Above all, the automatic sorting and DOM manipulation ease writer's effort to manage the layout. Thanks for your reading.</p>
 
         <script src="https://utteranc.es/client.js"
