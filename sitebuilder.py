@@ -53,6 +53,11 @@ def index():
 def index2():
     return render_template('index2.html', pages=pages)
 
+@app.route('/knots/')
+def index_knots():
+    return render_template('index_knots.html', pages=pages)
+
+
 '''
 @app.route('/cal2')
 def cc():
