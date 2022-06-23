@@ -11,8 +11,9 @@ Markdown==3.3.4
 MarkupSafe==2.0.1
 Pygments==2.10.0
 pymdown-extensions==9.0
-python-markdown-comments==0.0.0
 python-markdown-math==0.8
 PyYAML==6.0
 six==1.16.0
 Werkzeug==2.0.2
+
+python-markdown-comments
