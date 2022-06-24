@@ -2,7 +2,7 @@ title: LU Decomposition of matrices
 date: 2021-10-30
 category: la  # la stands for Linear Algebra
 keywords: LUdecomposition, Sympy
-    
+   
 
 
 --> [Discussions](#disc) * 2 
@@ -225,7 +225,7 @@ Here's the result of LU2's output:
 ```
 ![lu3](../static/lu3_2.png)
 
-In this particular case (check symmetric matrices' $\(L*D*L^T \)$ decomposition), we could see clearly that D (the rightmost matrix) is the transpose of L (the leftmost matrix).
+In this particular case (check symmetric matrices' $\(L*D*L^T \)$ decomposition), we could see clearly that the rightmost matrix is the transpose of L (the leftmost matrix).
 
 
 2) &#128037 LUdecompose rectangular shaped matrices A 
@@ -241,5 +241,6 @@ For this practice, I picked one 2 by 3 matrix A and one 3 by 2 matrix B. I am go
 One takeaway I got from this experiment is that A and D seem to share the same shape and rank, while L is always square and full rank.
 
 This is the end of this article, and thanks for reading.
+
 
 
