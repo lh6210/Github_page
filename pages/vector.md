@@ -1,5 +1,7 @@
+
+
 title: Vectors - Chapter 1 (1.1, 1.2)
-date: 2021-10-30
+date: 2022-06-24
 category: la  # la stands for Linear Algebra
 keywords: Matrix, Sympy
    
@@ -7,7 +9,7 @@ keywords: Matrix, Sympy
 
 --> [Notes](#notes) 
 
---> [Lab](#lab) * 2 
+--> [Lab](#lab) * 3 
 
 -------------
 
@@ -31,7 +33,7 @@ keywords: Matrix, Sympy
 --------------------
 ### Labs {:#lab}
 
-General setup 
+Preliminary Setup:
 
 ``` python
 >>> from sympy.interactive.printing import init_printing  
@@ -66,57 +68,55 @@ General setup
 ![vec a](../static/vec_mul1.png)
 ![vec b](../static/vec_mul2.png)
 
-```python
->>> L, U, _ = A.LUdecomposition()
->>> L * U == A
-True
-```
 
-The leftmost matrix is L, the middle matrix is U, and the rightmost one is P. That P is blank just means that there's no row exchanges during the LU decomposition.
-
-The motivation of this modification is that we want to see the symmetric matrix $\(S= L*D*U = L*D*L^T\)$ more clearly.
-
+3) &#128037 compute angles between two vectors
 ``` python
-def LU2(A):
-    L, U, P = A.LUdecomposition()
-    r = U.rank()
-    m, n = shape(U)
-    D = eye(r)
-    for i in range(r):
-        pivot = U[i, i]
-        D[i, i] = pivot
-        for j in range(i, n):
-            U[i, j] = U[i, j] / sympify(pivot)    # sympify makes the quotient of the two integers an exact rational number
-    return L, D, U, P
+def norm_v(v):
+    """
+    compute the norm of a given vector v
+    """
+    norm = 0
+    for x in v:
+        norm += x**2
+    norm = sqrt(norm)
+    return norm
+
+
+def unit_v(v):
+    """
+    calculate the unit vector of a given vector v
+    """
+    assert v.shape[1] == 1 or v.shape[0] == 1, f"Please input a vector"
+    norm = norm_v(v)
+    return v / norm 
+
+
+def dot(v1, v2):
+    """
+    dot product of vectors v1 and v2, both v1 and v2 ought to be column vectors
+    """
+    assert v1.shape == v2.shape and v1.shape[1] == 1, f"the input should be column vectors with the same dimension"
+    dim = v1.shape[0]
+    result = 0
+    for i in range(0, dim):
+        result += v1[i] * v2[i]
+    return result
+
+
+def angle_between(v1, v2):
+    """
+    compute the angle between two given vectors according to COSINE FORMULA
+    """
+    assert v1.shape == v2.shape and v1.shape[1] == 1, f"the input should be column vectors with the same dimension"
+    norm_v1 = norm_v(v1)
+    norm_v2 = norm_v(v2)
+    dot_pdt = dot(v1, v2)
+    cos_theta = dot_pdt / (norm_v1 * norm_v2)
+    return acos(cos_theta)
+
 ```
-Here's the result of LUdecomposition:
-``` python
->>> B = Matrix([[1, 0, 3], [-2, 3, 5], [Rational(1, 3), 0, -3]])
->>> S = B.T*B    # this step makes a symmetric matrix S; another trick is B*B.T
->>> S.LUdecomposition() 
-```
-![LU2](../static/lu2.png)
-
-Here's the result of LU2's output:
-``` python
->>> LU2(S)
-```
-![lu3](../static/lu3_2.png)
-
-In this particular case (check symmetric matrices' $\(L*D*L^T \)$ decomposition), we could see clearly that D (the rightmost matrix) is the transpose of L (the leftmost matrix).
-
-
-2) &#128037 LUdecompose rectangular shaped matrices A 
-
-Sympy's LUdecomposition is a really sharp tool that it deals with both square and rectangular matrices. While we may not find decomposing rectangular matrics productive, let's just play for fun. 
-
-For this practice, I picked one 2 by 3 matrix A and one 3 by 2 matrix B. I am going to use both Sympy's LUdecomposition and our lightly modified LU2 method to see the matrix decomposition again.
-
-![rectangular matrices](../static/lu4_2.png)
-
-![rect matrics2](../static/lu5_2.png)
-
-One takeaway I got from this experiment is that A and D seem to share the same shape and rank, while L is always square and full rank.
+![angle between two vectors](../static/angle_between.png)
+![angle 2](../static/angle_bt2.png)
 
 This is the end of this article, and thanks for reading.
 
