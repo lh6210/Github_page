@@ -20,6 +20,7 @@ keywords: Matrix, Sympy
 * The length $\( \lVert v  \rVert \)$ of a vector $\( v\)$ is the square root of $\( v \cdot v \)$:
 
  $$ \lVert v \rVert = \sqrt{v \cdot v} = (v_1^2 + v_2^2 + \cdots + v_n^2)^{\frac{1}{2}}   $$
+ 
 
 * A unit vector $\(u \)$ is a vector whose length equals one. Then $\(u \cdot u = 1 \)$.
 
