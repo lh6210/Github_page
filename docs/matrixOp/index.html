@@ -1,10 +1,78 @@
-title: Matrics - Chapter 1 (1.3) 
-date: 2022-06-25 
-category: la #la stands for Linear Algebra 
-keywords: Matrix, Sympy
 
 
-<div class="container-fluid line-numbers">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hang's Math Notes</title>
+    <!-- Required meta tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="stylesheet" href="../static/prism.css">
+
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- put configuration ahead of loading statements -->
+    <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'],['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        processHtmlClass: "arithmatex"
+      }
+    };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+
+    
+
+
+
+</head>
+<body>
+<nav class="layout-c-60 navbar navbar-expand-lg navbar-light bg-primary bg-opacity-10 text-dark">
+  <div class="container-fluid">
+      <a class="navbar-brand" href="/">Hang's Math Notes | Home</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse"  id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mx-5 mb-lg-0 ">
+        <li class="nav-item">
+            <a class="nav-link" href= "/others/" >Others</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href= "/knots/" >Knots</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">About</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+    
+    
+    <div class="layout-c-60 mt-5">
+        <!-- page layout is set at 60% including title and body -->
+
+        <!-- page title -->
+        <div class='txt-center'>
+            <h5> Matrix Operations - Chapter 2 (2.4) </h5>
+            <small> &#128197Published on June 26, 2022   &#9749Keywords: Matrix, Sympy  </small> 
+        </div>
+        
+        <!-- page body -->
+        <div class="container-fluid line-numbers">
 
   <!-- anchors -->
   <div class='txt-center mt-3'>
@@ -25,32 +93,34 @@ keywords: Matrix, Sympy
 
       <ul>
         <li>
-          $Ax$ is a combination of the columns of $A$: <br>  Given a matrix $A_{m*3} = \left( \begin{smallmatrix} u \, v  \, w  \end{smallmatrix} \right)_{m*3} $ and a vector $x = \left(  \begin{smallmatrix} x_1 \\ x_2 \\ x_3     \end{smallmatrix} \right)   $, where $u, v$ , and $w$ are column vectors of matrix $A$ with the dimension m, then $Ax = x_1 u + x_2 v + x_3 w$.
+          $AB$ is Matrix $A$ times every column of $B$:  $$AB = A  \left( \begin{smallmatrix} \mathbf{b_1} \, \mathbf{b_2} \, \mathbf{b_3} \end{smallmatrix} \right) = \left( \begin{smallmatrix} A\mathbf{b_1} \, A \mathbf{b_2} \, A \mathbf{b_3} \end{smallmatrix} \right)   $$ 
         </li>
 
         <li>
-          Every component of $Ax$ is a dot product of a row vector of $A$ and $x$: <br> Let's still take $A$ and $x$ above for demonstration here. Regarding $b = Ax$, every component of $b$ is a dot product of the corresponding row vector of $A$ and $x$. $b = \left( \begin{smallmatrix} b_1 \\ b_2 \\ b_3   \end{smallmatrix} \right) = Ax = \left(  \begin{smallmatrix}  u' \\ v' \\ w'     \end{smallmatrix}  \right) x  =  \left(  \begin{smallmatrix}  u'x \\ v'x \\ w'x     \end{smallmatrix}  \right)    $, where $u', v'$, and $w'$ are row vectors of matrix $A$.
+          $AB$ is every row of $A$ times Matrix $B$: $$ AB =   \left( \begin{smallmatrix} \mathbf{a'_1} \\ \mathbf{a'_2} \\  \mathbf{a'_3}   \end{smallmatrix} \right) B =  \left( \begin{smallmatrix}  \mathbf{a'_1}B \\  \mathbf{a'_2}B  \\ \mathbf{a'_3}B   \end{smallmatrix} \right)  $$
         </li>
 
         <li>
-          $Ax$ could be explained in words as $A$ acts on $x$, where $A$ is the function and $x$ is the input. The difference matrix $A$ acts on a vector $x$ so that $Ax$ contains differences of the adjacent elements in input vector $x$. 
-          $$Ax = \left( \begin{smallmatrix} 1 \, 0 \, 0 \\  -1 \, 1 \, 0 \\ 0 \, -1 \, 1  \end{smallmatrix} \right)  \left( \begin{smallmatrix} x_1 \\ x_2 \\ x_3   \end{smallmatrix} \right) = \left( \begin{smallmatrix} x_1 \\ x_2 - x_1 \\ x_3 - x_2   \end{smallmatrix} \right) $$
+          $AB$ is a summation of $n$ matrices, each of which is attributed to column $i$ of Matrix $A$ times row $i$ of Matrix $B$, where $i$ ranges from $1$ to $n$. 
+          $$ AB = \left( \begin{smallmatrix} \mathbf{a_1} \, \mathbf{a_2} \, \mathbf{a_3} \end{smallmatrix} \right) \left( \begin{smallmatrix} \mathbf{b'_1} \\ \mathbf{b'_2} \\ \mathbf{b'_3} \end{smallmatrix} \right) = \mathbf{a_1} \mathbf{b'_1}  + \mathbf{a_2} \mathbf{b'_2} + \mathbf{a_3} \mathbf{b'_3}  $$
+        </li>
+,
+        <li>
+          $AB_{ij}$, the entry in row $i$ and column $j $ of $AB$ is row $i$ of $A$ times column $j$ of $B$.
+          $$  \left( \begin{matrix}  &  *  & \\ * \, * &  AB_{ij} & * \, * \\  & * & \\  &  * & \end{matrix} \right)
+            = \left( \begin{matrix} * \\ a'_i \\ * \\ *  \end{matrix} \right) \left( \begin{matrix} *  \, * \,  b_j  \, *   \end{matrix} \right)
+
+          $$
         </li>
 
+      <!-- \left( \begin{smallmatrix}  \end{smallmatrix} \right) -->
         <li>
-          $u, v, w$ are independent: No combination except $0u + 0v + 0w = \mathbf{0} $. Otherwise $u, v, w$ are dependent.
+          Block elimination: Given a block Matrix  $ E = \left( \begin{smallmatrix}  A \, B \\ C \, D     \end{smallmatrix} \right) $, $A$ is the pivot block in row $1$. The elimination would be:
+          $$  
+          \left( \begin{matrix}  I &  \mathbf{0} \\ -CA^{-1} & I \end{matrix} \right) \left( \begin{matrix} A & B \\ C & D  \end{matrix} \right)  = \left( \begin{matrix} A & B \\ \mathbf{0} & D - CA^{-1}B \end{matrix} \right)
+          $$
         </li>
 
-        <li>
-          $A$ is an invertible matrix if $A$ has independent columns, and $Ax = 0$ has one solution.
-        </li>
-
-        <li>
-          $C$ is a singular matrix if $C$ has dependent columns, and $Cx = 0$ has many solutions.
-        </li>
-        <!--
-          \left( \begin{smallmatrix}    \end{smallmatrix} \right)
-        -->
       </ul>
     </div>
 
@@ -66,7 +136,7 @@ keywords: Matrix, Sympy
           from sympy.matrices import Matrix
           from sympy import symbols, sqrt, Rational, acos</code></pre>
       </div>
-      
+
 
       <div>
         <div>
@@ -211,3 +281,24 @@ dimension” dim = v1.shape[0] result = 0 for i in range(0, dim): result
 <p>def angle_between(v1, v2): ““” compute the angle between two given
 vectors according to COSINE FORMUL</p>
 -->
+
+
+        <!-- comment box -->
+        <script src="https://utteranc.es/client.js"
+                repo="lh6210/lh6210.github.io"
+                issue-term="title"
+                label="comment"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+        </script>
+
+    </div>
+
+
+
+
+
+    <script src='../static/prism.js'></script>
+</body>
+</html>
