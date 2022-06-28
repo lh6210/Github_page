@@ -106,7 +106,6 @@ keywords: Matrix, Sympy, rref
     <div class='my-5 divGap-1_6em'>
       <h6 id='lab'>LAB:</h6>
 
-      <!--
       <div>
         <div>Preliminary Setup:</div>
         <pre><code class='language-python'>
@@ -119,89 +118,50 @@ keywords: Matrix, Sympy, rref
 
       <div>
         <div>
-          1) &#128037 vector multiplication
+          1) &#128037 row elimination of augmented Matrix
         </div>
 
-        <pre><code class="language-python">
-          a = Matrix([[1, 2, 3]])  # row vector
-          b = Matrix([1, 0, 3])   # column vector</code></pre>
+        <!--  \left( \begin{smallmatrix} 1 \, 2 \\ 3 \, 4 \end{smallmatrix} \right) -->
+        <pre class='command-line no-line-numbers' data-prompt='>>>' >  
+        <code class="language-python">
+          A = Matrix([[1, 2, 3], [2, 5, 7], [-3, 2, 1]]); A  # given a Matrix A
+        </code></pre>
+        <!--  \left( \begin{smallmatrix} 1 \, 2 \\ 3 \, 4 \end{smallmatrix} \right) -->
+        $$ \left( \begin{matrix} 1 & 2 & 3 \\ 2 & 5 & 7 \\ -3 & 2 & 1 \end{matrix} \right) $$ 
 
-        <img src="../static/vec1.png" class="img-fluid"  alt="vector a & b">
-        <img src="../static/vec2.png" class="img-fluid"  alt="vector multiplication">
-      </div>
+        <pre class='command-line no-line-numbers' data-prompt='>>>' >  
+        <code class="language-python">
+          b = Matrix([1, 0, 3]); b   # given a column vector
+        </code></pre>
 
+        $$ \left( \begin{matrix} 1 \\ 0 \\ 3  \end{matrix} \right) $$ 
 
-      <div>
+        <pre class='command-line no-line-numbers' data-prompt='>>>' >  
+        <code class="language-python">
+          E = A.row_join(b); E  # augmented Matrix
+        </code></pre>
+
+        $$ \left( \begin{matrix} 1 & 2 & 3 & 1 \\ 2 & 5 & 7 & 0 \\ -3 & 2 & 1 & 3 \end{matrix} \right) $$ 
+
+        <pre class='command-line no-line-numbers' data-prompt='>>>' >  
+        <code class="language-python">
+          E.rref()  # augmented Matrix elimination - [Row Reduced-Echelon Form]
+        </code></pre>
+
+        $$ \left ( \left( \begin{matrix} 1 & 0 & 0 & -6 \\ 0 & 1 & 0 & -13 \\ 0 & 0 & 1 & 11 \end{matrix} \right), \left( \begin{matrix} 0 \quad 1 \quad 2 \end{matrix} \right) \right)  \qquad (*) $$ 
+
         <div>
-          2) &#128037 unit vector 
+          $(*)$  We get a Python 2-tuple above. According to Sympy documentation, rref returns reduced row-echelon form of matrix and indices of pivot vars. So the first element is the reduced row-echelon form, while the second one I guess indicates the pivot column, in this case, column 0, 1, and 2.
+
         </div>
 
 
-        <pre><code class="lang-py">
-          def norm_v(v):
-              """
-              compute the norm of a given vector v
-              """
 
-              norm = 0
-              for x in v:
-                  norm += x**2
-              norm = sqrt(norm)
-              return norm
-
-
-          def unit_v(v):
-              """
-              calculate the unit vector of a given vector v
-              """
-
-              assert v.shape[1] == 1 or v.shape[0] == 1, f"Please input a vector"
-              norm = norm_v(v)
-              return v / norm </code></pre>
-
-        <img src="../static/vec_mul1.png" class="img-fluid"  alt="vector a">
-        <img src="../static/vec_mul2.png" class="img-fluid"  alt="vector b">
       </div>
 
       <div>
-        <div>
-          3) &#128037 compute angles between two vectors
-        </div>
-
-        <pre><code class="lang-py">
-          def dot(v1, v2):
-              """
-              dot product of vectors v1 and v2, both v1 and v2 ought to be column vectors
-              """
-
-              assert v1.shape == v2.shape and v1.shape[1] == 1, f"the input should be column vectors with the same dimension"
-              dim = v1.shape[0]
-              result = 0
-              for i in range(0, dim):
-                  result += v1[i] * v2[i]
-              return result
-
-          def angle_between(v1, v2):
-              """
-              compute the angle between two given vectors according to COSINE FORMULA
-              """
-
-              assert v1.shape == v2.shape and v1.shape[1] == 1, f"the input should be column vectors with the same dimension"
-              norm_v1 = norm_v(v1)
-              norm_v2 = norm_v(v2)
-              dot_pdt = dot(v1, v2)
-              cos_theta = dot_pdt / (norm_v1 * norm_v2)
-              return acos(cos_theta)  </code></pre>
-
-        <img class="img-fluid" src="../static/angle_between.png" alt="2d vectors">
-        <img class="img-fluid" src="../static/angle_bt2.png" alt="3d vectors">
+        Reference: <a href="https://docs.sympy.org/latest/modules/matrices/matrices.html">Sympy manual: rref, row_join</a>
       </div>
-
-
-      <div>
-        This is the end of this article, and thanks for reading.
-      </div>
-      -->
 
 
     </div>
