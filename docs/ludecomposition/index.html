@@ -91,7 +91,7 @@
 
       <h6 id="notes">NOTES: </h6>
 
-      <ul>
+      <ul class='divGap-0_6em'>
         <li>
           Why are $ L_{31}  = \left( \begin{smallmatrix}
           1 & 0 & 0 \\
@@ -166,12 +166,12 @@
         </li>
 
         <li class='mt-2'>
-          Why does $L=E_{21}^{-1}*E_{31}^{-1}*E_{32}^{-1}$ have advantage over $L^{-1} = E_{32}*E_{31} *E_{21}$?  <br>
+          Why does $L=E_{21}^{-1}*E_{31}^{-1}*E_{32}^{-1}$ have advantage over $E = E_{32}*E_{31} *E_{21}$?  <br>
           $\because$
 
           $$
           \begin{flalign}
-          L^{-1} &= E_{32}*E_{31} *E_{21} & &  &\\  <!-- first line -->
+          E &= E_{32}*E_{31} *E_{21} & &  &\\  <!-- first line -->
             &= \begin{bmatrix}
             1 & 0 & 0   \\  
             0 & 1 & 0  \\
@@ -207,7 +207,7 @@
            $$ 
 
            (1) Matrix multiplication mixed up all three numbers below. <br>
-            (2) The entry at \((L^{-1})_{31}\) is an algebraic combination of three elements.
+            (2) The entry of \(E_{31}\) is an algebraic combination of three elements.
 
            $$
            \begin{flalign}
@@ -249,6 +249,35 @@
 
           (3) Each multiplier \(l_{ij}\) goes directly into its $i, j$ position unchanged, which is what we like.
         </li>
+
+        <li>
+          Forward and backward solving $Ax = b$:
+          <ol>
+            <li>
+              Given $Ax = b  \Rightarrow  LUx = b \Rightarrow L(Ux) = b $. Let $ Ux = c $, then solve $Lc = b$ ($L$ is the lower triangle Matrix, we solve $L_1, L_2, \dots , L_n $ forward)  ; 
+            </li>
+            <li> solve $ Ux = c $. ($U$ is the upper triangle Matrix, we solve $U_n, U_{n-1}, \dots , U_1$ backward)</li>
+          </ol>
+
+        </li>
+
+        <li>
+          Better balance of $LDU$: The $LU$ factorization of $A = LU$ yields lower triangular Matrix $L$ and upper triangular Matrix $U$. While $L$ has $1$ on its diagonal, usually $U$ doesn't. Therefore, we futher factor $U = DU'$.
+          $$
+          U = \left( \begin{matrix}  d_1 & U_{12} & U_{13} & \cdots & U_{1n} \\  & d_2 & U_{23} & \cdots & U_{2n}  \\ & & d_3 & \cdots  & U_{3n} \\ &&& \ddots & \vdots  \\  &&&& d_n            \end{matrix} \right)
+          = DU'
+          = \left( \begin{matrix} d_1 &&&& \\ & d_2 &&& \\ && d_3 &&   \\ &&& \ddots & \\ &&&& d_n         \end{matrix} \right)
+          \left( \begin{matrix}  1 & \frac{U_{12}}{d_1} & \frac{U_{13}}{d_1} & \cdots & \frac{U_{1n}}{d_1} \\ & 1 & \frac{U_{23}}{d_2} & \cdots & \frac{U_{2n}}{d_2} \\ && 1 & \cdots   &  \frac{U_{3n}}{d_3}  \\ &&& \ddots & \vdots \\ &&&& 1         \end{matrix}  \right)
+
+
+
+          $$
+
+
+        </li>
+
+
+
 
       </ul>
     </div>
