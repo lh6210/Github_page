@@ -302,7 +302,7 @@
         </div>
 
         <div>
-          According to Sympy's reference,  <a href="https://docs.sympy.org/latest/modules/matrices/matrices.html#matrix-functions-reference">LUdecomposition</a> returns (L, U, perm) where L is a lower triangular matrix with unit diagonal, U is an upper triangular matrix, and perm is a list of row swap index pairs. 
+          According to Sympy's reference,  <a href="https://docs.sympy.org/latest/modules/matrices/matrices.html#matrix-functions-reference">LUdecomposition</a> returns (L, U, perm) where L is a lower triangular matrix with unit diagonal, U is an upper triangular matrix, and perm is a list of row swap index pairs. See the example below:
         </div>
 
         <pre><code class="language-python">
@@ -310,10 +310,15 @@
            A.LUdecomposition()
           </code></pre>
 
-        <img src="../static/lu1.png" class="img-fluid"  alt="LUdecomposition">
+          $$ \left( \left( \begin{matrix} 1 & 0 \\ \frac{3}{2} & 1  \end{matrix} \right) , \left( \begin{matrix}  4 & 3 \\ 0 & -\frac{3}{2}  \end{matrix} \right), \left[ \right] \right) $$
+
 
         <div>
-          The motivation of this modification is that we want to see the symmetric matrix $S= L*D*U = L*D*L^T$ more clearly.
+          Our modification LU2() will work upon the return value of LUdecomposition(), precisely $U$, to get us $A = LDU$. 
+        </div>
+        <div>
+          And we will check LU2() with a special example: symmetric Matrix. The observation is that symmetric Matrices always have $A = LDU = LDL^T$.
+
         </div>
 
         <pre><code class="language-python">
@@ -330,7 +335,7 @@
             return L, D, U, P  </code></pre>
 
         <div>
-          Here's the result of LUdecomposition:
+          Let's make a symmetric Matrix and check its $LU$ and $LDL^T$ decompositions.
         </div>
 
         <pre><code class="language-python">
@@ -339,7 +344,7 @@
           S.LUdecomposition() 
         </code></pre>
 
-        <img src="../static/lu2.png" class="img-fluid"  alt="LU2">
+        $$ \left( \left( \begin{matrix} 1 & 0 & 0 \\ -\frac{27}{23} & 1  & 0 \\ -\frac{36}{23} & \frac{43}{15} & 1 \end{matrix} \right) , \left( \begin{matrix}  \frac{46}{9} & -6 & -8 \\ 0 & \frac{45}{23} & \frac{129}{23} \\ 0 & 0 & \frac{72}{5} \end{matrix} \right), \left[ \right] \right) $$
 
         <div>
           Here's the result of LU2's output:
@@ -349,25 +354,25 @@
         LU2(S)
         </code></pre>
 
-        <img src="../static/lu3_2.png" class="img-fluid"  alt="LU3">
+        $$ \left( \left( \begin{matrix} 1 & 0 & 0 \\ -\frac{27}{23} & 1  & 0 \\ -\frac{36}{23} & \frac{43}{15} & 1 \end{matrix} \right) , \left( \begin{matrix} \frac{46}{9} & 0 & 0 \\ 0 & \frac{45}{23} & 0 \\ 0 & 0 & \frac{72}{5}   \end{matrix} \right)  \left( \begin{matrix} 1  & -\frac{27}{23} & -\frac{36}{23} \\ 0 & 1 & \frac{43}{15} \\ 0 & 0 & 1 \end{matrix} \right), \left[ \right] \right) $$
 
         <div>
-          In this particular case (check symmetric matrices' $L*D*L^T $ decomposition), we could see clearly that the rightmost matrix is the transpose of L (the leftmost matrix).
+          In this particular case (check symmetric Matrices' $L*D*L^T $ decomposition), we could see clearly that the rightmost Matrix is the transpose of L (the leftmost Matrix).
         </div>
       </div>
 
 
       <div class='divGap-0_6em'>
         <div>
-          2) &#128037; LUdecompose rectangular shaped matrices A 
+          2) &#128037; LUdecompose rectangular shaped Matrices A 
         </div>
 
         <div>
-          Sympy's LUdecomposition is a really sharp tool that it deals with both square and rectangular matrices. While we may not find decomposing rectangular matrics productive, let's just play for fun. 
+          Sympy's LUdecomposition is a really sharp tool that it deals with both square and rectangular Matrices. While we may not find decomposing rectangular Matrics productive, let's just play for fun. 
         </div>
 
         <div>
-          For this practice, I picked one 2 by 3 matrix A and one 3 by 2 matrix B. I am going to use both Sympy's LUdecomposition and our lightly modified LU2 method to see the matrix decomposition again.
+          For this practice, I picked one 2 by 3 Matrix A and one 3 by 2 Matrix B. I am going to use both Sympy's LUdecomposition and our lightly modified LU2 method to see the Matrix decomposition again.
         </div>
 
         <img src="../static/lu4_2.png" class="img-fluid"  alt="rectangular matrices">
