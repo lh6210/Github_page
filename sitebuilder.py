@@ -38,7 +38,7 @@ def index_knots():
 @app.route('/<path:path>/')
 def page(path):
     page = pages.get_or_404(path)
-    print(f'page is {page}')
+    print(f'page path is {page.path}')
     return render_template('page.html', page=page)
 
 
