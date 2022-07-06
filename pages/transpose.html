@@ -1,4 +1,4 @@
-title: Transpose Matrices - Chapter 2 (2.7) 
+title: Transpose and Permutation Matrices - Chapter 2 (2.7) 
 date: 2022-07-04 
 category: la #la stands for Linear Algebra 
 keywords: Matrix, Sympy 
@@ -24,7 +24,7 @@ keywords: Matrix, Sympy
       <h6 id="notes">NOTES: </h6>
 
       <!-- \left( \begin{smallmatrix}  \end{smallmatrix}  \right) -->
-      <ul class='divGap-0_6em'>
+      <ul class='divGap-1em'>
         <li>
           The columns of $A^T$ are the rows of $A$; $(A^T)_{ij} = A_{ji}$.
         </li>
@@ -58,17 +58,17 @@ keywords: Matrix, Sympy
             Proof of $(AB)^T = B^TA^T$: 
           </div>
 
-          <div>
+          <div class='divGap-0_6em'>
 
             <div>
-              $AB = A \left( \begin{smallmatrix} \mathbf{b_1} \; \mathbf{b_2} \; \cdots \; \mathbf{b_n} \end{smallmatrix} \right) = \left( \begin{smallmatrix}  A\mathbf{b_1} \; A\mathbf{b_2} \; \cdots \; A \mathbf{b_n}  \end{smallmatrix} \right)     $
+              $AB = A \left( \begin{matrix} \mathbf{b_1} \; \mathbf{b_2} \; \cdots \; \mathbf{b_n} \end{matrix} \right) = \left( \begin{matrix}  A\mathbf{b_1} \; A\mathbf{b_2} \; \cdots \; A \mathbf{b_n}  \end{matrix} \right)     $ 
             </div>
 
             <div>
-              Then $(AB)^T$ should be $ \left( \begin{smallmatrix} (A\mathbf{b_1})^T \\ (A\mathbf{b_2})^T \\ \vdots \\ (A \mathbf{b_n})^T      \end{smallmatrix} \right)   $, which equals to $ \left( \begin{smallmatrix} \mathbf{b_1}^T A^T \\ \mathbf{b_2}^T A^T \\ \vdots \\  \mathbf{b_n}^T A^T     \end{smallmatrix} \right) $, according to the argument we just proved above.
+              Then $(AB)^T$ should be $ \left( \begin{matrix} (A\mathbf{b_1})^T \\ (A\mathbf{b_2})^T \\ \vdots \\ (A \mathbf{b_n})^T      \end{matrix} \right)   $, which equals to $ \left( \begin{matrix} \mathbf{b_1}^T A^T \\ \mathbf{b_2}^T A^T \\ \vdots \\  \mathbf{b_n}^T A^T     \end{matrix} \right) $, according to the argument we just proved above.
             </div>
             <div> And, 
-              $ \left( \begin{smallmatrix} \mathbf{b_1}^T A^T \\ \mathbf{b_2}^T A^T \\ \vdots \\  \mathbf{b_n}^T A^T     \end{smallmatrix} \right) = \left( \begin{smallmatrix} \mathbf{b_1}^T \\ \mathbf{b_2}^T  \\ \vdots \\  \mathbf{b_n}^T \end{smallmatrix} \right)  A^T = B^TA^T $, according to <a href="/matrixOp">Matrix Operations Chapter 2 (2.4)</a>
+              $ \left( \begin{matrix} \mathbf{b_1}^T A^T \\ \mathbf{b_2}^T A^T \\ \vdots \\  \mathbf{b_n}^T A^T     \end{matrix} \right) = \left( \begin{matrix} \mathbf{b_1}^T \\ \mathbf{b_2}^T  \\ \vdots \\  \mathbf{b_n}^T \end{matrix} \right)  A^T = B^TA^T $, according to <a href="/matrixOp">Matrix Operations Chapter 2 (2.4)</a>
  
             </div>
 
@@ -92,22 +92,35 @@ keywords: Matrix, Sympy
         </li>
 
         <li>
-          If $A_{n*n}$ and $B_{n*n}$ are invertible then so is $AB$. The inverse of a product $AB$ is $(AB)^{-1} = B^{-1}A^{-1}$. Inverses come in reverse order.
+          $(Ax)^Ty = x^T(A^Ty)$: Inner product of $Ax$ with $y =$ Inner product of $x$ with $A^Ty$. 
         </li>
-
         <li>
-          The Gauss-Jordan method: Given matrix $A_{n*n}$, $\left[ A_{n*n} \quad I_{n*n}  \right]  =  \left[  A_{n*n} \quad e_1 \; e_2 \; \ldots \; e_n    \right]  \Rightarrow \left[ I \quad  A^{-1}  \right]  $
-        </li>
-
-        <li>
-          If $A$ is invertible and upper triangular, so is $A^{-1}$. <br>
-          Let $j$th column of $A^{-1} = A_j^{-1} =   \left( \begin{smallmatrix} k_1 \\ k_2 \\ \vdots \\ k_n  \end{smallmatrix} \right)  $
-          Then $AA_j^{-1} = \left( \begin{smallmatrix} 0 \\ \vdots \\ 1 \\ \vdots \\ 0  \end{smallmatrix} \right) $ [there are $n - j$ zeros after $1$] and $AA^{-1} = I$
-          $$  \text{So,} \quad
-          A A_j^{-1} = \left( \begin{matrix}  \ddots & \cdots & \cdots & \cdots & \cdots \\ & \ddots & \cdots & \cdots & \cdots \\ && \ddots & \cdots & \cdots \\ &&& \ddots & \cdots \\ &&&& \ddots      \end{matrix}  \right)  \left( \begin{matrix} k_1 \\ k_2 \\ \vdots \\ k_{n-1} \\ k_n   \end{matrix} \right) = \left( \begin{matrix} 0 \\ 0 \\  \vdots \\ 1 \\ 0 \\  \vdots \\ 0  \end{matrix} \right)
+          Given a symmetric matrix $S$, the inverse of $S$ is also symmetric.
           $$
-          By back-substitution, we know $k_{j+1} \, \cdots \, k_n$ are all zeros. Therefore, $A^{-1}$ is also upper triangular.
+            (S^{-1})^T = (S^T)^{-1} = S^{-1}
+          $$
+        </li>
 
+        <li>
+          Choose any matrix $A$, probably rectangular. $S = A^TA$ or $S' = AA^T$ is automatically a square symmetric matrix.
+        </li>
+
+        <li>
+          The $LU$ elimination of a symmetric matrix $S$ is symmetric: $ S = LDL^T$.
+        </li>
+
+        <li>
+          A permutation matrix $P$ has the rows of the identity matrix $I$ in any order. There are $n!$ permutation matrices of order $n$.
+        </li>
+
+        <li>
+          $P^{-1}$ is also a permutation matrix. A single row exchange is its own inverse.
+        </li>
+        <li>
+          $P^{-1}$ is always the same as $P^T$. When we multiply $PP^T$, the "1" in the first row of $P$ hits the "1" in the first column of $P^T$. It misses the ones in all the other columns. So $PP^T=I$.
+        </li>
+        <li>
+          If $A$ is invertible, a permutation $P$ will put its rows in the right order to factor $PA=LU$ There must be a full set of pivots after row exchanges for $A$ to be invertible.
         </li>
 
       </ul>
@@ -128,7 +141,7 @@ keywords: Matrix, Sympy
 
       <div>
         <div>
-          1) &#128037 inverse of a matrix
+          1) &#128037  experiments for $(AB)^T = B^TA^T$.
         </div>
 
         <!--  \left( \begin{smallmatrix} 1 \, 2 \\ 3 \, 4 \end{smallmatrix} \right) -->
@@ -170,6 +183,97 @@ keywords: Matrix, Sympy
       </div>
 
       <div>
+        <div>
+          2) &#128037  experiments for $A^TA $ or $AA^T$.
+        </div>
+
+        <!--  \left( \begin{smallmatrix} 1 \, 2 \\ 3 \, 4 \end{smallmatrix} \right) -->
+        <pre class='command-line no-line-numbers' data-prompt='>>>' >  
+        <code class="language-python">
+          A = Matrix([[1, 2, 3], [2, 5, 7], [-3, 2, 1]]); A  # given a Matrix A
+        </code></pre>
+        <!--  \left( \begin{smallmatrix} 1 \, 2 \\ 3 \, 4 \end{smallmatrix} \right) -->
+        $$ \left( \begin{matrix} 1 & 2 & 3 \\ 2 & 5 & 7 \\ -3 & 2 & 1 \end{matrix} \right) $$ 
+
+        <pre class='command-line no-line-numbers' data-prompt='>>>' >  
+        <code class="language-python">
+          A.inv()
+        </code></pre>
+
+        $$ \left( \begin{matrix} -\frac{9}{2} & 2 & -\frac{1}{2} \\ -\frac{23}{2} & 5 & -\frac{1}{2} \\ \frac{19}{2} & -4 & \frac{1}{2}  \end{matrix} \right) $$ 
+
+        <pre class='command-line no-line-numbers' data-prompt='>>>' >  
+        <code class="language-python">
+          F = A.row_join(eye(3)); F
+        </code></pre>
+
+        $$ \left( \begin{matrix} 1 & 2 & 3 & 1 & 0 & 0 \\ 2 & 5 & 7 & 0 & 1 & 0 \\ -3 & 2 & 1 & 0 & 0 & 1 \end{matrix} \right) $$ 
+
+        <pre class='command-line no-line-numbers' data-prompt='>>>' >  
+        <code class="language-python">
+          F.rref()  # augmented Matrix elimination - [Row Reduced-Echelon Form]
+        </code></pre>
+
+        $$ \left ( \left( \begin{matrix} 1 & 0 & 0 & -\frac{9}{2} & 2 & -\frac{1}{2} \\ 0 & 1 & 0 &    -\frac{23}{2} & 5 & -\frac{1}{2} \\ 0 & 0 & 1 &  \frac{19}{2} & -4 & \frac{1}{2}   \end{matrix} \right), \left( \begin{matrix} 0 \quad 1 \quad 2 \end{matrix} \right) \right)  \qquad (*) $$ 
+
+        <div>
+          $A.inv()$ resides in this elimination result.
+
+        </div>
+
+
+
+      </div>
+
+      <div>
+        <div>
+          3) &#128037  matrix row exchange function  $P^{-1} = P^T$ 
+        </div>
+
+        <!--  \left( \begin{smallmatrix} 1 \, 2 \\ 3 \, 4 \end{smallmatrix} \right) -->
+        <pre class='command-line no-line-numbers' data-prompt='>>>' >  
+        <code class="language-python">
+          A = Matrix([[1, 2, 3], [2, 5, 7], [-3, 2, 1]]); A  # given a Matrix A
+        </code></pre>
+        <!--  \left( \begin{smallmatrix} 1 \, 2 \\ 3 \, 4 \end{smallmatrix} \right) -->
+        $$ \left( \begin{matrix} 1 & 2 & 3 \\ 2 & 5 & 7 \\ -3 & 2 & 1 \end{matrix} \right) $$ 
+
+        <pre class='command-line no-line-numbers' data-prompt='>>>' >  
+        <code class="language-python">
+          A.inv()
+        </code></pre>
+
+        $$ \left( \begin{matrix} -\frac{9}{2} & 2 & -\frac{1}{2} \\ -\frac{23}{2} & 5 & -\frac{1}{2} \\ \frac{19}{2} & -4 & \frac{1}{2}  \end{matrix} \right) $$ 
+
+        <pre class='command-line no-line-numbers' data-prompt='>>>' >  
+        <code class="language-python">
+          F = A.row_join(eye(3)); F
+        </code></pre>
+
+        $$ \left( \begin{matrix} 1 & 2 & 3 & 1 & 0 & 0 \\ 2 & 5 & 7 & 0 & 1 & 0 \\ -3 & 2 & 1 & 0 & 0 & 1 \end{matrix} \right) $$ 
+
+        <pre class='command-line no-line-numbers' data-prompt='>>>' >  
+        <code class="language-python">
+          F.rref()  # augmented Matrix elimination - [Row Reduced-Echelon Form]
+        </code></pre>
+
+        $$ \left ( \left( \begin{matrix} 1 & 0 & 0 & -\frac{9}{2} & 2 & -\frac{1}{2} \\ 0 & 1 & 0 &    -\frac{23}{2} & 5 & -\frac{1}{2} \\ 0 & 0 & 1 &  \frac{19}{2} & -4 & \frac{1}{2}   \end{matrix} \right), \left( \begin{matrix} 0 \quad 1 \quad 2 \end{matrix} \right) \right)  \qquad (*) $$ 
+
+        <div>
+          $A.inv()$ resides in this elimination result.
+
+        </div>
+
+
+
+      </div>
+
+
+
+
+
+
+      <div>
         Reference: <a href="https://docs.sympy.org/latest/modules/matrices/matrices.html">Sympy manual: rref, row_join</a>
       </div>
 
@@ -182,51 +286,3 @@ keywords: Matrix, Sympy
 
 
 </div>
-
-<!--
-<hr />
-<h3 id="labs-lab">Labs {:#lab}</h3>
-<p>Preliminary Setup:</p>
-<div class="sourceCode" id="cb1"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> sympy.interactive.printing <span class="im">import</span> init_printing  </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> init_printing(use_unicode<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> sympy.matrices <span class="im">import</span> Matrix</span></code></pre></div>
-<ol type="1">
-<li>&amp;#128037 vector multiplication</li>
-</ol>
-<div class="sourceCode" id="cb2"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> a <span class="op">=</span> Matrix([[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]])  <span class="co"># row vector</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> b <span class="op">=</span> Matrix([<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">3</span>])   <span class="co"># column vector</span></span></code></pre></div>
-<p><img src="../static/vec1.png" alt="vector a &amp; b" /> <img
-src="../static/vec2.png" alt="vector multiplication" /></p>
-<ol start="2" type="1">
-<li>&amp;#128037 unit vector</li>
-</ol>
-<div class="sourceCode" id="cb3"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> sympy <span class="im">import</span> symbols, sqrt, Rational</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> v <span class="op">=</span> symbols(<span class="st">&#39;v&#39;</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">def</span> unit_v(v):</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span>     <span class="cf">assert</span> v.shape[<span class="dv">1</span>] <span class="op">==</span> <span class="dv">1</span> <span class="kw">or</span> v.shape[<span class="dv">0</span>] <span class="op">==</span> <span class="dv">1</span>, <span class="ss">f&quot;Please input a vector&quot;</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span>     norm <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span>     <span class="cf">for</span> x <span class="kw">in</span> v:</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span>         norm <span class="op">=</span> norm <span class="op">+</span> x<span class="op">**</span><span class="dv">2</span><span class="op">;</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span>     norm <span class="op">=</span> sqrt(norm)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span>     <span class="cf">return</span> v <span class="op">/</span> norm </span></code></pre></div>
-<p><img src="../static/vec_mul1.png" alt="vec a" /> <img
-src="../static/vec_mul2.png" alt="vec b" /></p>
-<ol start="3" type="1">
-<li>&amp;#128037 compute angles between two vectors ``` python def
-norm_v(v): ““” compute the norm of a given vector v ““” norm = 0 for x
-in v: norm += x**2 norm = sqrt(norm) return norm</li>
-</ol>
-<p>def unit_v(v): ““” calculate the unit vector of a given vector v ““”
-assert v.shape[1] == 1 or v.shape[0] == 1, f”Please input a vector” norm
-= norm_v(v) return v / norm</p>
-<p>def dot(v1, v2): ““” dot product of vectors v1 and v2, both v1 and v2
-ought to be column vectors ““” assert v1.shape == v2.shape and
-v1.shape[1] == 1, f”the input should be column vectors with the same
-dimension” dim = v1.shape[0] result = 0 for i in range(0, dim): result
-+= v1[i] * v2[i] return result</p>
-<p>def angle_between(v1, v2): ““” compute the angle between two given
-vectors according to COSINE FORMUL</p>
--->
