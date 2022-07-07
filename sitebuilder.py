@@ -8,6 +8,7 @@ from flask_flatpages import FlatPages
 from flask_frozen import Freezer
 from jinja2 import Environment, PackageLoader, select_autoescape
 
+
 DEBUG = True
 
 app = Flask(__name__)

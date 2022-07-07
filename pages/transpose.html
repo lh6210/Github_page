@@ -130,56 +130,33 @@ keywords: Matrix, Sympy
       <h6 id='lab'>LAB:</h6>
 
       <div>
-        <div>Preliminary Setup:</div>
-        <pre><code class='language-python'>
-          from sympy.interactive.printing import init_printing
-          init_printing(use_unicode=True)
-          from sympy.matrices import Matrix
-          from sympy import symbols, sqrt, Rational, eye</code></pre>
-      </div>
-      
-
-      <div>
         <div>
           1) &#128037  experiments for $(AB)^T = B^TA^T$.
         </div>
 
-        <!--  \left( \begin{smallmatrix} 1 \, 2 \\ 3 \, 4 \end{smallmatrix} \right) -->
-        <pre class='command-line no-line-numbers' data-prompt='>>>' >  
+        <pre>  
         <code class="language-python">
-          A = Matrix([[1, 2, 3], [2, 5, 7], [-3, 2, 1]]); A  # given a Matrix A
-        </code></pre>
-        <!--  \left( \begin{smallmatrix} 1 \, 2 \\ 3 \, 4 \end{smallmatrix} \right) -->
-        $$ \left( \begin{matrix} 1 & 2 & 3 \\ 2 & 5 & 7 \\ -3 & 2 & 1 \end{matrix} \right) $$ 
+          from sympy.interactive.printing import init_printing
+          init_printing(use_unicode=True)
+          from sympy.matrices import Matrix
+          from sympy import randMatrix, pprint, eye
+          from sympy import symbols, sqrt, Rational, acos
 
-        <pre class='command-line no-line-numbers' data-prompt='>>>' >  
-        <code class="language-python">
-          A.inv()
-        </code></pre>
-
-        $$ \left( \begin{matrix} -\frac{9}{2} & 2 & -\frac{1}{2} \\ -\frac{23}{2} & 5 & -\frac{1}{2} \\ \frac{19}{2} & -4 & \frac{1}{2}  \end{matrix} \right) $$ 
-
-        <pre class='command-line no-line-numbers' data-prompt='>>>' >  
-        <code class="language-python">
-          F = A.row_join(eye(3)); F
+          def compare():
+              for i in range(3):
+                  A = randMatrix(i + 2, 3, -10, 10) # make random matrix with dimension (i+2)*3
+                  B = randMatrix(3, i + 2, -10, 9)
+                  E = (A*B).T
+                  F = B.T*A.T
+                  result = (E == F)
+                  pprint( [A, B, E, result]  )
         </code></pre>
 
-        $$ \left( \begin{matrix} 1 & 2 & 3 & 1 & 0 & 0 \\ 2 & 5 & 7 & 0 & 1 & 0 \\ -3 & 2 & 1 & 0 & 0 & 1 \end{matrix} \right) $$ 
+        <img src="../static/transpose1.png" class="img-fluid"  alt="">
 
-        <pre class='command-line no-line-numbers' data-prompt='>>>' >  
-        <code class="language-python">
-          F.rref()  # augmented Matrix elimination - [Row Reduced-Echelon Form]
-        </code></pre>
-
-        $$ \left ( \left( \begin{matrix} 1 & 0 & 0 & -\frac{9}{2} & 2 & -\frac{1}{2} \\ 0 & 1 & 0 &    -\frac{23}{2} & 5 & -\frac{1}{2} \\ 0 & 0 & 1 &  \frac{19}{2} & -4 & \frac{1}{2}   \end{matrix} \right), \left( \begin{matrix} 0 \quad 1 \quad 2 \end{matrix} \right) \right)  \qquad (*) $$ 
-
-        <div>
-          $A.inv()$ resides in this elimination result.
-
+        <div class='mt-2' >
+          Our example shows that $(AB)^T = B^TA^T$.
         </div>
-
-
-
       </div>
 
       <div>
