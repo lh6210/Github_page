@@ -1,0 +1,238 @@
+title: Transpose and Permutation Matrices - Chapter 2 (2.7) 
+date: 2022-07-04 
+category: la #la stands for Linear Algebra 
+keywords: Matrix, Sympy 
+
+
+<div class="container-fluid line-numbers">
+
+  <!-- anchors -->
+  <div class='txt-center mt-3'>
+    <div class='right-arrow'>
+      <a href="#notes" >NOTES</a> 
+    </div>
+    <div class="right-arrow">
+      <a href="#lab">LAB</a> 
+    </div>
+  </div>
+
+  <!-- blog body -->
+  <div class='mt-5'>
+
+    <div>
+
+      <h6 id="notes">NOTES: </h6>
+
+      <!-- \left( \begin{smallmatrix}  \end{smallmatrix}  \right) -->
+      <ul class='divGap-1em'>
+        <li>
+          The columns of $A^T$ are the rows of $A$; $(A^T)_{ij} = A_{ji}$.
+        </li>
+
+        <!-- \left( \begin{smallmatrix}  \end{smallmatrix} \right) -->
+        
+        <li>
+          <div class='mb-3'>
+            Proof of $(Ax)^T = x^TA^T$, where $x$ is a column vector: 
+          </div>
+
+          <div class='divGap-0_6em'>
+
+            <div>
+              $Ax = \left( \begin{matrix} \mathbf{a_1} \, \mathbf{a_2} \, \cdots \, \mathbf{a_n} \end{matrix} \right) \left( \begin{matrix} x_1 \\ x_2 \\ \vdots \\ x_n    \end{matrix} \right) = \left( x_1 \mathbf{a_1} + x_2 \mathbf{a_2} + \,  \cdots + \, x_n \mathbf{a_n}   \right) = \left( \begin{matrix} x_1 a_{11} + x_2 a_{12} + x_3 a_{13} + \cdots + x_n a_{1n} \\ x_1 a_{21} + x_2 a_{22} + x_3 a_{23} + \cdots + x_n a_{2n} \\ \vdots \\  x_1 a_{n1} + x_2 a_{n2} + x_3 a_{n3} + \cdots + x_n a_{nn}    \end{matrix} \right)_{n*1}    $  
+            </div>
+            <div>
+              Then $(Ax)^T$ should be $  \phantom{ \begin{matrix} 1 \\ 1   \end{matrix}  }    \left( \begin{matrix} x_1 a_{11} + x_2 a_{12} + x_3 a_{13} + \cdots + x_n a_{1n} \quad x_1 a_{21} + x_2 a_{22} + x_3 a_{23} + \cdots + x_n a_{2n} \quad \cdots \quad  x_1 a_{n1} + x_2 a_{n2} + x_3 a_{n3} + \cdots + x_n a_{nn}    \end{matrix} \right)_{1*n} $, which equals to  $ \left( \begin{matrix} x_1 \, x_2 \, \cdots \, x_n \end{matrix} \right) \left( \begin{matrix} a_{11} \, a_{21} \, a_{31} \, \cdots \, a_{n1} \\ a_{12} \, a_{22} \, a_{32} \, \cdots \, a_{n2} \\ \vdots \\ a_{1n} \, a_{2n} \, a_{3n} \, \cdots \, a_{nn}        \end{matrix} \right) = x^TA^T $ 
+            </div>
+            <div>
+            Therefore, $(Ax)^T = x^TA^T$ 
+            </div>
+            <div>
+              $Ax$ combines the columns of $A$ while $x^TA^T$ combines the rows of $A^T$.
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class='mb-3'>
+            Proof of $(AB)^T = B^TA^T$: 
+          </div>
+
+          <div class='divGap-0_6em'>
+
+            <div>
+              $AB = A \left( \begin{matrix} \mathbf{b_1} \; \mathbf{b_2} \; \cdots \; \mathbf{b_n} \end{matrix} \right) = \left( \begin{matrix}  A\mathbf{b_1} \; A\mathbf{b_2} \; \cdots \; A \mathbf{b_n}  \end{matrix} \right)     $ 
+            </div>
+
+            <div>
+              Then $(AB)^T$ should be $ \left( \begin{matrix} (A\mathbf{b_1})^T \\ (A\mathbf{b_2})^T \\ \vdots \\ (A \mathbf{b_n})^T      \end{matrix} \right)   $, which equals to $ \left( \begin{matrix} \mathbf{b_1}^T A^T \\ \mathbf{b_2}^T A^T \\ \vdots \\  \mathbf{b_n}^T A^T     \end{matrix} \right) $, according to the argument we just proved above.
+            </div>
+            <div> And, 
+              $ \left( \begin{matrix} \mathbf{b_1}^T A^T \\ \mathbf{b_2}^T A^T \\ \vdots \\  \mathbf{b_n}^T A^T     \end{matrix} \right) = \left( \begin{matrix} \mathbf{b_1}^T \\ \mathbf{b_2}^T  \\ \vdots \\  \mathbf{b_n}^T \end{matrix} \right)  A^T = B^TA^T $, according to <a href="/matrixOp">Matrix Operations Chapter 2 (2.4)</a>
+ 
+            </div>
+
+            <div>
+              Therefore, we have proved $(AB)^T = B^TA^T$.
+            </div>
+          </div>
+        </li>
+
+        <li>
+          $ (ABC)^T = C^TB^TA^T   $; If $A = LDU$, then $A^T = U^TD^TL^T$.
+        </li>
+
+
+        <li>
+          $(A+ B)^T = A^T + B^T$
+        </li>
+
+        <li>
+          $ (A^{-1})^T = (A^T)^{-1}  $; $A^T$ is invertible exactly when $A$ is invertible.
+        </li>
+
+        <li>
+          $(Ax)^Ty = x^T(A^Ty)$: Inner product of $Ax$ with $y =$ Inner product of $x$ with $A^Ty$. 
+        </li>
+        <li>
+          Given a symmetric matrix $S$, the inverse of $S$ is also symmetric.
+          $$
+            (S^{-1})^T = (S^T)^{-1} = S^{-1}
+          $$
+        </li>
+
+        <li>
+          Choose any matrix $A$, probably rectangular. $S = A^TA$ or $S' = AA^T$ is automatically a square symmetric matrix.
+        </li>
+
+        <li>
+          The $LU$ elimination of a symmetric matrix $S$ is symmetric: $ S = LDL^T$.
+        </li>
+
+        <li>
+          A permutation matrix $P$ has the rows of the identity matrix $I$ in any order. There are $n!$ permutation matrices of order $n$.
+        </li>
+
+        <li>
+          $P^{-1}$ is also a permutation matrix. A single row exchange is its own inverse.
+        </li>
+        <li>
+          $P^{-1}$ is always the same as $P^T$. When we multiply $PP^T$, the "1" in the first row of $P$ hits the "1" in the first column of $P^T$. It misses the ones in all the other columns. So $PP^T=I$.
+        </li>
+        <li>
+          If $A$ is invertible, a permutation $P$ will put its rows in the right order to factor $PA=LU$ There must be a full set of pivots after row exchanges for $A$ to be invertible.
+        </li>
+
+      </ul>
+    </div>
+
+    <div class='my-5 divGap-1_6em'>
+      <h6 id='lab'>LAB:</h6>
+
+      <div>
+        <div>
+          1) &#128037  experiments for $(AB)^T = B^TA^T$.
+        </div>
+
+        <pre>  
+        <code class="language-python">
+          from sympy.interactive.printing import init_printing
+          init_printing(use_unicode=True)
+          from sympy.matrices import Matrix
+          from sympy import randMatrix, pprint, eye
+          from sympy import symbols, sqrt, Rational, acos
+
+          def compare():
+              for i in range(3):
+                  A = randMatrix(i + 2, 3, -10, 10) # make random matrix with dimension (i+2)*3
+                  B = randMatrix(3, i + 2, -10, 9)
+                  E = (A*B).T
+                  F = B.T*A.T
+                  result = (E == F)
+                  pprint( [A, B, E, result]  )
+        </code></pre>
+
+        <img src="../static/transpose1.png" class="img-fluid"  alt="">
+
+        <div class='mt-2' >
+          Our example shows that $(AB)^T = B^TA^T$.
+        </div>
+      </div>
+
+      <div>
+        <div>
+          2) &#128037  experiments for $A^TA $ or $AA^T$.
+        </div>
+
+        <!--  \left( \begin{smallmatrix} 1 \, 2 \\ 3 \, 4 \end{smallmatrix} \right) -->
+        <pre>  
+        <code class="language-python">
+          A = Matrix([[1, 2], [2, 5], [-3, 2]]); 
+        </code></pre>
+        <!--  \left( \begin{smallmatrix} 1 \, 2 \\ 3 \, 4 \end{smallmatrix} \right) -->
+
+        <pre class='command-line no-line-numbers' data-prompt='>>>' >  
+        <code class="language-python">
+          A*A.T   # symmetric
+        </code></pre>
+        $$ \left( \begin{matrix} 5 & 12 & 1 \\ 12 & 29 & 4 \\ 1 & 4 & 13 \end{matrix} \right) $$ 
+
+        <pre class='command-line no-line-numbers' data-prompt='>>>' >  
+        <code class="language-python">
+          A.T*A   # also symmetric
+        </code></pre>
+
+        $$ \left( \begin{matrix} 14 & 6 \\ 6 & 33  \end{matrix} \right) $$ 
+
+      </div>
+
+      <div>
+        <div>
+          3) &#128037  matrix row exchange function  $P^{-1} = P^T$ 
+        </div>
+
+        <pre>  
+        <code class="language-python">
+          def row_switch(A, i, j):    # define a row switch function
+              row_i = A[i, :]         # matrix slicing
+              row_j = A[j, :]
+              A[i, :] = row_j
+              A[j, :] = row_i
+              return A                # we get the matrix as row i and j are switched 
+
+          A = row_switch(eye(3), 0, 1)
+          A = row_switch(A, 0, 2)
+        </code></pre>
+
+        <!--  \left( \begin{smallmatrix} 1 \, 2 \\ 3 \, 4 \end{smallmatrix} \right) -->
+        <pre class='command-line no-line-numbers' data-prompt='>>>' >  
+        <code class="language-python">
+          A; A.inv(); A.T
+        </code></pre>
+        <!--  \left( \begin{smallmatrix} 1 \, 2 \\ 3 \, 4 \end{smallmatrix} \right) -->
+        $$ \left( \begin{matrix} 0 & 0 & 1 \\ 1 & 0 & 0 \\ 0 & 1 & 0 \end{matrix} \right),   
+         \left( \begin{matrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ 1 & 0 & 0 \end{matrix} \right),  
+         \left( \begin{matrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ 1 & 0 & 0 \end{matrix} \right) $$ 
+
+        <pre class='command-line no-line-numbers' data-prompt='>>>' >  
+        <code class="language-python">
+          A.inv() == A.T
+        </code></pre>
+
+        $$ True  $$
+
+      </div>
+
+
+
+
+
+
+    </div>
+
+  </div>
+
+
+
+
+</div>

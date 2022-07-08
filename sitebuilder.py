@@ -8,6 +8,7 @@ from flask_flatpages import FlatPages
 from flask_frozen import Freezer
 from jinja2 import Environment, PackageLoader, select_autoescape
 
+
 DEBUG = True
 
 app = Flask(__name__)
@@ -38,7 +39,7 @@ def index_knots():
 @app.route('/<path:path>/')
 def page(path):
     page = pages.get_or_404(path)
-    print(f'page is {page}')
+    print(f'page path is {page.path}')
     return render_template('page.html', page=page)
 
 
