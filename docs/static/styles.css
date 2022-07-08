@@ -26,6 +26,22 @@
   margin-top: 0.6em;
 }
 
+.divGap-0_6em > li {
+  margin-top: 0.6em;
+}
+
+.divGap-1em > li {
+  margin-top: 1em;
+}
+
+
+
+/* color */
+.red {
+  color: red;
+}
+
+
 /*
  
 
