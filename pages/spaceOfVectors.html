@@ -1,0 +1,173 @@
+title: Spaces of Vectors - Chapter 3 (3.1) 
+date: 2022-07-30 
+category: la #la stands for Linear Algebra 
+keywords: Matrix, Sympy 
+
+
+<div class="container-fluid line-numbers">
+
+  <!-- anchors -->
+  <div class='txt-center mt-3'>
+    <div class='right-arrow'>
+      <a href="#notes" >NOTES</a> 
+    </div>
+    <div class="right-arrow">
+      <a href="#lab">LAB</a> 
+    </div>
+  </div>
+
+  <!-- blog body -->
+  <div class='mt-5'>
+
+    <div>
+
+      <h6 id="notes">NOTES: </h6>
+
+      <!-- \left( \begin{smallmatrix}  \end{smallmatrix}  \right) -->
+      <ul class='divGap-0_6em'>
+        
+        <li>
+          A real vector space is a set of vectors together with rules for vector addition and for multiplication by real numbers.
+        </li>
+
+        <li>
+          The space $ \mathcal{R}^n$  consists of all column vectors $ \mathbf{v}$ with $n$ components (real numbers); A vector whose $n$ components are complex numbers lies in the space $ \mathcal{C}^n$.
+        </li>
+
+        <li>
+          The space $ \mathcal{M}$ consists of all real $2$ by $2$ matrices.
+        </li>
+
+        <li>
+          The space $ \mathcal{F}$ consists of all real functions $f(x)$.
+        </li>
+        <li>
+          The function space $\mathcal{F}$ is infinite-dimensional. A smaller function space is $\mathcal{P}$, or $\mathcal{P}_n$, containing all polynomials $a_0 + a_1x + \cdots + a_nx^n$ of degree $n$.
+
+        </li>
+
+        <li>
+          The space $\mathcal{Z}$ consists only of a zero vector.
+        </li>
+
+        <li>
+          <div>
+            A subspace of a vector space is a set of vectors (including $0$) that satisfies two requirements: If $ \mathbf{v}$ and $ \mathbf{w}$ are vectors in the subspace and c is any scalar, then 
+            <ul>
+              <li>
+                $ \mathbf{v} + \mathbf{w}$ is in the subspace
+              </li>
+
+              <li>
+                $c \mathbf{v}$ is in the subspace
+              </li>
+            </ul>
+          </div>
+        </li>
+
+        <li>
+          A subspace containing $ \mathbf{v}$ and $\mathbf{w}$ must contain all linear combinations $c \mathbf{v} + d \mathbf{w}$.
+        </li>
+
+        <li>
+          <div>
+            Inside the vector space $ \mathcal{M}$ of all $2$ by $2$ matrices, here are two subspaces:
+
+            <ul>
+              <li>
+                $\mathcal{U}$: all upper triangular matrices $\left( \begin{matrix} a \; b \\ 0 \; d  \end{matrix} \right)$
+              </li>
+
+              <li>
+                $\mathcal{D}$: all diagonal matrices $\left( \begin{matrix} a \; 0 \\ 0 \; d  \end{matrix} \right)$
+              </li>
+            </ul>
+          </div>
+        </li>
+
+        <li>
+          The column space of $A$, $C(A)$ consists of all linear combinations of the columns of matrix $A$. The columns span the column space.
+        </li>
+
+        <li>
+          The system $Ax = b$ is solvable if and only if $b$ is in the column space of $A$.
+
+        </li>
+
+        <li class='divGap-0_6em'>
+          <div>
+            Instead of columns in $\mathcal{R}^m$, we could start with any set $\mathcal{S}$ of vectors in a vector space $\mathcal{V}$. To get a subspace $\mathcal{SS}$ of $\mathcal{V}$, we take all combinations of the vectors in that set:
+          </div>
+
+          <div>
+            $\mathcal{S}$ = set of vectors in $\mathcal{V}$ (probably not a subspace)
+          </div>
+
+          <div>
+            $\mathcal{SS}$ = all combinations of vectors in $\mathcal{S}$ (definitely a subspace)
+          </div>
+
+          <div>
+            $\mathcal{SS} = $ all $ c_1 \mathbf{v}_1 + \cdots + c_N \mathbf{v}_N =$ the subspace of $\mathcal{V}$ spanned by $\mathcal{S}$
+          </div>
+          <div>
+            Always $\mathcal{SS}$ is the smallest subspace containing $\mathcal{S}$. The columns "span" the column space.
+
+          </div>
+
+        </li>
+
+      </ul>
+    </div>
+
+    <div class='my-5 divGap-1_6em'>
+      <h6 id='lab'>LAB:</h6>
+
+      <div>
+        <div>Preliminary Setup:</div>
+        <pre><code class='language-python'>
+          from sympy.interactive.printing import init_printing
+          init_printing(use_unicode=True)
+          from sympy.matrices import Matrix
+          from sympy import symbols, sqrt, Rational, eye</code></pre>
+      </div>
+      
+
+      <div>
+        <div>
+          1) &#128037 columnspace of a matrix
+        </div>
+
+        <!--  \left( \begin{smallmatrix} 1 \, 2 \\ 3 \, 4 \end{smallmatrix} \right) -->
+        <pre >  
+        <code class="language-python">
+          A = Matrix([[1, 0, 1], [1, 1, 2], [2, 1, 3]]); A  # given a Matrix A
+        </code></pre>
+        <!--  \left( \begin{smallmatrix} 1 \, 2 \\ 3 \, 4 \end{smallmatrix} \right) -->
+        $$ \left( \begin{matrix} 1 & 0 & 1 \\ 1 & 1 & 2 \\ 2 & 1 & 3 \end{matrix} \right) $$ 
+
+        <pre class='command-line no-line-numbers' data-prompt='>>>' >  
+        <code class="language-python">
+          A.columnspace()
+        </code></pre>
+
+        $$ \left( \left( \begin{matrix} 1 \\ 1 \\ 2 \end{matrix} \right) , \left( \begin{matrix} 0 \\ 1 \\ 1 \end{matrix} \right)  \right)  $$ 
+
+        <div>
+          Sympy's columnspace returns a list of column vectors that span the columnspace of the matrix.
+        </div>
+      </div>
+
+      <div>
+        Reference: <a href=" https://docs.sympy.org/latest/tutorial/matrices.html#columnspace">Sympy manual - columnspace </a>
+      </div>
+
+
+    </div>
+
+  </div>
+
+
+
+
+</div>
