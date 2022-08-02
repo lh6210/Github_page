@@ -34,6 +34,12 @@
   margin-top: 1em;
 }
 
+.indent-5 {
+  text-indent: 5%;
+}
+
+
+
 
 
 /* color */
@@ -41,15 +47,6 @@
   color: red;
 }
 
-
-/*
- 
-
-
-*/
-
-
-/* gap */
 
 
 

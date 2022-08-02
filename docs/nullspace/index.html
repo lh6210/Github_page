@@ -1,0 +1,273 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hang's Math Notes</title>
+    <!-- Required meta tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="stylesheet" href="../static/prism.css">
+
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- put configuration ahead of loading statements -->
+    <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'],['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        processHtmlClass: "arithmatex"
+      }
+    };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+
+    
+
+
+
+</head>
+<body>
+<nav class="layout-c-60 navbar navbar-expand-lg navbar-light bg-primary bg-opacity-10 text-dark">
+  <div class="container-fluid">
+      <a class="navbar-brand" href="/">Hang's Math Notes | Home</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse"  id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mx-5 mb-lg-0 ">
+        <li class="nav-item">
+            <a class="nav-link" href= "/others/" >Others</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href= "/knots/" >Knots</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">About</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+    
+    
+    <div class="layout-c-60 mt-5">
+        <!-- page layout is set at 60% including title and body -->
+
+        <!-- page title -->
+        <div class='txt-center'>
+            <h5> NullSpaces of Matrix A - Chapter 3 (3.2) </h5>
+            <small> &#128197Published on August 02, 2022   &#9749Keywords: Matrix, Sympy  </small> 
+        </div>
+        
+        <!-- page body -->
+        <div class="container-fluid line-numbers">
+
+  <!-- anchors -->
+  <div class='txt-center mt-3'>
+    <div class='right-arrow'>
+      <a href="#notes" >NOTES</a> 
+    </div>
+    <div class="right-arrow">
+      <a href="#lab">LAB</a> 
+    </div>
+  </div>
+
+  <!-- blog body -->
+  <div class='mt-5'>
+
+    <div>
+
+      <h6 id="notes">NOTES: </h6>
+
+      <!-- \left( \begin{smallmatrix}  \end{smallmatrix}  \right) -->
+      <ul class='divGap-0_6em'>
+
+        <li>
+          The nullspace $N(A) \in \mathcal{R}^n$ contains all solutions $\mathbf{x}$ to $A\mathbf{x}=\mathbf{0}$. This includes $\mathbf{x} = \mathbf{0}$.
+        </li>
+
+        <li>
+          What is a free column and a pivot column of matrix $A$?
+
+          <div>
+            A pivot column of matrix $A$ is a column of $A$ that has the pivot. A free column of $A$ is a column of $A$ that has no pivot. Whether a column is pivot or free is easier to see in $A$'s row reduced echelon form $R$.
+          </div>
+
+          <div>
+            Every free column is a combination of some pivot columns. It is the special solutions that tell us those combinations.
+          </div>
+        </li>
+
+        <li>
+          What is a special solution to $A \mathbf{x} = \mathbf{0}$? 
+          <div>
+            A special solution belongs to $N(A)$ and it corresponds to a specific free column of matrix $A$. Suppose $J = \{j \in \mathcal{Z} \mid  j \text{th column of A is a free column} \} $. If column $i$ of $A$ is free, then we define the special solution corresponding to it as having $\mathbf{x}_i = 1$ and $\mathbf{x}_j = 0,  \forall j  \in J \; \text{and} \; j \neq i $.
+          </div>
+        </li>
+
+
+        <li>
+          What is a free variable in solution $\mathbf{x}$ to $A \mathbf{x} = 0$?
+
+          <div>
+            Suppose $J = \{j \in \mathcal{Z} \mid  j \text{th column of A is a free column} \} $.
+            A free variable of $\mathbf{x} \in \mathcal{R}^n \;$ is any $\mathbf{x}_j \; \text{such that} \; j \in J$. In another word, the position $j$ of $\mathbf{x}_j$ depends on the position of free columns of matrix $A$.    The number of free variables equals to the number of free columns in matrix $A$, or the number of columns of $A$ minus the number of pivots in $A$.
+          </div>
+        </li>
+
+        <li>
+          The nullspace of $A$ consists of all combinations of the special solutions to $A \mathbf{x} = \mathbf{0}$.
+        </li>
+
+        <li>
+          The nullspaces of matrix $A$, $A$'s upper triangular $U$, and $A$'s row reduced echelon form $R \;$ stay the same: $N(A) = N(U)  =N(R)$. This nullspace becomes easier to see when we reach the reduced row echelon form $R = rref(A)$. The pivot columns of $R$ contain $I$. 
+
+        </li>
+
+        <li>
+          An invertible matrix $A$ has no free columns or special solutions in $N(A)$, because all of its columns have pivots. Given an invertible matrix $A$, the solution to $A \mathbf{x} = \mathbf{0}$ is trivial, just $\mathbf{x} = \mathbf{0}$. 
+        </li>
+
+        <li>
+          If $N(A)$ is trivial, just $\mathbf{x} = \mathbf{0}$, then the columns of $A$ are independent.
+        </li>
+
+        <li>
+          Suppose $A \mathbf{x} = \mathbf{0}$ has more unknowns than equations ($n \gt m $, more columns than rows  ). There must be at least one free column. Then $A \mathbf{x} = \mathbf{0}$ has nonzero solutions.
+        </li>
+
+        <li>
+          A short wide matrix ( $n \gt m$ ) always has nonzero vectors in its nullspace. There must be at least $n - m$ free variables, since the number of pivots cannot exceed $m$.
+        </li>
+        <li>
+          The nullspace is a subspace. Its dimension is the number of free variables. When there is a free varialbe, it can be set to 1. Then the equation $A \mathbf{x} = \mathbf{0}$ has at least a line of nonzero solutions.
+        </li>
+
+        <li>
+          The rank of $A$ is the number of pivots. This number is $r$. So then the rank of $N(A)$ is $n - r$.
+
+        </li>
+
+
+      </ul>
+    </div>
+
+    <div class='my-5 divGap-1_6em'>
+      <h6 id='lab'>LAB:</h6>
+
+      <div>
+        <div>Preliminary Setup:</div>
+        <pre><code class='language-python'>
+          from sympy.interactive.printing import init_printing
+          init_printing(use_unicode=True)
+          from sympy.matrices import Matrix
+          from sympy import symbols, sqrt, Rational, eye</code></pre>
+      </div>
+
+
+      <div>
+        <div>
+          1) &#128037; nullspace of a matrix
+        </div>
+
+        <!--  \left( \begin{smallmatrix} 1 \, 2 \\ 3 \, 4 \end{smallmatrix} \right) -->
+        <pre >  
+        <code class="language-python">
+          A = Matrix([[1, 2, 3, 0, 0], [4, 10, 0, 0, 1]]); A  # given a Matrix A
+        </code></pre>
+        <!--  \left( \begin{smallmatrix} 1 \, 2 \\ 3 \, 4 \end{smallmatrix} \right) -->
+        $$ \left( \begin{matrix} 1 & 2 & 3 & 0 & 0 \\ 4 & 10 & 0 & 0 & 1 \end{matrix} \right) $$ 
+
+        <pre class='command-line no-line-numbers' data-prompt='>>>' >  
+        <code class="language-python">
+          A.nullspace()
+        </code></pre>
+
+        $$ \left( \left( \begin{matrix} -15 \\ 6 \\ 1 \\ 0 \\ 0 \end{matrix} \right) , \left( \begin{matrix} 0 \\ 0 \\ 0 \\ 1 \\ 0 \end{matrix} \right)  \left( \begin{matrix} 1 \\ -\frac{1}{2} \\ 0 \\ 0 \\ 1 \end{matrix} \right)      \right)  $$ 
+
+        <div>
+          Sympy's nullspace returns a list of column vectors that span the nullspace of the matrix.
+        </div>
+      </div>
+
+      <div>
+        <div>
+          2) &#128037; rank of a matrix
+        </div>
+
+        <!--  \left( \begin{smallmatrix} 1 \, 2 \\ 3 \, 4 \end{smallmatrix} \right) -->
+        <pre >  
+        <code class="language-python">
+          A = Matrix([[1, 2, 3, 0, 0], [4, 10, 0, 0, 1]]); A  # given a Matrix A
+        </code></pre>
+        <!--  \left( \begin{smallmatrix} 1 \, 2 \\ 3 \, 4 \end{smallmatrix} \right) -->
+        $$ \left( \begin{matrix} 1 & 2 & 3 & 0 & 0 \\ 4 & 10 & 0 & 0 & 1 \end{matrix} \right) $$ 
+
+        <pre class='command-line no-line-numbers' data-prompt='>>>' >  
+        <code class="language-python">
+          A.rank()
+        </code></pre>
+
+        <div class='indent-5'>
+         2  
+        </div>
+
+      </div>
+
+      <div>
+        Reference: 
+
+        <div>
+          <a href="https://docs.sympy.org/latest/modules/matrices/matrices.html">Sympy manual - rank </a>
+        </div>
+        <div>
+          <a href="https://docs.sympy.org/latest/tutorial/matrices.html">Sympy manual - nullspace </a>
+
+        </div>
+
+
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+
+
+
+</div>
+
+
+        <!-- comment box -->
+        <script src="https://utteranc.es/client.js"
+                repo="lh6210/lh6210.github.io"
+                issue-term="title"
+                label="comment"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+        </script>
+
+    </div>
+
+
+
+
+
+    <script src='../static/prism.js'></script>
+</body>
+</html>
