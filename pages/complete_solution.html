@@ -1,0 +1,382 @@
+title: The Complete Solution to Ax = b - Chapter 3 (3.3) 
+date: 2022-08-06 
+category: la #la stands for Linear Algebra 
+keywords: Matrix, Sympy 
+
+
+<div class="container-fluid ">
+
+  <!-- anchors -->
+  <div class='txt-center mt-3'>
+    <div class='right-arrow'>
+      <a href="#notes" >NOTES</a> 
+    </div>
+    <div class="right-arrow">
+      <a href="#lab">LAB</a> 
+    </div>
+  </div>
+
+  <!-- blog body -->
+  <div class='mt-5'>
+
+    <div>
+
+      <h6 id="notes">NOTES: </h6>
+
+      <!-- \left( \begin{smallmatrix}  \end{smallmatrix}  \right) -->
+      <ul class='divGap-0_6em'>
+        
+        <li>
+          Every matrix $A$ with full column rank $(r = n)$ has all these properties:
+          <ol>
+            <li>
+              All columns of $A$ are pivot columns;
+            </li>
+            <li>
+              There are no free variables or special solutions. (only pivot variables)
+            </li>
+            <li>
+              The nullspace $N(A)$ contains only the zero vector $ \mathbf{x} = \mathbf{0}$.
+            </li>
+            <li>
+              $A \mathbf{x} = \mathbf{b}$ has zero or only one solution. 
+            </li>
+            <li>
+              There will be $m - n$ zero rows in $R$. So there are $m - n$ conditions on $\mathbf{b}$ in order to have $\mathbf{0} = \mathbf{0}$ in those rows.
+            </li>
+          </ol>
+        </li>
+
+        <li>
+          Every matrix $A$ with full row rank ($r = m$) has all these properties:
+
+          <ol>
+            <li>
+              All rows have pivots, and $R$ has no zero rows.
+            </li>
+            <li>
+              $A \mathbf{x} = \mathbf{b}$ has a solution for every right side $\mathbf{b}$.
+            </li>
+            <li>
+              The column space is the whole space $\mathcal{R}^m$.
+            </li>
+            <li>
+              There are $n - r = n - m$ special solutions in the nullspace of $A$.
+            </li>
+          </ol>
+
+        </li>
+
+        <li>
+          <br>
+
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">r, m, n</th>
+                <th scope="col">matrix $A$</th>
+                <th scope="col">$ A \Rightarrow R $ </th>
+                <th scope="col"># of solutions to $A \mathbf{x} = \mathbf{b}$</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>$ r = m = n $</td>
+                <td>square and invertible</td>
+                <td> $ \begin{bmatrix} I  \end{bmatrix} $ </td>
+                <td>1</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>$ r = m \lt n $</td>
+                <td>short and wide</td>
+                <td> $ \begin{bmatrix} I \quad F \end{bmatrix} $ </td>
+                <td>infinite</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td> $ r = n \lt m $ </td>
+                <td>  tall and thin  </td>
+                <td> $ \begin{bmatrix} I \\ 0 \end{bmatrix} $ </td>
+                <td> zero or one  </td>
+              </tr>
+              <tr>
+                <th scope="row">4</th>
+                <td> $ r \lt n$ and $ r \lt m $ </td>
+                <td>  not full rank  </td>
+                <td> $ \begin{bmatrix} I \quad  F \\ 0 \quad  0  \end{bmatrix} $ </td>
+                <td> zero or infinite </td>
+              </tr>
+            </tbody>
+          </table>
+
+        </li>
+
+        <li>
+          The complete solution to $A \mathbf{x} = \mathbf{b}$ is $\mathbf{x} = \mathbf{x}_p + \mathbf{x}_n$. $\mathbf{x}_p$ is a particular solution to $A \mathbf{x} = \mathbf{b}$ (make all free variables equal to zero); $\mathbf{x}_n$ is the special solution set to $A \mathbf{x} = \mathbf{0}$.
+        </li>
+
+        <li>
+          When solving the particular solution to $A \mathbf{x} = \mathbf{b}$:
+
+          <ol>
+            <li>
+              $  \begin{bmatrix} A \quad \mathbf{b} \end{bmatrix} \Rightarrow  \begin{bmatrix} R \quad \mathbf{d} \end{bmatrix}    $
+            </li>
+            <li>
+              We make free variables zero and get pivot variables from $\mathbf{d}$.
+            </li>
+          </ol>
+
+        </li>
+
+      </ul>
+    </div>
+
+    <div class='my-5 divGap-1_6em'>
+      <h6 id='lab'>LAB:</h6>
+
+      <div>
+        <div>Preliminary Setup:</div>
+        <pre><code class='language-python'>
+          from sympy.interactive.printing import init_printing
+          init_printing(use_unicode=True)
+          from sympy.matrices import Matrix
+          from sympy import symbols, sqrt, Rational, eye</code></pre>
+      </div>
+      
+
+      <div>
+        <div>
+          1) &#128037  Exercise 30: Reduce to $ U \mathbf{x} = \mathbf{c}$ (Gaussian elimination) and then $ R \mathbf{x} = \mathbf{d}$ (Gauss-Jordan): 
+          $$
+          A \mathbf{x} = \begin{pmatrix} 1 & 0 & 2 & 3 \\ 1 & 3 & 2 & 0 \\ 2 & 0 & 4 & 9 \end{pmatrix} \begin{pmatrix}  x_1 \\ x_2 \\ x_3 \\ x_4  \end{pmatrix} = \begin{pmatrix} 2 \\ 5 \\ 10 \end{pmatrix} = \mathbf{b}  
+
+
+          $$
+          <div class='indent-5'>
+          Find a particular solution $\mathbf{x}_p$ and all homogeneous solutions $\mathbf{x}_n$.
+          </div>
+        </div>
+
+        <ol class="list-group list-group-numbered mt-3">
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold">Enter the input: </div>
+
+                <!--  matrix A -->
+                <pre class='command-line no-line-numbers' data-prompt='>>>'>  
+                <code class="language-python">
+                  A = Matrix([[1, 0, 2, 3], [1, 3, 2, 0], [2, 0, 4, 9]]); A 
+                </code></pre>
+                <!--  \left( \begin{smallmatrix} 1 \, 2 \\ 3 \, 4 \end{smallmatrix} \right) -->
+                $$ \left( \begin{matrix} 1 & 0 & 2 & 3 \\ 1 & 3 & 2 & 0 \\ 2 & 0 & 4 & 9 \end{matrix} \right) $$ 
+
+
+                <!-- vector b -->
+                <pre  class='command-line no-line-numbers' data-prompt='>>>'     >  
+                <code class="language-python">
+                  b = Matrix([2, 5, 10]); b
+                </code></pre>
+                <!--  \left( \begin{smallmatrix} 1 \, 2 \\ 3 \, 4 \end{smallmatrix} \right) -->
+                $$ \left( \begin{matrix} 2 \\ 5 \\ 10 \end{matrix} \right) $$ 
+            </div>
+          </li>
+
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold">Solve for the particular solution $\mathbf{x}_p$   </div>
+
+                <pre class='command-line no-line-numbers' data-prompt='>>>' >  
+                <code class="language-python">
+                  augMatrix = A.col_insert(4, b); augMatrix
+                </code></pre>
+
+                  $$ \left( \begin{matrix} 1 & 0 & 2 & 3 & 2 \\ 1 & 3 & 2 & 0 & 5 \\ 2 & 0 & 4 & 9 & 10 \end{matrix} \right) $$ 
+
+                <pre class='command-line no-line-numbers' data-prompt='>>>' >  
+                <code class="language-python">
+                  augMatrix.rref()
+                </code></pre>
+
+                  $$ \left(  \left( \begin{matrix} 1 & 0 & 2 & 0 & -4 \\ 0 & 1 & 0 & 0 & 3 \\ 0 & 0 & 0 & 1 & 2 \end{matrix} \right),  (0, 1, 3)  \right)   $$ 
+
+                <div class='mt-5'>
+                  The result shows us that the column #0, #1, #3 are pivot columns, #2 is a free column, and the rightmost column is $\mathbf{d}$. So we get $ \mathbf{x}_p$ by making the free variable zero and fetching all of the pivot variables from $ \mathbf{d}$.
+                </div>
+
+                $$   \mathbf{x}_p = \begin{pmatrix}  -4 \\ 3 \\ 0 \\ 2      \end{pmatrix}
+                $$
+
+            </div>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold">Solve for the special solutions: </div>
+
+                <pre class='command-line no-line-numbers' data-prompt='>>>' >  
+                <code class="language-python">
+                  A.nullspace()
+                </code></pre>
+
+                  $$ \left( \begin{pmatrix} -2 \\ 0 \\ 1 \\ 0 \end{pmatrix} \right) $$ 
+
+                <div class='mt-5'>
+                  The result shows us that there's one special solution: $\mathbf{x}_n = \begin{pmatrix} -2 \\ 0 \\ 1 \\ 0 \end{pmatrix}   $.
+                </div>
+
+
+            </div>
+          </li>
+
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold">Verify the solutions [Extra]: </div>
+                Verify $A \mathbf{x}_p = \mathbf{b}$ and $A \mathbf{x}_n = \mathbf{0}$.
+            </div>
+          </li>
+
+
+
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold">In conclusion: </div>
+                  $$  \mathbf{x} = \mathbf{x}_p  +  s \cdot \mathbf{x}_n =   \begin{pmatrix}  -4 \\ 3 \\ 0 \\ 2      \end{pmatrix}   +      s \cdot \begin{pmatrix} -2 \\ 0 \\ 1 \\ 0 \end{pmatrix} $$ 
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <div>
+        <div>
+          2) &#128037  Exercise 32: Find the $LU$ factorization of $A$ and the complete solution to $A \mathbf{x} = \mathbf{b}$:
+          $$
+          A = \begin{pmatrix} 1 & 3 & 1 \\ 1 & 2 & 3 \\ 2 & 4 & 6 \\ 1 & 1 & 5  \end{pmatrix}  \quad \text{and} \quad  \mathbf{b} =  \begin{pmatrix}  1 \\ 3 \\ 6 \\ 5 \end{pmatrix} 
+          $$
+        </div>
+
+        <ol class="list-group list-group-numbered mt-3">
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold">Enter the input: </div>
+
+                <!--  matrix A -->
+                <pre class='command-line no-line-numbers' data-prompt='>>>'>  
+                <code class="language-python">
+                  A = Matrix([[1, 3, 1], [1, 2, 3], [2, 4, 6], [1, 1, 5]]); A 
+                </code></pre>
+                <!--  \left( \begin{smallmatrix} 1 \, 2 \\ 3 \, 4 \end{smallmatrix} \right) -->
+                $$ \left( \begin{matrix} 1 & 3 & 1 \\ 1 & 2 & 3 \\ 2 & 4 & 6 \\ 1 & 1 & 5   \end{matrix} \right) $$ 
+
+
+                <!-- vector b -->
+                <pre  class='command-line no-line-numbers' data-prompt='>>>'     >  
+                <code class="language-python">
+                  b = Matrix([1, 3, 6, 5]); b
+                </code></pre>
+                <!--  \left( \begin{smallmatrix} 1 \, 2 \\ 3 \, 4 \end{smallmatrix} \right) -->
+                $$ \left( \begin{matrix} 1 \\ 3 \\ 6 \\ 5 \end{matrix} \right) $$ 
+            </div>
+          </li>
+
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold">Find the $LU$ decomposition of $A$:   </div>
+
+              <pre class='command-line no-line-numbers' data-prompt='>>>' >  
+              <code class="language-python">
+                A.LUdecomposition()
+              </code></pre>
+
+              $$ \left( \begin{pmatrix} 1 & 0 & 0 & 0 \\ 1 & 1 & 0 & 0 \\ 2 & 2 & 1 & 0 \\ 1 & 2 & 0 & 1 \end{pmatrix}, \begin{pmatrix} 1 & 3 & 1 \\ 0 & -1 & 2 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix}, () \right) $$ 
+            </div>
+          </li>
+
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold">Solve for the particular solution $\mathbf{x}_p$   </div>
+
+                <pre class='command-line no-line-numbers' data-prompt='>>>' >  
+                <code class="language-python">
+                  augMatrix = A.col_insert(3, b); augMatrix
+                </code></pre>
+
+                  $$ \left( \begin{matrix} 1 & 3 & 1 & 1 \\ 1 & 2 & 3 & 3 \\ 2 & 4 & 6 & 6 \\ 1 & 1 & 5 & 5   \end{matrix} \right) $$ 
+
+                <pre class='command-line no-line-numbers' data-prompt='>>>' >  
+                <code class="language-python">
+                  augMatrix.rref()
+                </code></pre>
+
+                  $$ \left(  \left( \begin{matrix} 1 & 0 & 7 & 7 \\ 0 & 1 & -2 & -2 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \end{matrix} \right),  (0, 1)  \right)   $$ 
+
+                <div class='mt-5'>
+                  The result shows us that the column #0, #1 are pivot columns, #2 is a free column, and the rightmost column is $\mathbf{d}$. So we get $ \mathbf{x}_p$ by making the free variable zero and fetching all of the pivot variables from $ \mathbf{d}$.
+                </div>
+
+                $$   \mathbf{x}_p = \begin{pmatrix}  7 \\ -2 \\ 0       \end{pmatrix}
+                $$
+
+            </div>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold">Solve for the special solutions: </div>
+
+                <pre class='command-line no-line-numbers' data-prompt='>>>' >  
+                <code class="language-python">
+                  A.nullspace()
+                </code></pre>
+
+                  $$ \left( \begin{pmatrix} -7 \\ 2 \\ 1 \end{pmatrix} \right) $$ 
+
+                <div class='mt-5'>
+                  The result shows us that there's one special solution: $\mathbf{x}_n = \begin{pmatrix} -7 \\ 2 \\ 1 \end{pmatrix}   $.
+                </div>
+
+
+            </div>
+          </li>
+
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold">Verify the solutions [Extra]: </div>
+                Verify $A \mathbf{x}_p = \mathbf{b}$ and $A \mathbf{x}_n = \mathbf{0}$.
+            </div>
+          </li>
+
+
+
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold">In conclusion: </div>
+                  $$  \mathbf{x} = \mathbf{x}_p  +  s \cdot \mathbf{x}_n =   \begin{pmatrix}  7 \\ -2 \\ 0 \end{pmatrix}   +      s \cdot \begin{pmatrix} -7 \\ 2 \\ 1 \end{pmatrix} $$ 
+            </div>
+          </li>
+        </ol>
+
+      </div>
+
+      <div>
+        Reference: 
+
+        <div>
+          <a href="https://docs.sympy.org/latest/tutorial/matrices.html">Sympy manual - matrices </a>
+
+        </div>
+
+
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+
+
+
+</div>
