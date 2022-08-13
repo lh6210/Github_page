@@ -1,0 +1,276 @@
+title: Independence, Basis, and Dimension - Chapter 3 (3.4) 
+date: 2022-08-13 
+category: la #la stands for Linear Algebra 
+keywords: Matrix, Sympy 
+
+
+<div class="container-fluid ">
+
+  <!-- anchors -->
+  <div class='txt-center mt-3'>
+    <div class='right-arrow'>
+      <a href="#notes" >NOTES</a> 
+    </div>
+    <div class="right-arrow">
+      <a href="#lab">LAB</a> 
+    </div>
+  </div>
+
+  <!-- blog body -->
+  <div class='mt-5'>
+
+    <div>
+
+      <h6 id="notes">NOTES: </h6>
+
+      <!-- \left( \begin{smallmatrix}  \end{smallmatrix}  \right) -->
+      <ul class='divGap-0_6em'>
+        
+        <li>
+          The columns of $A$ are linearly independent when the only solution to $A \mathbf{x} = \mathbf{0}$ is $ \mathbf{x} = \mathbf{0} $. No other combination $A \mathbf{x}$ of the columns gives the zero vector. The columns are independent when the nullspace $N(A)$ contains only the zero vector.
+        </li>
+
+        <li>
+          The sequence of vectors $\mathbf{v}_1, \dots , \mathbf{v}_n$ is linearly independent if the only combination that gives the zero vector is $ 0\mathbf{v}_1 + 0 \mathbf{v}_2 +  \cdots + 0 \mathbf{v}_n$. 
+        </li>
+
+        <li>
+          If a combination gives $\mathbf{0}$, when the $\mathbf{x}$'s are not all zero, the vectors are dependent. A sequence of vectors is either dependent or independent.
+        </li>
+
+        <li>
+          The columns of $A$ are independent exactly when the rank is $r = n$. There are $n$ pivots and no free variables. Only $ \mathbf{x} = \mathbf{0} $ is in the nullspace.
+        </li>
+        <li>
+          Any set of $n$ vectors in $\mathcal{R}^m$ must be linearly dependent if $n \gt m$.
+        </li>
+        <li>
+          A set of vectors spans a space if their linear combinations fill the space. The columns of a matrix span its column space. They might be dependent.
+        </li>
+        <li>
+          The row space of a matrix is the subspace of $\mathcal{R}^n$ spanned by the rows.
+        </li>
+        <li>
+          A basis for a vector space is a sequence of vectors with two properties:
+          <div>
+            The basis vectors are linearly independent and they span the space.
+
+          </div>
+        </li>
+        <li>
+          Given a vector space $W$ and a vector $ \mathbf{v} \in W$, there is one and only one way to write $\mathbf{v}$ as a combination of the basis vectors of $W$.
+        </li>
+        <li>
+          The columns of every invertible $n$ by $n$ matrix gives a basis for $\mathcal{R}^n$.
+        </li>
+        <li>
+          The vectors $ \mathbf{v}_1 , \dots, \mathbf{v}_n $ are a basis for $\mathcal{R}^n$ exactly when they are the columns of an $n$ by $n$ invertible matrix. Thus $\mathcal{R}^n$ has infinitely many different bases.
+        </li>
+        <li>
+          The column spaces of $A$ and $R$ are different. The row space of $A$ and $R$ are the same.
+        </li>
+        <li>
+          If $ \mathbf{v}_1 , \dots, \mathbf{v}_m $ and $ \mathbf{w}_1 , \dots, \mathbf{w}_n $ are both bases for the same vector space, them $m = n$.
+        </li>
+        <li>
+          The dimension of a space is the number of vectors in every basis.
+
+        </li>
+        <li>
+          The vector space $M$ contains all $2$ by $2$ matrices. Its dimension is $4$. One basis is $$A_1, \; A_2, \; A_3,\;  A_4 = \begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix}, \;  \begin{bmatrix} 0 & 1 \\ 0 & 0 \end{bmatrix}, \; \begin{bmatrix} 0 & 0 \\ 1 & 0 \end{bmatrix} , \; \begin{bmatrix} 0 & 0 \\ 0 & 1 \end{bmatrix}  $$
+        </li>
+
+      </ul>
+    </div>
+
+    <div class='my-5 divGap-1_6em'>
+      <h6 id='lab'>LAB:</h6>
+
+      <div>
+        <div>Preliminary Setup:</div>
+        <pre><code class='language-python'>
+          from sympy.interactive.printing import init_printing
+          init_printing(use_unicode=True)
+          from sympy.matrices import Matrix
+          from sympy import symbols, sqrt, Rational, eye</code></pre>
+      </div>
+      
+
+      <div>
+        <div>
+          1) &#128037  Exercise 1: Show that $\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3, \mathbf{v}_4$ are dependent:
+          $$\mathbf{v}_1 = \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix} \quad  
+            \mathbf{v}_2 = \begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix} \quad 
+            \mathbf{v}_3 = \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix} \quad 
+            \mathbf{v}_4 = \begin{bmatrix} 2 \\ 3 \\ 4 \end{bmatrix} 
+          $$
+          Solve $ c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2 + c_3 \mathbf{v}_3 + c_4 \mathbf{v}_4 = 0$ or $A \mathbf{x} = \mathbf{0}$.
+
+        </div>
+
+        <ol class="list-group list-group-numbered mt-3">
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold">Enter the input: </div>
+
+                <!--  matrix A -->
+                <pre class='command-line no-line-numbers' data-prompt='>>>'>  
+                <code class="language-python">
+                  A = Matrix([[1, 1, 1, 2], [0, 1, 1, 3], [0, 0, 1, 4]]); A 
+                </code></pre>
+                <!--  \left( \begin{smallmatrix} 1 \, 2 \\ 3 \, 4 \end{smallmatrix} \right) -->
+                $$  \begin{bmatrix} 1 & 1 & 1 & 2 \\ 0 & 1 & 1 & 3 \\ 0 & 0 & 1 & 4 \end{bmatrix} $$ 
+
+
+            </div>
+          </li>
+
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold">Solve for $A\mathbf{x} = \mathbf{0}$ </div>
+
+                <pre class='command-line no-line-numbers' data-prompt='>>>' >  
+                <code class="language-python">
+                  A.nullspace()
+                </code></pre>
+
+                  $$ \left[ \begin{bmatrix} 1 \\ 1 \\ -4 \\ 1 \end{bmatrix} \right] $$ 
+
+            </div>
+          </li>
+
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold">In conclusion: </div>
+                  Therefore, $   \mathbf{x} =  \begin{bmatrix} c_1 \\ c_2 \\ c_3 \\ c_4  \end{bmatrix} = \begin{bmatrix} 1 \\ 1 \\ -4 \\ 1 \end{bmatrix}   $
+
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <div>
+        <div>
+          2) &#128037  Exercise 6: Choose three independent columns of $U$. Then make two other choices. Do the same for $A$.
+          $$
+          U = \begin{bmatrix} 2 & 3 & 4 & 1 \\ 0 & 6 & 7 & 0 \\ 0 & 0 & 0 & 9 \\ 0 & 0 & 0 & 0 \end{bmatrix}
+          \quad \textrm{and}  \quad
+          A = \begin{bmatrix} 2 & 3 & 4 & 1 \\ 0 & 6 & 7 & 0 \\ 0 & 0 & 0 & 9 \\ 4 & 6 & 8 & 2 \end{bmatrix}
+          $$
+        </div>
+
+        <ol class="list-group list-group-numbered mt-3">
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold">Enter the input: </div>
+
+                <!--  matrix A -->
+                <pre class='command-line no-line-numbers' data-prompt='>>>'>  
+                <code class="language-python">
+                  U = Matrix([[2, 3, 4, 1], [0, 6, 7, 0], [0, 0, 0, 9], [0, 0, 0, 0]]); U 
+                </code></pre>
+                <!--  \left( \begin{smallmatrix} 1 \, 2 \\ 3 \, 4 \end{smallmatrix} \right) -->
+                $$
+                U = \begin{bmatrix} 2 & 3 & 4 & 1 \\ 0 & 6 & 7 & 0 \\ 0 & 0 & 0 & 9 \\ 0 & 0 & 0 & 0 \end{bmatrix}
+                $$
+
+                <pre class='command-line no-line-numbers' data-prompt='>>>'>  
+                <code class="language-python">
+                  A = Matrix([[2, 3, 4, 1], [0, 6, 7, 0], [0, 0, 0, 9], [4, 6, 8, 2]]); A 
+                </code></pre>
+                <!--  \left( \begin{smallmatrix} 1 \, 2 \\ 3 \, 4 \end{smallmatrix} \right) -->
+                $$
+                A = \begin{bmatrix} 2 & 3 & 4 & 1 \\ 0 & 6 & 7 & 0 \\ 0 & 0 & 0 & 9 \\ 4 & 6 & 8 & 2 \end{bmatrix}
+                $$
+
+
+            </div>
+          </li>
+
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold">Solve for the row reduced echelon forms of $U$ and $A$:   </div>
+
+              <pre class='command-line no-line-numbers' data-prompt='>>>' >  
+              <code class="language-python">
+              U.rref()
+              </code></pre>
+
+              $$ \left[ \begin{bmatrix} 1 & 0 & \frac{1}{4} & 0 \\ 0 & 1 & \frac{7}{6} & 0 \\  0 & 0 & 0 & 1 \\ 0 & 0 & 0 & 0 \end{bmatrix}, \begin{bmatrix} 0 & 1 & 3 \end{bmatrix} \right] $$ 
+
+              <pre class='command-line no-line-numbers' data-prompt='>>>' >  
+              <code class="language-python">
+              A.rref()
+              </code></pre>
+
+              $$ \left[ \begin{bmatrix} 1 & 0 & \frac{1}{4} & 0 \\ 0 & 1 & \frac{7}{6} & 0 \\  0 & 0 & 0 & 1 \\ 0 & 0 & 0 & 0 \end{bmatrix}, \begin{bmatrix} 0 & 1 & 3 \end{bmatrix} \right] $$ 
+
+            </div>
+          </li>
+
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold">In conclusion: </div>
+              <div>
+                The row echelon forms of $U$ and $A$ are the same. But obviously their column spaces are different.
+              </div>
+              
+              <div>
+                The pivot columns of $U$ or $A$ could be #0, #1, #3, or #0, #2, #3.
+
+              </div>
+              <div>
+                Therefore, three independent columns of $U$ could be 
+                $$
+                \left[
+                \begin{bmatrix} 2 \\ 0 \\ 0 \\ 0 \end{bmatrix}, \;
+                \begin{bmatrix} 3 \\ 6 \\ 0 \\ 0 \end{bmatrix},  \;
+                \begin{bmatrix} 1 \\ 0 \\ 9 \\ 0 \end{bmatrix}
+                \right]
+                \textrm{or}
+
+                \left[
+                \begin{bmatrix} 2 \\ 0 \\ 0 \\ 0 \end{bmatrix}, \;
+                \begin{bmatrix} 4 \\ 7 \\ 0 \\ 0 \end{bmatrix},  \;
+                \begin{bmatrix} 1 \\ 0 \\ 9 \\ 0 \end{bmatrix}
+                \right]
+
+                $$
+
+                While three independent columns of $A$ could be 
+                $$
+                \left[
+                \begin{bmatrix} 2 \\ 0 \\ 0 \\ 4 \end{bmatrix}, \;
+                \begin{bmatrix} 3 \\ 6 \\ 0 \\ 6 \end{bmatrix},  \;
+                \begin{bmatrix} 1 \\ 0 \\ 9 \\ 2 \end{bmatrix}
+                \right]
+                \textrm{or}
+
+                \left[
+                \begin{bmatrix} 2 \\ 0 \\ 0 \\ 4 \end{bmatrix}, \;
+                \begin{bmatrix} 4 \\ 7 \\ 0 \\ 8 \end{bmatrix},  \;
+                \begin{bmatrix} 1 \\ 0 \\ 9 \\ 2 \end{bmatrix}
+                \right]
+
+                $$
+
+
+
+
+              </div>
+            </div>
+          </li>
+        </ol>
+
+      </div>
+
+
+
+    </div>
+
+  </div>
+
+
+
+
+</div>
