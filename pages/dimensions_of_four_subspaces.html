@@ -1,0 +1,256 @@
+title: Dimensions of the Four Subspaces - Chapter 3 (3.5) 
+date: 2022-08-17 
+category: la #la stands for Linear Algebra 
+keywords: Matrix, Sympy 
+
+
+<div class="container-fluid ">
+
+  <!-- anchors -->
+  <div class='txt-center mt-3'>
+    <div class='right-arrow'>
+      <a href="#notes" >NOTES</a> 
+    </div>
+    <div class="right-arrow">
+      <a href="#lab">LAB</a> 
+    </div>
+  </div>
+
+  <!-- blog body -->
+  <div class='mt-5'>
+
+    <div>
+
+      <h6 id="notes">NOTES: </h6>
+
+      <!-- \left( \begin{smallmatrix}  \end{smallmatrix}  \right) -->
+      <ul class='divGap-0_6em'>
+        
+        <li>
+          Four Fundamental Subspaces of matrix $A$:
+          <ol class="divGap-0_6em">
+            <li>
+              the row space: $C(A^T) \subseteq \mathcal{R}^n$.
+            </li>
+            <li>
+              the column space: $C(A) \subseteq \mathcal{R}^m $.
+            </li>
+            <li>
+              the nullspace: $N(A) \subseteq   \mathcal{R}^n$.
+            </li>
+            <li>
+              the left nullspace: $N(A^T) \subseteq   \mathcal{R}^m$. For the left nullspace, we solve $A^T \mathbf{y} = \mathbf{y}^T A = \mathbf{0}$.
+            </li>
+
+            <li>
+              $N(A^T) \perp  C(A)$ ; 
+            </li>
+            <li>
+              $N(A) \perp C(A^T)$; 
+            </li>
+
+
+          </ol>
+        </li>
+
+        <li>
+          The row space $C(A^T)$  and column space $C(A)$  have the same dimension $r$, the rank of the matrix. $N(A)$ and $N(A^T)$ have dimensions $n - r$ and $m - r$, to make up the full $n$ and $m$.
+        </li>
+
+        <li>
+          Four Fundamental Subspaces of matrix $A$ Continued:
+          <ol class="divGap-0_6em">
+            <li>
+              row spaces of $A$ and $R$: <br>
+              $A$ has the same row space and dimension as $R$. Their basis might be different, but they span the same row space. Every row of $A$ is a combination of the rows of $R$. Also every row of $R$ is a combination of the rows of $A$. Elimination changes rows, but not row spaces.
+              <div class="indent-5">
+                Proof:
+              </div>
+
+              <div class="indent-5">
+                $
+                EA = R \Rightarrow A = E^{-1}R \Rightarrow A = CR.
+                $
+
+              </div>
+
+              <div class="indent-5">
+                $C$ is a full rank matrix. $A = CR$ means every row of $A$ is a combination of some rows of $R$. 
+              </div>
+
+              <div class="indent-5">
+                Similarly, $R = EA$ means every row of $R$ is a combination of some rows of $A$.
+              </div>
+            </li>
+
+            <li>
+              column spaces of $A$ and $R$: <br>
+              In most of the cases, they are different.
+
+            </li>
+
+            <li>
+              nullspaces of $A$ and $R$: <br>
+              $A$ has the same nullspace as $R$. Same dimension $n - r$ and same basis.
+            </li>
+
+          </ol>
+
+        </li>
+
+        <li>
+          Counting Theorem: 
+          <div>
+          dimension of column space + dimension of nullspace = $ r + (n - r) $ = dimension of $\mathcal{R}^n = n$.
+          </div>
+
+        </li>
+        <li>
+          Every rank one matrix is one column times one row: $A = \mathbf{u} \mathbf{v}^T$.
+        </li>
+
+        <li>
+          <div>
+          Matrix $A$ (rank two):  <br>  $A = \begin{bmatrix} \mathbf{u}_1 \; \mathbf{u}_2 \; \mathbf{u}_3  \end{bmatrix} \begin{bmatrix}  \mathbf{v}_1^T \\ \mathbf{v}_2^T \\  \textrm{zero row}    \end{bmatrix} = \mathbf{u}_1\mathbf{v}_1^T +  \mathbf{u}_2\mathbf{v}_2^T =  $ (rank 1 matrix) + (rank 1 matrix)  $\ast$  
+
+          </div>
+          <div>
+            $\ast$ check section 2.4 for matrix operation
+          </div>
+
+        </li>
+        <li>
+          Every rank $r$ matrix is a sum of $r$ rank one matrices: pivot columns of $A$ times nonzero rows of $R$.
+        </li>
+        <li>
+          Incidence matrix: loops and trees; Kirchhoff's Voltage Law and Kirchhoff's Current Law.
+
+        </li>
+
+      </ul>
+    </div>
+
+    <div class='my-5 divGap-1_6em'>
+      <h6 id='lab'>LAB:</h6>
+
+      <div>
+        <div>Preliminary Setup:</div>
+        <pre><code class='language-python'>
+          from sympy.interactive.printing import init_printing
+          init_printing(use_unicode=True)
+          from sympy.matrices import Matrix
+          from sympy import symbols, sqrt, Rational, eye</code></pre>
+      </div>
+      
+
+      <div>
+        <div>
+          1) &#128037  Exercise 3: Find a basis for each of the four subspaces associated with $A$:
+
+          $$
+          A = \begin{pmatrix} 0 & 1 & 2 & 3 & 4 \\ 0 & 1 & 2 & 4 & 6 \\ 0 & 0 & 0 & 1 & 2 \end{pmatrix}  = \begin{pmatrix}  1 & 0 & 0 \\ 1 & 1 & 0 \\ 0 & 1 & 1 \end{pmatrix} \begin{pmatrix} 0 & 1 & 2 & 3 & 4 \\ 0 & 0 & 0 & 1 & 2 \\ 0 & 0 & 0 & 0 & 0 \end{pmatrix} 
+          $$
+        </div>
+
+        <ol class="list-group list-group-numbered mt-3">
+
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold">Analysis, basis of $C(A)$ and $C(A^T)$:</div>
+
+              <div>
+                According to "Rank Two Matices" in the textbook, the form of $A = CR$ or $R$ tells us the rank of $A$, pivot columns and rows of $A$.
+              </div>
+
+              <div>
+                So the pivot columns of $A$ are #1 and #3; the pivot rows of $A$ or $R$ are #0 and #1.The rank of matrix $A$ is $2$.
+              </div>
+              <br>
+
+              <div>
+                Immediately, we know the basis of $C(A)$ is:
+                $$
+                \left(  \begin{pmatrix} 1 \\ 1 \\ 0 \end{pmatrix}, \begin{pmatrix} 3 \\ 4 \\ 1 \end{pmatrix}  \right)
+                $$
+
+                The basis of $C(A^T)$ is:
+                $$
+                \left(  \begin{pmatrix} 0 \\ 1 \\ 2 \\ 3 \\ 4 \end{pmatrix}, \begin{pmatrix} 0 \\ 1 \\ 2 \\ 4 \\ 6 \end{pmatrix}  \right)
+                $$
+              </div>
+            </div>
+          </li>
+
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold">basis of $N(A)$</div>
+
+                type $R$ in Sympy:
+                <!--  matrix A -->
+                <pre class='command-line no-line-numbers' data-prompt='>>>'>  
+                <code class="language-python">
+                  R = Matrix([[0, 1, 2, 3, 4], [0, 0, 0, 1, 2], [0, 0, 0, 0, 0]]); R 
+                </code></pre>
+                <!--  \left( \begin{smallmatrix} 1 \, 2 \\ 3 \, 4 \end{smallmatrix} \right) -->
+                $$ \left( \begin{matrix} 0 & 1 & 2 & 3 & 4 \\ 0 & 0 & 0 & 1 & 2 \\ 0 & 0 & 0 & 0 & 0 \end{matrix} \right) $$ 
+
+
+                <!-- vector b -->
+                <pre  class='command-line no-line-numbers' data-prompt='>>>'     >  
+                <code class="language-python">
+                R.nullspace()
+                </code></pre>
+                <!--  \left( \begin{smallmatrix} 1 \, 2 \\ 3 \, 4 \end{smallmatrix} \right) -->
+                $$ \left( \begin{pmatrix} 1 \\ 0 \\ 0 \\ 0 \\ 0 \end{pmatrix},  \begin{pmatrix} 0 \\ -2 \\ 1 \\ 0 \\ 0 \end{pmatrix}, \begin{pmatrix} 0 \\ 2 \\ 0 \\ -2 \\ 1 \end{pmatrix}  \right) $$ 
+            </div>
+          </li>
+
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold">basis of $N(A^T)$</div>
+
+                type $A$ in Sympy:
+                <!--  matrix A -->
+                <pre class='command-line no-line-numbers' data-prompt='>>>'>  
+                <code class="language-python">
+                  A = Matrix([[0, 1, 2, 3, 4], [0, 1, 2, 4, 6], [0, 0, 0, 1, 2]]); A 
+                </code></pre>
+                <!--  \left( \begin{smallmatrix} 1 \, 2 \\ 3 \, 4 \end{smallmatrix} \right) -->
+                $$ \left( \begin{matrix} 0 & 1 & 2 & 3 & 4 \\ 0 & 1 & 2 & 4 & 6 \\ 0 & 0 & 0 & 1 & 2 \end{matrix} \right) $$ 
+
+
+                <!-- vector b -->
+                <pre  class='command-line no-line-numbers' data-prompt='>>>'     >  
+                <code class="language-python">
+                A.T.nullspace()
+                </code></pre>
+                <!--  \left( \begin{smallmatrix} 1 \, 2 \\ 3 \, 4 \end{smallmatrix} \right) -->
+                $$ \left( \begin{pmatrix} 1 \\ -1 \\ 1 \end{pmatrix} \right) $$ 
+
+            </div>
+          </li>
+
+        </ol>
+      </div>
+
+
+      <!--
+      <div>
+        Reference: 
+
+        <div>
+          <a href="https://docs.sympy.org/latest/tutorial/matrices.html">Sympy manual - matrices </a>
+
+        </div>
+      </div>
+      -->
+
+
+    </div>
+
+  </div>
+
+
+
+
+</div>

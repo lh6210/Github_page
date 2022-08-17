@@ -1,0 +1,345 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hang's Math Notes</title>
+    <!-- Required meta tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="stylesheet" href="../static/prism.css">
+
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- put configuration ahead of loading statements -->
+    <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'],['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        processHtmlClass: "arithmatex"
+      }
+    };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+
+    
+
+
+
+</head>
+<body>
+<nav class="layout-c-60 navbar navbar-expand-lg navbar-light bg-primary bg-opacity-10 text-dark">
+  <div class="container-fluid">
+      <a class="navbar-brand" href="/">Hang's Math Notes | Home</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse"  id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mx-5 mb-lg-0 ">
+        <li class="nav-item">
+            <a class="nav-link" href= "/others/" >Others</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href= "/knots/" >Knots</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">About</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+    
+    
+    <div class="layout-c-60 mt-5">
+        <!-- page layout is set at 60% including title and body -->
+
+        <!-- page title -->
+        <div class='txt-center'>
+            <h5> Dimensions of the Four Subspaces - Chapter 3 (3.5) </h5>
+            <small> &#128197Published on August 17, 2022   &#9749Keywords: Matrix, Sympy  </small> 
+        </div>
+        
+        <!-- page body -->
+        <div class="container-fluid ">
+
+  <!-- anchors -->
+  <div class='txt-center mt-3'>
+    <div class='right-arrow'>
+      <a href="#notes" >NOTES</a> 
+    </div>
+    <div class="right-arrow">
+      <a href="#lab">LAB</a> 
+    </div>
+  </div>
+
+  <!-- blog body -->
+  <div class='mt-5'>
+
+    <div>
+
+      <h6 id="notes">NOTES: </h6>
+
+      <!-- \left( \begin{smallmatrix}  \end{smallmatrix}  \right) -->
+      <ul class='divGap-0_6em'>
+
+        <li>
+          Four Fundamental Subspaces of matrix $A$:
+          <ol class="divGap-0_6em">
+            <li>
+              the row space: $C(A^T) \subseteq \mathcal{R}^n$.
+            </li>
+            <li>
+              the column space: $C(A) \subseteq \mathcal{R}^m $.
+            </li>
+            <li>
+              the nullspace: $N(A) \subseteq   \mathcal{R}^n$.
+            </li>
+            <li>
+              the left nullspace: $N(A^T) \subseteq   \mathcal{R}^m$. For the left nullspace, we solve $A^T \mathbf{y} = \mathbf{y}^T A = \mathbf{0}$.
+            </li>
+
+            <li>
+              $N(A^T) \perp  C(A)$ ; 
+            </li>
+            <li>
+              $N(A) \perp C(A^T)$; 
+            </li>
+
+
+          </ol>
+        </li>
+
+        <li>
+          The row space $C(A^T)$  and column space $C(A)$  have the same dimension $r$, the rank of the matrix. $N(A)$ and $N(A^T)$ have dimensions $n - r$ and $m - r$, to make up the full $n$ and $m$.
+        </li>
+
+        <li>
+          Four Fundamental Subspaces of matrix $A$ Continued:
+          <ol class="divGap-0_6em">
+            <li>
+              row spaces of $A$ and $R$: <br>
+              $A$ has the same row space and dimension as $R$. Their basis might be different, but they span the same row space. Every row of $A$ is a combination of the rows of $R$. Also every row of $R$ is a combination of the rows of $A$. Elimination changes rows, but not row spaces.
+              <div class="indent-5">
+                Proof:
+              </div>
+
+              <div class="indent-5">
+                $
+                EA = R \Rightarrow A = E^{-1}R \Rightarrow A = CR.
+                $
+
+              </div>
+
+              <div class="indent-5">
+                $C$ is a full rank matrix. $A = CR$ means every row of $A$ is a combination of some rows of $R$. 
+              </div>
+
+              <div class="indent-5">
+                Similarly, $R = EA$ means every row of $R$ is a combination of some rows of $A$.
+              </div>
+            </li>
+
+            <li>
+              column spaces of $A$ and $R$: <br>
+              In most of the cases, they are different.
+
+            </li>
+
+            <li>
+              nullspaces of $A$ and $R$: <br>
+              $A$ has the same nullspace as $R$. Same dimension $n - r$ and same basis.
+            </li>
+
+          </ol>
+
+        </li>
+
+        <li>
+          Counting Theorem: 
+          <div>
+          dimension of column space + dimension of nullspace = $ r + (n - r) $ = dimension of $\mathcal{R}^n = n$.
+          </div>
+
+        </li>
+        <li>
+          Every rank one matrix is one column times one row: $A = \mathbf{u} \mathbf{v}^T$.
+        </li>
+
+        <li>
+          <div>
+          Matrix $A$ (rank two):  <br>  $A = \begin{bmatrix} \mathbf{u}_1 \; \mathbf{u}_2 \; \mathbf{u}_3  \end{bmatrix} \begin{bmatrix}  \mathbf{v}_1^T \\ \mathbf{v}_2^T \\  \textrm{zero row}    \end{bmatrix} = \mathbf{u}_1\mathbf{v}_1^T +  \mathbf{u}_2\mathbf{v}_2^T =  $ (rank 1 matrix) + (rank 1 matrix)  $\ast$  
+
+          </div>
+          <div>
+            $\ast$ check section 2.4 for matrix operation
+          </div>
+
+        </li>
+        <li>
+          Every rank $r$ matrix is a sum of $r$ rank one matrices: pivot columns of $A$ times nonzero rows of $R$.
+        </li>
+        <li>
+          Incidence matrix: loops and trees; Kirchhoff's Voltage Law and Kirchhoff's Current Law.
+
+        </li>
+
+      </ul>
+    </div>
+
+    <div class='my-5 divGap-1_6em'>
+      <h6 id='lab'>LAB:</h6>
+
+      <div>
+        <div>Preliminary Setup:</div>
+        <pre><code class='language-python'>
+          from sympy.interactive.printing import init_printing
+          init_printing(use_unicode=True)
+          from sympy.matrices import Matrix
+          from sympy import symbols, sqrt, Rational, eye</code></pre>
+      </div>
+
+
+      <div>
+        <div>
+          1) &#128037;  Exercise 3: Find a basis for each of the four subspaces associated with $A$:
+
+          $$
+          A = \begin{pmatrix} 0 & 1 & 2 & 3 & 4 \\ 0 & 1 & 2 & 4 & 6 \\ 0 & 0 & 0 & 1 & 2 \end{pmatrix}  = \begin{pmatrix}  1 & 0 & 0 \\ 1 & 1 & 0 \\ 0 & 1 & 1 \end{pmatrix} \begin{pmatrix} 0 & 1 & 2 & 3 & 4 \\ 0 & 0 & 0 & 1 & 2 \\ 0 & 0 & 0 & 0 & 0 \end{pmatrix} 
+          $$
+        </div>
+
+        <ol class="list-group list-group-numbered mt-3">
+
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold">Analysis, basis of $C(A)$ and $C(A^T)$:</div>
+
+              <div>
+                According to "Rank Two Matices" in the textbook, the form of $A = CR$ or $R$ tells us the rank of $A$, pivot columns and rows of $A$.
+              </div>
+
+              <div>
+                So the pivot columns of $A$ are #1 and #3; the pivot rows of $A$ or $R$ are #0 and #1.The rank of matrix $A$ is $2$.
+              </div>
+              <br>
+
+              <div>
+                Immediately, we know the basis of $C(A)$ is:
+                $$
+                \left(  \begin{pmatrix} 1 \\ 1 \\ 0 \end{pmatrix}, \begin{pmatrix} 3 \\ 4 \\ 1 \end{pmatrix}  \right)
+                $$
+
+                The basis of $C(A^T)$ is:
+                $$
+                \left(  \begin{pmatrix} 0 \\ 1 \\ 2 \\ 3 \\ 4 \end{pmatrix}, \begin{pmatrix} 0 \\ 1 \\ 2 \\ 4 \\ 6 \end{pmatrix}  \right)
+                $$
+              </div>
+            </div>
+          </li>
+
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold">basis of $N(A)$</div>
+
+                type $R$ in Sympy:
+                <!--  matrix A -->
+                <pre class='command-line no-line-numbers' data-prompt='>>>'>  
+                <code class="language-python">
+                  R = Matrix([[0, 1, 2, 3, 4], [0, 0, 0, 1, 2], [0, 0, 0, 0, 0]]); R 
+                </code></pre>
+                <!--  \left( \begin{smallmatrix} 1 \, 2 \\ 3 \, 4 \end{smallmatrix} \right) -->
+                $$ \left( \begin{matrix} 0 & 1 & 2 & 3 & 4 \\ 0 & 0 & 0 & 1 & 2 \\ 0 & 0 & 0 & 0 & 0 \end{matrix} \right) $$ 
+
+
+                <!-- vector b -->
+                <pre  class='command-line no-line-numbers' data-prompt='>>>'     >  
+                <code class="language-python">
+                R.nullspace()
+                </code></pre>
+                <!--  \left( \begin{smallmatrix} 1 \, 2 \\ 3 \, 4 \end{smallmatrix} \right) -->
+                $$ \left( \begin{pmatrix} 1 \\ 0 \\ 0 \\ 0 \\ 0 \end{pmatrix},  \begin{pmatrix} 0 \\ -2 \\ 1 \\ 0 \\ 0 \end{pmatrix}, \begin{pmatrix} 0 \\ 2 \\ 0 \\ -2 \\ 1 \end{pmatrix}  \right) $$ 
+            </div>
+          </li>
+
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold">basis of $N(A^T)$</div>
+
+                type $A$ in Sympy:
+                <!--  matrix A -->
+                <pre class='command-line no-line-numbers' data-prompt='>>>'>  
+                <code class="language-python">
+                  A = Matrix([[0, 1, 2, 3, 4], [0, 1, 2, 4, 6], [0, 0, 0, 1, 2]]); A 
+                </code></pre>
+                <!--  \left( \begin{smallmatrix} 1 \, 2 \\ 3 \, 4 \end{smallmatrix} \right) -->
+                $$ \left( \begin{matrix} 0 & 1 & 2 & 3 & 4 \\ 0 & 1 & 2 & 4 & 6 \\ 0 & 0 & 0 & 1 & 2 \end{matrix} \right) $$ 
+
+
+                <!-- vector b -->
+                <pre  class='command-line no-line-numbers' data-prompt='>>>'     >  
+                <code class="language-python">
+                A.T.nullspace()
+                </code></pre>
+                <!--  \left( \begin{smallmatrix} 1 \, 2 \\ 3 \, 4 \end{smallmatrix} \right) -->
+                $$ \left( \begin{pmatrix} 1 \\ -1 \\ 1 \end{pmatrix} \right) $$ 
+
+            </div>
+          </li>
+
+        </ol>
+      </div>
+
+
+      <!--
+      <div>
+        Reference: 
+
+        <div>
+          <a href="https://docs.sympy.org/latest/tutorial/matrices.html">Sympy manual - matrices </a>
+
+        </div>
+      </div>
+      -->
+
+
+    </div>
+
+  </div>
+
+
+
+
+</div>
+
+
+        <!-- comment box -->
+        <script src="https://utteranc.es/client.js"
+                repo="lh6210/lh6210.github.io"
+                issue-term="title"
+                label="comment"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+        </script>
+
+    </div>
+
+
+
+
+
+    <script src='../static/prism.js'></script>
+</body>
+</html>
