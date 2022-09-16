@@ -1,0 +1,121 @@
+title: Orthogonality of the Four Subspaces - Chapter 4 (4.1) 
+date: 2022-08-17 
+category: la #la stands for Linear Algebra 
+keywords: Matrix, Sympy 
+
+
+<div class="container-fluid ">
+
+  <!-- anchors -->
+  <div class='txt-center mt-3'>
+    <div class='right-arrow'>
+      <a href="#notes" >NOTES</a> 
+    </div>
+    <div class="right-arrow">
+      <a href="#lab">LAB</a> 
+    </div>
+  </div>
+
+  <!-- blog body -->
+  <div class='mt-5'>
+
+    <div>
+
+      <h6 id="notes">NOTES: </h6>
+
+      <!-- \left( \begin{smallmatrix}  \end{smallmatrix}  \right) -->
+      <ul class='divGap-0_6em'>
+        
+        <li>
+          Two subspaces $V$ and $W$ of a vector space are orthogonal if every vector $v$ in $V$ is perpendicular to every vector $w$ in $W$: 
+          $$
+          V \perp W \; \textrm{if} \;  \mathbf{v}^T \mathbf{w} = \mathbf{0} \; \forall \; \mathbf{v} \in V  \; \textrm{and} \;  \forall \; \mathbf{w} \in W
+          $$
+        </li>
+
+        <li>
+          When a vector is in two orthogonal subspaces, it must be zero. Because it has to be perpendicular to itself.
+        </li>
+
+        <li>
+          The nullspace $N(A)$ and row space $C(A^T)$ are orthogonal subspaces of $R^n$.
+          <div>
+            Proof:
+
+            $$
+
+            \textrm{  As we have  } \mathbf{x} \in N(A) \textrm{ and }   A^T \mathbf{y} \in C(A^T) \textrm{, }
+            (A^T \mathbf{y}) \cdot \mathbf{x} = (A^T \mathbf{y})^T \mathbf{x} =\mathbf{y}^T A \mathbf{x} = \mathbf{y}^T \cdot \mathbf{0} = \mathbf{0}
+            $$
+          </div>
+        </li>
+
+        <li>
+          The orthogonal complement of a subspace $V$ inside a space (let's say space $W$) contains every vector that is perpendicular to $V$ in space $W$. This orthogonal subspace is denoted by $V^{\perp}  \subseteq W$.
+        </li>
+
+        <li>
+          Facts about Orthogonal Complements: Let $W$ be a subspace of $R^n$. Then [1]
+          <div >
+            <ol>
+              <li> $W^{\perp}$ is also a subspace of $R^n$  </li>
+              <li> $(W^{\perp})^{\perp} = W$  </li>
+              <li> $ \textrm{dim}(W) + \textrm{dim}(W^{\perp})  = n   $ </li>
+            </ol>
+
+          </div>
+        </li>
+
+
+        <li>
+          $N(A)^{\perp} = C(A^T) \; \textrm{in} \; \mathcal{R}^{n} : \textrm{dim} (N(A))= n -r; \textrm{dim}(C(A^T)) = r; N(A) \perp C(A^T) \; \textrm{AND} \; \textrm{dim}(N(A)) + \textrm{dim}(C(A^T)) = n            $
+        </li>
+        <li>
+          $C(A)^{\perp} = N(A^T) \; \textrm{in} \; \mathcal{R}^{m}$. 
+        </li>
+        <li>
+          The point of complements is that every $\mathbf{x}$ can be split into a row space component $\mathbf{x}_r$ and a nullspace component $\mathbf{x}_n$. When $A$ multiple $\mathbf{x} = \mathbf{x}_r + \mathbf{x}_n$, $A \mathbf{x} = A \mathbf{x}_r + A \mathbf{x}_n = A \mathbf{x}_r + \mathbf{0} = A \mathbf{x}_r \in C(A)$.
+        </li>
+        <li>
+          Every vector $\mathbf{b} \in C(A)$ comes from one and only one vector $\mathbf{x}_r \in C(A^T)$.
+          <div>
+            Proof: <br>
+            Suppose $ \mathbf{b} \in C(A) =  A \mathbf{x}_r = A \mathbf{x}_r^{'}$, and $ \mathbf{x}_r, \mathbf{x}_r^{'} \in C(A^T)$. So then $  (\mathbf{x}_r -  \mathbf{x}_r^{'}) \in C(A^T)$. Also since $ A (\mathbf{x}_r - \mathbf{x}_r^{'}) = \mathbf{0}$, so then $ (\mathbf{x}_r -  \mathbf{x}_r^{'}) \in N(A)$. Therefore, $ \mathbf{x}_r -  \mathbf{x}_r^{'}$ have to be $\mathbf{0}$.
+          </div>
+        </li>
+        <li>
+          A row of $A$ can't be in the nullspace of $A$ (except for a zero row).
+        </li>
+        <li>
+          Any $n$ independent vectors in $\mathcal{R}^n$ must span $\mathcal{R}^n$, so they are a basis; any $n$ vectors that span $\mathcal{R}^n$ must be independent.
+        </li>
+        <li>
+          If the $n$ columns of $A$ are independent, they span $\mathcal{R}^n$. So $A \mathbf{x} = \mathbf{b}$ is solvable and has only one solution.
+        </li>
+
+        <li>
+          Fredholm's Alternative [ex. 7]: Exactly one of these problems has a solution:
+          $$
+          A \mathbf{x} = \mathbf{b} \quad \textrm{OR} \quad A^T \mathbf{y} = \mathbf{0} \; \textrm{with} \; \mathbf{y}^T\mathbf{b} = 1.
+
+          $$
+
+
+        </li>
+
+
+      </ul>
+
+      <div>
+        [1]: <a href="https://textbooks.math.gatech.edu/ila/orthogonal-complements.html">Proof of Facts of the Orthogonal Complements</a>
+
+      </div>
+    </div>
+
+
+  </div>
+
+
+
+
+</div>
