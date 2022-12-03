@@ -54,23 +54,30 @@ keywords: Matrix, Sympy
         </li>
 
         <li>
-          $P_1 \mathbf{b} + P_2 \mathbf{b} = \mathbf{b}$; $P_1 \mathbf{b} \perp P_2 \mathbf{b}  $; $P_1 + P_2 = I$; z axis and xy plane are orthogonal complements in $R^3$; $ \textrm{dim}(P_1) + \textrm{dim}(P_2) = 1 +2 = 3 $. 
+          In the example above, $P_1 \mathbf{b} + P_2 \mathbf{b} = \mathbf{b}$; $P_1 \mathbf{b} \perp P_2 \mathbf{b}  $; $P_1 + P_2 = I$; z axis and xy plane are orthogonal complements in $R^3$; $ \textrm{dim}(P_1) + \textrm{dim}(P_2) = 1 +2 = 3 $. 
         </li>
+
+        <li>In 3d space, the z axis and the xy plane are orthogonal complements. Their dimensions add to 1 + 2 = 3. </li>
+
 
         <li>
           Project a line $\mathbf{b}$ onto a line $\mathbf{a}$:
           <div>
           $
-          \exists \; x \in R \;  \textrm{such that} \; \mathbf{e} = (\mathbf{b} - x \cdot \mathbf{a}) \perp \mathbf{a}
-          \Rightarrow  \mathbf{a} \cdot  (\mathbf{b} - x \cdot \mathbf{a})  = 0
-          \Rightarrow \mathbf{p} = x \cdot \mathbf{a} = \frac{\mathbf{a} \mathbf{a}^T }{\mathbf{a}^T \mathbf{a}}  \mathbf{b}
+          \exists \; \hat{x} \in R \;  \textrm{such that} \; \mathbf{e} = (\mathbf{b} - \hat{x} \cdot \mathbf{a}) \perp \mathbf{a}
+          \Rightarrow  \mathbf{a} \cdot  (\mathbf{b} - \hat{x} \cdot \mathbf{a})  = 0
+          \Rightarrow \mathbf{p} = \hat{x} \cdot \mathbf{a} = \frac{\mathbf{a} \mathbf{a}^T }{\mathbf{a}^T \mathbf{a}}  \mathbf{b}
           $;
           </div>
           <div>
-            Projection matrix $P = \frac{\mathbf{a} \mathbf{a}^T }{\mathbf{a}^T \mathbf{a}} $,  $P^2  = P$     and $\mathbf{p} = P \mathbf{b}$.
+            Projection matrix $P = \frac{\mathbf{a} \mathbf{a}^T }{\mathbf{a}^T \mathbf{a}} $,  $P^2  = P$     and $\mathbf{p} = P \mathbf{b}$. The projection matrix is a column times a row, which has the dimension m by m, but its rank is one. We are projecting onto a one-dimensional subspace, the line through $\mathbf{a}$. That line is the column space of $P$.
           </div>
           <div>
-            $I -P $ is another projection matrix: $(I - P) \mathbf{b} = \mathbf{b} - P \mathbf{b} = \mathbf{b} - \mathbf{p} = \mathbf{e}$.
+            If the vector $\mathbf{a}$ is doubled, the matrix $P$ stays the same. If the matrix is squared, $P^2$ equals $P$. Projecting a second time doesn't change anything. So $P^2 = P$.
+
+          </div>
+          <div>
+            When $P$ projects onto one subspace, $I -P $ projects onto the perpendicular subspace: $(I - P) \mathbf{b} = \mathbf{b} - P \mathbf{b} = \mathbf{b} - \mathbf{p} = \mathbf{e}$.
           </div>
         </li>
 
@@ -81,7 +88,7 @@ keywords: Matrix, Sympy
           </div>
           <div>
           $
-          \exists \; \mathbf{x} \in R^n \;  \textrm{such that} \; A \mathbf{x} \; \textrm{is the projection of } \mathbf{b};
+          \textrm{Let matrix } A = (a_1, a_2, \cdots, a_n ). \;     \exists \; \mathbf{x} \in R^n \;  \textrm{such that} \; A \mathbf{x} \; \textrm{is the projection of } \mathbf{b};
           \mathbf{e} = (\mathbf{b} - A \mathbf{x}) \perp C(A) \Rightarrow  \mathbf{e} = (\mathbf{b} - A \mathbf{x}) \in N(A^T) $
           </div>
 
